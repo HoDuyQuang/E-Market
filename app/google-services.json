@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "103891048472",
+    "firebase_url": "https://e-martket.firebaseio.com",
+    "project_id": "e-martket",
+    "storage_bucket": "e-martket.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103891048472:android:cbf981fd8574964c",
+        "android_client_info": {
+          "package_name": "vn.edu.dut.itf.e_market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103891048472-3bburd0bgu673c61r702oj109cq45mc6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.edu.dut.itf.e_market",
+            "certificate_hash": "0FDA024258A87FCC02ECAD4FD884C460C09DCA73"
+          }
+        },
+        {
+          "client_id": "103891048472-gtqfbmk3bf7oo62t859oinh2t23r8o0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQdW2CrQ4Plj2c9HcLY6eYLr5RjZQIaGY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103891048472-gtqfbmk3bf7oo62t859oinh2t23r8o0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
