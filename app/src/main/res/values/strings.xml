@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">E-Market</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Sign in</string>
 
@@ -19,4 +16,341 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="fb_login_protocol_scheme">fb543210645882499</string>
+    <string name="app_id">543210645882499</string>
+
+
+
+    <!-- Sliding menu -->
+    <string name="menu">Menu</string>
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="favorite">Favorite</string>
+    <string name="notification">Notification</string>
+    <string name="setting">Setting</string>
+    <string name="feedback">Feedback</string>
+    <string name="help">Help</string>
+    <string name="sign_out">Sign out</string>
+
+    <!-- Login -->
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="email_or_phone">Email or phone</string>
+    <string name="password">Password</string>
+    <string name="confirmpass">Confirm password</string>
+    <string name="username">Username</string>
+    <string name="signin">Sign in</string>
+    <string name="forgotpass">Forgot password?</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="register">Register</string>
+    <string name="regerrpass">Password have to longer than 6 character</string>
+
+    <!-- Change Password -->
+    <string name="curentpass">Current password</string>
+    <string name="newpass">New password</string>
+    <string name="repass">Re-type new password</string>
+    <string name="changepass">Change password</string>
+    <string name="changing_password">Changing your password…</string>
+
+    <!-- Setting -->
+    <string name="notify">Notification Setting</string>
+    <string name="allowpus">Allow push notification</string>
+    <string name="language">Language</string>
+    <string name="please_choose_your_language">Please choose your language</string>
+    <!-- Cart -->
+    <string name="amount">Amount</string>
+
+    <!-- Order -->
+    <string name="lbOrderInfor">Order Information</string>
+    <string name="lbOrderCode">Order code</string>
+    <string name="lbOrderDate">Order date</string>
+    <string name="lbOrderStatus">Order status</string>
+    <string name="lbFood">Foods</string>
+    <string name="lbDeliveryInfor">Delivery Information</string>
+    <string name="lbName">Name</string>
+    <string name="province">Province</string>
+    <string name="district">District</string>
+    <string name="address">Address</string>
+    <string name="lbPhone">Phone</string>
+
+    <string name="address_type">Address type</string>
+    <string name="lbNote">Note</string>
+    <string name="sub_total">Subtotal</string>
+    <string name="lbDelevery">Delivery fee</string>
+    <string name="total">Total</string>
+    <string name="re_order">Re-order</string>
+
+    <!-- Order List -->
+    <string name="time">Time</string>
+
+    <!-- Menu action -->
+
+    <!-- Navigation drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Home footer -->
+    <string name="phone">Phone</string>
+    <string name="website">Website</string>
+    <string name="map">Map</string>
+    <!-- font -->
+    <string name="font_primary" translatable="false">Roboto-Regular.ttf</string>
+    <string name="font_light" translatable="false">Roboto-Light.ttf</string>
+    <string name="font_thin" translatable="false">Roboto-Thin.ttf</string>
+    <string name="myanmar_font" translatable="false">ZawgyiOne.ttf</string>
+    <!-- Languages -->
+    <string name="english" translatable="false">English</string>
+    <string name="japan" translatable="false">日本語</string>
+    <string name="myanmar" translatable="false">မြန်မာစာ</string>
+    <string name="vietnamese" translatable="false">Tiếng Việt</string>
+
+    <!-- Help -->
+    <string name="deliveryprocess">Delivery process</string>
+    <string name="buytutorial">Buy tutorial</string>
+
+    <string-array name="pref_language_values">
+        <item>en</item>
+        <item>ja</item>
+        <item>vi</item>
+        <item>my</item>
+    </string-array>
+
+    <!-- Currencies -->
+
+    <!-- Open Time -->
+    <string-array name="open_day">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string name="opening">Opening</string>
+    <string name="closed">Closed</string>
+    <string name="close_restaurant">Close</string>
+    <!-- Restaurant Rating -->
+    <string name="review_bad">Bad</string>
+    <string name="review_average">Average</string>
+    <string name="review_good">Good</string>
+    <string name="review_excellent">Excellent</string>
+
+    <string-array name="restaurant_rating_item">
+        <item>Location</item>
+        <item>Price</item>
+        <item>Quality</item>
+        <item>Services</item>
+        <item>Decorations</item>
+    </string-array>
+    <string-array name="food_rating_item">
+        <item>Price</item>
+        <item>Quality</item>
+        <item>Decorations</item>
+    </string-array>
+
+    <string name="review_count">%1$d review(s)</string>
+    <string name="review">Review</string>
+    <string name="toast_input_content">Please input your review content</string>
+    <string name="rating">Rating</string>
+    <string name="restaurant_review_title">Restaurant review</string>
+    <string name="food_review_title">%1$s\'s review </string>
+    <string name="add_review">Add review</string>
+    <string name="review_title_hint">Title (optional)</string>
+    <string name="review_content_hint">Please input review content</string>
+    <string name="sending_review">Sending review…</string>
+    <string name="review_send_success">Your review has been sent successfully</string>
+
+    <!-- Restaurant menu -->
+    <string name="all">All</string>
+    <string name="take_away">Take away</string>
+
+    <!-- Restaurant Detail -->
+    <string name="description">Description</string>
+    <string name="cost">Cost</string>
+    <string name="direction">Direction</string>
+    <string name="capacity">Capacity</string>
+    <string name="categories">Categories</string>
+    <string name="cuisines">Cuisines</string>
+    <string name="typical_dishes">Typical dishes</string>
+    <string name="services">Services</string>
+    <string name="holidays">Holidays</string>
+    <!-- Button Action -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="more">More</string>
+
+    <!-- Common -->
+    <string name="price_with_unit" translatable="false">%1$s %2$s</string>
+    <string name="cart_total">Total:</string>
+    <string name="facilities">Facilities</string>
+    <string name="open_time">Open Time</string>
+    <string name="logout_confirm_message">Are you sure to logout?</string>
+    <string name="loading">Loading…</string>
+    <string name="logging_out">Logging out…</string>
+    <string name="logging_in">Logging in…</string>
+    <string name="tap_to_retry">Đã xảy ra lỗi, nhấp để thử lại</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="order_now">Order Now</string>
+    <string name="as_soon_as">As soon as possible</string>
+    <string name="call_string">Call</string>
+    <string name="like_string">Like</string>
+    <string name="photo_string">Photo</string>
+    <string name="review_string">Review</string>
+    <!-- Notification -->
+
+
+    <!-- Fragment Profile -->
+    <string name="frg_profile_btn_review">Review History</string>
+    <string name="frg_profile_change_password">Change password</string>
+    <string name="frg_profile_basic_info">Basic Information</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="frg_profile_gender">Gender</string>
+    <string name="birthdate">Birthday</string>
+    <string name="frg_profile_participate_date">Participate date</string>
+    <string name="frg_profile_contact_info">Contact Information</string>
+
+    <!-- Fragment Review History Food -->
+    <string name="number_reviews">%1$d review(s)</string>
+    <string name="profile">Profile</string>
+
+    <!-- Fragment review history restaurant -->
+    <string name="like">Like (%1$d)</string>
+    <string name="comment">Comment (%1$d)</string>
+
+    <!-- Fragment review list -->
+
+    <!-- Suggest session -->
+    <string name="suggest">Suggest</string>
+    <string name="press_back_again_to_exit">Press BACK again to exit</string>
+
+    <!-- Notification Res -->
+    <string name="frg_notification_res_title">You have successful signed up</string>
+    <string name="frg_notification_res_time">Just now</string>
+
+    <!-- Notification res -->
+    <string name="frg_notification_res_R">R</string>
+
+    <!-- Notification Comment -->
+    <string name="frg_notification_comment_time">2 days ago</string>
+    <!-- Feedback -->
+
+    <string name="frg_feedback_phonenumber">Phone number</string>
+    <string name="frg_feedback_content">Feedback content</string>
+    <string name="view_all_information">View all information</string>
+    <string name="firstname_required">Please input your firstname</string>
+    <string name="lastname_required">Please input your lastname</string>
+    <string name="email_required">Please input your email</string>
+    <string name="phone_required">Please input your phone number</string>
+    <string name="feedback_content_required">Please input your feedback content</string>
+    <string name="email_invalid">Email is invalid</string>
+    <string name="phone_invalid">Phone number is invalid</string>
+    <string name="address_required">Please input your address</string>
+    <!-- Validate error message -->
+    <string name="email_phone_required">Please input your email or phone number</string>
+    <string name="password_required">Please input your password</string>
+    <string name="confirm_password_required">Please confirm your password</string>
+    <string name="username_required">Please input your username</string>
+    <string name="email_phone_invalid">Email or phone number is invalid</string>
+    <string name="password_invalid">Password must be from %1$d to %2$d characters</string>
+    <string name="confirm_password_invalid">Confirm password doesn\'t match your password</string>
+    <string name="new_password_required">Please input your new password</string>
+    <string name="current_password_required">Please input your current password</string>
+    <string name="cart_empty">There\'s no food in your cart</string>
+    <string name="order_empty">There\'s no order</string>
+    <string name="review_empty">You have no review</string>
+    <string name="photo_empty">There\'s no photo</string>
+    <string name="notification_empty">You have no notification</string>
+    <string name="favorite_empty">You have no favorite food</string>
+    <string name="cart_check_out">Continue</string>
+
+    <string name="snack_network_error">Network Error</string>
+    <string name="snack_server_error">Server Error</string>
+    <string name="snack_success">Success</string>
+
+    <string name="retry">Retry</string>
+    <string name="number_items">%1$d items</string>
+    <string name="date_not_set">Not set</string>
+    <string name="registering">Registering…</string>
+    <string name="updating">Updating…</string>
+    <string name="first_review">Be the first one to review</string>
+    <string name="delivery_information">Delivery Information</string>
+    <string name="sending_order">Sending order…</string>
+    <string name="send">Send</string>
+    <string name="your_recovery_email">Your recovery email</string>
+    <string name="reset_link_sent">A new password has been sent to your email!</string>
+    <string name="welcome_guest">Welcome Guest!</string>
+    <string name="password_changed_success">Your password has been changed successfully</string>
+    <string name="load_data_failure">Unable to get data from server!</string>
+    <string name="order_management">Order management</string>
+    <string name="pay">Pay</string>
+    <string name="order_detail">Order detail</string>
+    <string name="close">Close</string>
+    <string name="pay_completed">Pay completed</string>
+    <!-- Error snack -->
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="unable_connect_server">Unable to connect to server</string>
+    <string name="unable_perform_action">Unable to perform this operation</string>
+    <string name="order_limit">Total ordering cost must be larger than %1$s</string>
+    <!-- Notification -->
+    <string name="notification_you">You</string>
+    <string name="notification_restaurant">Restaurant</string>
+    <string name="version">Version %1$s</string>
+
+    <string name="login_to_perform">You have to login to perform this action</string>
+    <string name="send_feedback_success">Your feedback has been sent successfully</string>
+    <string name="sending">Sending…</string>
+    <string name="restaurant_photos_album">Restaurant\'s Photos</string>
+    <string name="user">User</string>
+    <string name="profile_updated">Your profile has been updated</string>
+    <string name="username_password_not_correct">Your username or password is not correct</string>
+    <string name="username_exist">Your email or phone have been already registered with another account</string>
+    <string name="display_name">Display name</string>
+    <string name="register_email_guide">Please provide email use in case forgot password. We use this email to send you a new password</string>
+    <string name="skip">Skip</string>
+    <string name="current_password_incorrect">Your current password is incorrect</string>
+    <string name="error_password_changed">Your password has been changed. Please login again</string>
+    <string name="review_detail">Review detail</string>
+    <string name="email_not_exist">Your email doesn\'t exist</string>
+    <string name="order">Order</string>
+    <string name="step">Step</string>
+    <string name="agree">Agree</string>
+
+    <!-- Help -->
+    <string name="cart_step_1">Click on %1$s</string>
+    <string name="cart_step_2">Input amount then click on %1$s button</string>
+    <string name="cart_step_31">Click %1$s on menu</string>
+    <string name="cart_step_32">or click on %1$s icon</string>
+    <string name="cart_step_4">Check cart then click on %1$s to go to next screen</string>
+    <string name="cart_step_5">Input delivery info required in screen then click on %1$s button to complete</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="food">Food</string>
+    <string name="help_buy_cart">Order many foods</string>
+    <string name="help_buy_order_now">Order one food</string>
+    <string name="new_password_invalid">New password must contain %1$d to %2$d characters</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="error_email_registerd_multiple_user">This email have been registered by multiple users</string>
+    <string name="forgot_pass_username_incorrect">Your username is incorrect</string>
+    <string name="choose_province">Choose province</string>
+    <string name="choose_district">Choose district</string>
+    <string name="unable_get_fee">Can\'t get delivery fee for this district</string>
+    <string name="choose_gender">Choose gender</string>
+    <string name="food_no_longer_serve">We no longer serve some food added in your cart</string>
+    <string name="time_expect">Time expect</string>
+    <string name="note">Note</string>
+    <string name="date">Date</string>
+    <string name="write_a_comment">Write a comment…</string>
+    <string name="post">Post</string>
+    <string name="free">Free</string>
+    <string name="contact_asap">We will contact with you as soon as possible</string>
+    <string name="price">Price</string>
+    <string name="thank_you">Thank you</string>
+    <string name="check_order_info">Please check your order information such as below</string>
+
 </resources>
