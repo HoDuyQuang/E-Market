@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/bar_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/view_data"
+        android:layout_below="@+id/bar_review"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <vn.com.brycen.restaurant.views.CustomFontTextView
+                        style="@style/AppTheme.TextView.Session.Gray"
+                        android:text="@string/delivery_information" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dddddd" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_first_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <vn.com.brycen.restaurant.views.CustomFontEditText
+                                android:id="@+id/etFirstName"
+                                style="@style/AppTheme.EditText.Pay"
+                                android:hint="@string/first_name"
+                                android:nextFocusDown="@+id/etLastName" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_last_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <vn.com.brycen.restaurant.views.CustomFontEditText
+                                android:id="@+id/etLastName"
+                                style="@style/AppTheme.EditText.Pay"
+                                android:hint="@string/last_name" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <fr.ganfra.materialspinner.MaterialSpinner
+                            android:id="@+id/spProvice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            app:ms_alignLabels="false"
+                            app:ms_arrowColor="@color/app_gray_dark"
+                            app:ms_arrowSize="12dp"
+                            app:ms_baseColor="@color/app_white"
+                            app:ms_enableErrorLabel="true"
+                            app:ms_enableFloatingLabel="true"
+                            app:ms_errorColor="@color/us_red"
+                            app:ms_floatingLabelColor="@color/app_gray_dark"
+                            app:ms_floatingLabelText="@string/province"
+                            app:ms_highlightColor="@color/app_hard_yellow"
+                            app:ms_hint="@string/choose_province"
+                            app:ms_hintColor="@color/app_gray_dark"
+                            app:ms_multiline="false"
+                            app:ms_thickness="2dp"
+                            app:ms_typeface="fonts/Roboto-Regular.ttf" />
+
+                        <fr.ganfra.materialspinner.MaterialSpinner
+                            android:id="@+id/spDistrict"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            app:ms_alignLabels="false"
+                            app:ms_arrowColor="@color/app_gray_dark"
+                            app:ms_arrowSize="12dp"
+                            app:ms_baseColor="@color/app_white"
+                            app:ms_enableErrorLabel="true"
+                            app:ms_enableFloatingLabel="true"
+                            app:ms_errorColor="@color/us_red"
+                            app:ms_floatingLabelColor="@color/app_gray_dark"
+                            app:ms_floatingLabelText="@string/district"
+                            app:ms_highlightColor="@color/app_hard_yellow"
+                            app:ms_hint="@string/choose_district"
+                            app:ms_hintColor="@color/app_gray_dark"
+                            app:ms_multiline="false"
+                            app:ms_thickness="2dp"
+                            app:ms_typeface="fonts/Roboto-Regular.ttf" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <vn.com.brycen.restaurant.views.CustomFontEditText
+                                android:id="@+id/etAddress"
+                                style="@style/AppTheme.EditText.Pay"
+                                android:hint="@string/address" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <vn.com.brycen.restaurant.views.CustomFontEditText
+                                android:id="@+id/etPhone"
+                                style="@style/AppTheme.EditText.Pay"
+                                android:hint="@string/phone"
+                                android:inputType="phone" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <vn.com.brycen.restaurant.views.CustomFontEditText
+                                android:id="@+id/etEmail"
+                                style="@style/AppTheme.EditText.Pay"
+                                android:hint="@string/email"
+                                android:inputType="textEmailAddress" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <fr.ganfra.materialspinner.MaterialSpinner
+                            android:id="@+id/spAddressType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            app:ms_alignLabels="false"
+                            app:ms_arrowColor="@color/app_gray_dark"
+                            app:ms_arrowSize="12dp"
+                            app:ms_baseColor="@color/app_white"
+                            app:ms_enableErrorLabel="false"
+                            app:ms_enableFloatingLabel="true"
+                            app:ms_errorColor="@color/app_red"
+                            app:ms_floatingLabelColor="@color/app_gray_dark"
+                            app:ms_floatingLabelText="@string/address_type"
+                            app:ms_highlightColor="@color/app_hard_yellow"
+                            app:ms_multiline="false"
+                            app:ms_thickness="2dp"
+                            app:ms_typeface="fonts/Roboto-Regular.ttf" />
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="6dp"
+                            android:paddingTop="6dp">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/etNote"
+                                    style="@style/AppTheme.EditText.Pay"
+                                    android:hint="@string/note"
+                                    android:imeOptions="actionNone"
+                                    android:inputType="textMultiLine"
+                                    android:maxLines="5"
+                                    android:minLines="2" />
+                            </android.support.design.widget.TextInputLayout>
+                        </TableRow>
+                    </LinearLayout>
+
+                    <vn.com.brycen.restaurant.views.CustomFontTextView
+                        style="@style/AppTheme.TextView.Session.Gray"
+                        android:text="@string/time_expect" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dddddd" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginStart="10dp">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="6dp"
+                            android:paddingTop="10dp">
+
+                            <TextView
+                                style="@style/AppTheme.TextView.PayTitle"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:text="@string/date" />
+
+                            <TextView
+                                android:id="@+id/tvDate"
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                style="@style/AppTheme.EditText.Pay"
+                                android:gravity="left" />
+                        </TableRow>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="6dp"
+                            android:paddingTop="6dp">
+
+                            <TextView
+                                style="@style/AppTheme.TextView.PayTitle"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:text="@string/time" />
+
+                            <RadioGroup
+                                android:id="@+id/grTime"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:orientation="vertical">
+
+                                <RadioButton
+                                    android:id="@+id/rbTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="00:00" />
+
+                                <RadioButton
+                                    android:id="@+id/rbAsSoonAs"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    android:text="@string/as_soon_as" />
+                            </RadioGroup>
+                        </LinearLayout>
+                    </TableLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:background="@color/app_gray" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <vn.com.brycen.restaurant.views.CustomFontTextView
+                            android:id="@+id/subTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:alpha="0.8"
+                            android:text="@string/sub_total"
+                            android:textColor="#000"
+                            android:textSize="@dimen/text_pay" />
+
+                        <vn.com.brycen.restaurant.views.CustomFontTextView
+                            android:id="@+id/tvSubtotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:alpha="0.8"
+                            android:text="90 USD"
+                            android:textColor="#000"
+                            android:textSize="@dimen/text_pay" />
+
+                        <vn.com.brycen.restaurant.views.CustomFontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/subTitle"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:alpha="0.8"
+                            android:text="@string/lbDelevery"
+                            android:textColor="#000"
+                            android:textSize="@dimen/text_pay" />
+
+                        <vn.com.brycen.restaurant.views.CustomFontTextView
+                            android:id="@+id/tvDeliveryFee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/tvSubtotal"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:alpha="0.8"
+                            android:text="@string/free"
+                            android:textColor="#000"
+                            android:textSize="@dimen/text_pay" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#dddddd" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <vn.com.brycen.restaurant.views.CustomFontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/cart_total"
+                            android:textSize="@dimen/text_pay"
+                            android:textStyle="bold" />
+
+                        <vn.com.brycen.restaurant.views.CustomFontTextView
+                            android:id="@+id/tvTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:text="90 USD"
+                            android:textSize="@dimen/text_pay"
+                            android:textColor="@color/app_red"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#dddddd" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/app_light_green"
+                        android:gravity="bottom|center_horizontal"
+                        android:orientation="vertical">
+
+                        <vn.com.brycen.restaurant.views.CustomFontButton
+                            android:id="@+id/btPayDone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/bg_button_outline_oval"
+                            android:text="@string/done"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <include layout="@layout/layout_textview_error" />
+
+        <include layout="@layout/layout_progress" />
+    </FrameLayout>
+
+</RelativeLayout>

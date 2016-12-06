@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/bar_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay" >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="@string/thank_you"
+        android:textColor="#000"
+        android:textStyle="bold" />
+
+    <vn.com.brycen.restaurant.views.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/check_order_info"
+        android:textColor="#000"
+        android:textSize="13sp" />
+    <View
+        android:background="#dddddd"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:text="@string/lbOrderCode"
+            style="@style/OrderDetail.Title" />
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:id="@+id/order_id"
+            android:text="#12234"
+            style="@style/OrderDetail.Info" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+
+            android:text="@string/lbOrderDate"
+            style="@style/OrderDetail.Title" />
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:id="@+id/buy_date"
+            android:text="#12234"
+            style="@style/OrderDetail.Info" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:text="@string/total"
+            style="@style/OrderDetail.Title" />
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:id="@+id/total"
+            android:text="#12234"
+            style="@style/OrderDetail.Info" />
+    </LinearLayout>
+    <View
+        android:background="#dddddd"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <vn.com.brycen.restaurant.views.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/contact_asap"
+        android:textColor="#000"
+        android:textSize="13sp" />
+</LinearLayout>

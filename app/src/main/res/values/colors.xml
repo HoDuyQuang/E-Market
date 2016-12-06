@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+
+    <!-- Basic Color -->
+    <color name="app_light_green">#33CC00</color>
+    <color name="app_light_blue">#33CCFF</color>
+    <color name="app_red">#CC0000</color>
+    <color name="app_gray">#CCCCCC</color>
+    <color name="app_light_gray">#ededed</color>
+    <color name="app_gray_dark">#666666</color>
+    <color name="app_green">#009900</color>
+    <color name="app_light_orange">#ffb85c</color>
+    <color name="app_dark_orange">#ff6600</color>
+    <color name="app_hard_yellow">#ffc000</color>
+    <color name="app_soft_light_yellow">#fff2cc</color>
+
+
+    <!-- Theme -->
+
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#ffc000</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+
+    <!-- Common Color -->
+    <color name="app_white">#ffffff</color>
+    <color name="app_black">#000000</color>
+    <color name="transparent_dark">#11000000</color>
+    <!-- App Color -->
+    <color name="app_action_bar_text">@color/app_white</color>
+    <color name="app_notification_text_color">#D61414</color>
+    <color name="app_notification_background">#FFFFFF</color>
+    <!-- common -->
+    <color name="black">#000000</color>
+    <color name="us_red">#ffff0000</color>
+    <color name="us_white">#ffffff</color>
+    <!-- Dialog color -->
+    <!-- Update Profile Color -->
+
+    <!-- Fragment Profile -->
+    <color name="frg_profile_light_blue">#00CCCC</color>
+    <color name="frg_profile_input_color">#999999</color>
+    <!-- Fragment Review History Food -->
+
+    <!-- Fragment Review List Food -->
+    <color name="frg_review_list_food_circle">#33CC00</color>
+    <color name="frg_review_list_btn">#33CCFF</color>
+
+    <!-- Category menu -->
+    <color name="app_bg_category">@color/app_soft_light_yellow</color>
+
+    <!-- Fragment Notification -->
+    <color name="frg_notification_unread_background">#FFFFCC</color>
+
+    <!-- Switch -->
 </resources>

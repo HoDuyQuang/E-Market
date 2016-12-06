@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,21 +16,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import vn.com.brycen.restaurant.R;
-import vn.com.brycen.restaurant.dialog.AddCartDialog;
-import vn.com.brycen.restaurant.dialog.OrderNowDialog;
-import vn.com.brycen.restaurant.fragments.ReviewListFragment;
-import vn.com.brycen.restaurant.fragments.SuggestsFragment;
-import vn.com.brycen.restaurant.models.FoodDetail;
-import vn.com.brycen.restaurant.tasks.GetFoodDetailTask;
-import vn.com.brycen.restaurant.tasks.SetFavoriteFoodTask;
-import vn.com.brycen.restaurant.utils.Authentication;
-import vn.com.brycen.restaurant.utils.CommonUtils;
-import vn.com.brycen.restaurant.utils.Navigation;
-import vn.com.brycen.restaurant.views.ExpandableTextView;
+import vn.edu.dut.itf.e_market.R;
+
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class FoodDetailActivity extends CartWidgetActivity {
+public class FoodDetailActivity extends AppCompatActivity {
     public static final String FOOD_ID = "foodId";
     private ImageView ivFoodImage;
     private TextView tvName, tvOldCost, tvNewCost, tvOrderNow, tvNumPhoto, tvNumReview, tvNumBookmark;

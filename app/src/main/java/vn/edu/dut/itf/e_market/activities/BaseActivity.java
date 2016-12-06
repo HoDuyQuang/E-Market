@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,7 +21,6 @@ import vn.edu.dut.itf.e_market.R;
 import vn.edu.dut.itf.e_market.models.RequestStatus;
 import vn.edu.dut.itf.e_market.utils.AppPref;
 import vn.edu.dut.itf.e_market.utils.CommonUtils;
-import vn.edu.dut.itf.e_market.views.notification.TSnackbar;
 
 /**
  * @author d_quang
@@ -133,12 +133,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
 	}
 	protected void showNoConnection(View mRootView) {
 		if (mRootView != null) {
-			TSnackbar.make(mRootView, "<b>"+getString(R.string.snack_network_error)+"</b><br/>"+getString(R.string.no_internet_connection), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_network_unavailable).show();
-		}
-	}
-	protected void showSuccessSnack(View mRootView, String message) {
-		if (mRootView != null) {
-			TSnackbar.make(mRootView, "<b>"+getString(R.string.snack_success)+"</b><br/>"+message, TSnackbar.LENGTH_LONG).setTextColor(R.color.app_green).setIcon(R.drawable.ic_request_ok).show();
+			Snackbar.make(getString(R.string.no_internet_connection));
+//			TSnackbar.make(mRootView, "<b>"+getString(R.string.snack_network_error)+"</b><br/>"+getString(R.string.no_internet_connection), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_network_unavailable).show();
 		}
 	}
 }
