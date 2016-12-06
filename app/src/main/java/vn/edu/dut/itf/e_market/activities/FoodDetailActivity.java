@@ -17,15 +17,15 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.utils.CommonUtils;
 
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class FoodDetailActivity extends AppCompatActivity {
+public class FoodDetailActivity extends BaseActivity {
     public static final String FOOD_ID = "foodId";
     private ImageView ivFoodImage;
     private TextView tvName, tvOldCost, tvNewCost, tvOrderNow, tvNumPhoto, tvNumReview, tvNumBookmark;
     private View rlCall, rlAddToCart, rlBookmark;
-    private SuggestsFragment mFragmentSuggest;
     private ReviewListFragment mFragmentReviewList;
 
     private int mFoodId;

@@ -17,7 +17,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import fr.ganfra.materialspinner.MaterialSpinner;
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.models.District;
 
 
 public class PayActivity extends BaseActivity {

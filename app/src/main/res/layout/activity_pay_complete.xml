@@ -18,7 +18,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
     </android.support.design.widget.AppBarLayout>
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -27,7 +27,7 @@
         android:textColor="#000"
         android:textStyle="bold" />
 
-    <vn.com.brycen.restaurant.views.CustomFontTextView
+    <vn.edu.dut.itf.e_market.views.CustomFontTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -44,10 +44,10 @@
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content">
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:text="@string/lbOrderCode"
             style="@style/OrderDetail.Title" />
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:id="@+id/order_id"
             android:text="#12234"
             style="@style/OrderDetail.Info" />
@@ -56,11 +56,11 @@
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content">
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
 
             android:text="@string/lbOrderDate"
             style="@style/OrderDetail.Title" />
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:id="@+id/buy_date"
             android:text="#12234"
             style="@style/OrderDetail.Info" />
@@ -69,11 +69,11 @@
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content">
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:text="@string/total"
             style="@style/OrderDetail.Title" />
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:id="@+id/total"
             android:text="#12234"
             style="@style/OrderDetail.Info" />
@@ -83,7 +83,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
-    <vn.com.brycen.restaurant.views.CustomFontTextView
+    <vn.edu.dut.itf.e_market.views.CustomFontTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

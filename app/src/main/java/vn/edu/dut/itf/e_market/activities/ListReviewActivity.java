@@ -15,14 +15,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import vn.com.brycen.restaurant.R;
-import vn.com.brycen.restaurant.models.BaseRate;
-import vn.com.brycen.restaurant.models.Rating;
-import vn.com.brycen.restaurant.utils.Authentication;
-import vn.com.brycen.restaurant.utils.CommonUtils;
-import vn.com.brycen.restaurant.utils.Navigation;
-import vn.com.brycen.restaurant.views.DividerItemDecoration;
-import vn.com.brycen.restaurant.views.popup.QuickAction;
+import vn.edu.dut.itf.e_market.R;
+
 
 public abstract class ListReviewActivity extends BaseActivity {
 	public static final int REVIEW_COMPOSE_REQUEST_CODE = 1;

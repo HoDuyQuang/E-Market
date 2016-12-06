@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.com.brycen.restaurant.views.CustomFontTextView xmlns:app="http://schemas.android.com/apk/res-auto"
+<vn.edu.dut.itf.e_market.views.CustomFontTextView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tvErrorMessage"
     android:layout_width="match_parent"

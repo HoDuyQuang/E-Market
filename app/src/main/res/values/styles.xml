@@ -39,4 +39,30 @@
         <item name="android:textColor">#000</item>
         <item name="android:textSize">@dimen/text_pay</item>
     </style>
+    <style name="AppTheme.TextView.Session">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="AppTheme.TextView.Session.Gray" parent="AppTheme.TextView.Session">
+        <item name="android:background">@color/app_gray</item>
+    </style>
+    <style name="OrderDetail"></style>
+    <style name="OrderDetail.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="OrderDetail.Info">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">15dp</item>
+    </style>
 </resources>

@@ -11,7 +11,7 @@
         android:layout_centerInParent="true"
         android:orientation="vertical" >
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -35,7 +35,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center" />
 
-            <vn.com.brycen.restaurant.views.CustomFontTextView
+            <vn.edu.dut.itf.e_market.views.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -45,7 +45,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <vn.com.brycen.restaurant.views.CustomFontTextView
+    <vn.edu.dut.itf.e_market.views.CustomFontTextView
         android:id="@+id/version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
