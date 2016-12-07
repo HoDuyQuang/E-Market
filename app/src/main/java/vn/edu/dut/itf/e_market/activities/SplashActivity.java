@@ -16,8 +16,12 @@ import android.widget.TextView;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.models.Province;
+import vn.edu.dut.itf.e_market.tasks.GetProvinceTask;
+import vn.edu.dut.itf.e_market.tasks.SetDeviceTokenTask;
 import vn.edu.dut.itf.e_market.utils.AppPref;
 
 

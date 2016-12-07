@@ -10,6 +10,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.adapters.AppBaseAdapter;
+import vn.edu.dut.itf.e_market.adapters.LanguageAdapter;
 import vn.edu.dut.itf.e_market.utils.AppPref;
 
 public class LanguageActivity extends BaseActivity {
@@ -64,7 +66,7 @@ public class LanguageActivity extends BaseActivity {
 
 		LanguageAdapter adapter = new LanguageAdapter(this, list);
 		rvLanguages.setAdapter(adapter);
-		adapter.setOnItemClickListener(new IItemClickListener<String>() {
+		adapter.setOnItemClickListener(new AppBaseAdapter.IItemClickListener<String>() {
 
 			@Override
 			public void onItemClick(String item, int position) {

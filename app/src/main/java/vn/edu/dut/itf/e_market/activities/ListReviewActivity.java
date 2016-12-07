@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.utils.Authentication;
+import vn.edu.dut.itf.e_market.utils.CommonUtils;
+import vn.edu.dut.itf.e_market.utils.Navigation;
 
 
 public abstract class ListReviewActivity extends BaseActivity {
@@ -98,7 +102,7 @@ public abstract class ListReviewActivity extends BaseActivity {
 
 		rvReviews.setHasFixedSize(true);
 		rvReviews.addItemDecoration(new DividerItemDecoration(this,
-				ContextCompat.getDrawable(this, R.drawable.adapter_promotional_divider), true, true));
+				DividerItemDecoration.VERTICAL));
 		final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 		rvReviews.setLayoutManager(layoutManager);
 		rvReviews.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -147,23 +151,22 @@ public abstract class ListReviewActivity extends BaseActivity {
 		}
 	}
 
-	protected void SetRatePopUp(BaseRate info) {
-		final QuickAction quickAction = new QuickAction(this, QuickAction.HORIZONTAL);
-		ArrayList<Rating> ratings = getRatings(info);
+//	protected void SetRatePopUp(BaseRate info) {
+//		final QuickAction quickAction = new QuickAction(this, QuickAction.HORIZONTAL);
+//		ArrayList<Rating> ratings = getRatings(info);
+//
+//		quickAction.setData(ratings, info.getBadCount(), info.getAverageCount(), info.getGoodCount(),
+//				info.getExcellentCount());
+//		averageReviewPoint.setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				quickAction.show(averageReviewPoint);
+//			}
+//		});
+//	}
 
-		quickAction.setData(ratings, info.getBadCount(), info.getAverageCount(), info.getGoodCount(),
-				info.getExcellentCount());
-		averageReviewPoint.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				quickAction.show(averageReviewPoint);
-			}
-		});
-	}
-
-	@NonNull
-	abstract ArrayList<Rating> getRatings(BaseRate info);
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {

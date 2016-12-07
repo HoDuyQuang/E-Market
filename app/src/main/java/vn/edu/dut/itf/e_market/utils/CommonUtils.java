@@ -25,8 +25,8 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.UUID;
 
-import vn.com.brycen.restaurant.R;
-import vn.com.brycen.restaurant.models.WeekDay;
+import vn.edu.dut.itf.e_market.R;
+
 
 public class CommonUtils {
     private static DecimalFormat formatterPrice;
@@ -115,13 +115,6 @@ public class CommonUtils {
         }
     }
 
-    public static String formatOpenTime(Context context, WeekDay weekDay) {
-        if (weekDay != null) {
-            SimpleDateFormat df = new SimpleDateFormat("h:mm a", CommonUtils.getAppLocale(context));
-            return df.format(weekDay.getFrom()) + " - " + df.format(weekDay.getTo());
-        }
-        return context.getString(R.string.close_restaurant);
-    }
 
     public static float dpToPx(Context context, float valueInDp) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
@@ -167,22 +160,6 @@ public class CommonUtils {
         return context.getString(R.string.review_excellent);
     }
 
-    public static void callRestaurant(Context context) {
-        String uri = "tel:" + AppPref.getInstance(context).getString(AppPref.KEY_RESTAURANT_PHONE);
-        Intent intentCall = new Intent(Intent.ACTION_CALL);
-        intentCall.setData(Uri.parse(uri));
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        context.startActivity(intentCall);
-    }
 
     public static void setTextViewStrike(TextView textView, boolean isTrike) {
         if (isTrike) {
@@ -192,14 +169,6 @@ public class CommonUtils {
                 textView.setPaintFlags(textView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
             }
         }
-    }
-
-    public static boolean isOpenTimeClose(WeekDay day) {
-        Calendar c1 = Calendar.getInstance();
-        c1.setTime(day.getFrom());
-        Calendar c2 = Calendar.getInstance();
-        c2.setTime(day.getTo());
-        return c1.get(Calendar.HOUR_OF_DAY) == c2.get(Calendar.HOUR_OF_DAY) && c1.get(Calendar.MINUTE) == c2.get(Calendar.MINUTE);
     }
 
     @SuppressWarnings("deprecation")

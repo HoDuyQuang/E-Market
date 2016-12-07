@@ -133,7 +133,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
 	}
 	protected void showNoConnection(View mRootView) {
 		if (mRootView != null) {
-			Snackbar.make(getString(R.string.no_internet_connection));
+//			Snackbar.make(getString(R.string.no_internet_connection),Snackbar.LENGTH_SHORT).show();
 //			TSnackbar.make(mRootView, "<b>"+getString(R.string.snack_network_error)+"</b><br/>"+getString(R.string.no_internet_connection), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_network_unavailable).show();
 		}
 	}

@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import vn.edu.dut.itf.e_market.api.APIConfig;
+import vn.edu.dut.itf.e_market.models.Category;
 import vn.edu.dut.itf.e_market.utils.RequestUtils;
 
 
@@ -50,10 +51,10 @@ public class GetMenuTask extends BaseApiTask {
 //		ArrayList<Food> suggests = BaseModel.listFromJsonArray(jsonObject.getString("listSuggest"),
 //				new TypeToken<ArrayList<Food>>() {
 //				});
-		onSuccess(categories,itemCount);
+//		onSuccess(categories,itemCount);
 	}
 
-	protected void onSuccess(List<Category> categories,int count) {
+	protected void onSuccess(List<Category> categories, int count) {
 
 	}
 

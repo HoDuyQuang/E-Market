@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 
 import vn.edu.dut.itf.e_market.R;
 import vn.edu.dut.itf.e_market.activities.LoginActivity;
+import vn.edu.dut.itf.e_market.activities.ReviewDetailActivity;
 import vn.edu.dut.itf.e_market.fragments.BaseFragment;
 
 
@@ -28,12 +29,12 @@ public class Navigation {
 //        context.startActivity(intent);
 //    }
 //
-//    public static void showRestaurantReviewDetail(Context context, String reviewId) {
-//        Intent intent = new Intent(context, RestaurantReviewDetailActivity.class);
-//        intent.putExtra(RestaurantReviewDetailActivity.REVIEW_ID, reviewId);
-//        context.startActivity(intent);
-//    }
-//
+    public static void showRestaurantReviewDetail(Context context, String reviewId) {
+        Intent intent = new Intent(context, ReviewDetailActivity.class);
+        intent.putExtra(ReviewDetailActivity.REVIEW_ID, reviewId);
+        context.startActivity(intent);
+    }
+
     public static void showDialogLogin(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);

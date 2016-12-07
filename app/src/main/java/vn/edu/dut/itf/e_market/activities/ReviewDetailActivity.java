@@ -3,6 +3,7 @@ package vn.edu.dut.itf.e_market.activities;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -132,7 +133,7 @@ public abstract class ReviewDetailActivity extends BaseActivity implements View.
         rvReviews.setHasFixedSize(true);
         rvReviews.setNestedScrollingEnabled(false);
         rvReviews.addItemDecoration(new DividerItemDecoration(this,
-                ContextCompat.getDrawable(this, R.drawable.adapter_promotional_divider), false, true));
+                DividerItemDecoration.VERTICAL));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
                 false);
         rvReviews.setLayoutManager(layoutManager);

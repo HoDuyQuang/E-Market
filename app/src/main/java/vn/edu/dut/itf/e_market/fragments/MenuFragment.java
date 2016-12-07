@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.view.menu.MenuAdapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -21,7 +20,9 @@ import java.util.List;
 
 import vn.edu.dut.itf.e_market.R;
 import vn.edu.dut.itf.e_market.activities.SuggestsFragment;
+import vn.edu.dut.itf.e_market.adapters.MenuAdapter;
 import vn.edu.dut.itf.e_market.models.Food;
+import vn.edu.dut.itf.e_market.tasks.GetMenuTask;
 
 
 /**
@@ -80,25 +81,25 @@ public class MenuFragment extends BaseFragment {
         if (!isRunning) {
             this.isTakeAway = isTakeAway;
             mGetMenuTask = new GetMenuTask(getActivity(), isTakeAway, start, count) {
-                @Override
-                protected void onSuccess(List<Category> categories, int itemCount) {
-                    super.onSuccess(categories, itemCount);
-                    if (!isLoadMore) {
-                        dishes.clear();
-                    }
-                    for (Category category : categories) {
-                        for (Food dish : category.getFoods()) {
-                            dish.setCategory(category);
-                        }
-                        dishes.addAll(category.getFoods());
-                    }
-                    adapter.notifyDataSetChanged();
-                    tvNumberItem.setText(getString(R.string.number_items, itemCount));
-
-//                    mFragmentSuggest.setData(suggests, true);
-
-                    isLoadMore = true;
-                }
+//                @Override
+//                protected void onSuccess(List<Category> categories, int itemCount) {
+//                    super.onSuccess(categories, itemCount);
+//                    if (!isLoadMore) {
+//                        dishes.clear();
+//                    }
+//                    for (Category category : categories) {
+//                        for (Food dish : category.getFoods()) {
+//                            dish.setCategory(category);
+//                        }
+//                        dishes.addAll(category.getFoods());
+//                    }
+//                    adapter.notifyDataSetChanged();
+//                    tvNumberItem.setText(getString(R.string.number_items, itemCount));
+//
+////                    mFragmentSuggest.setData(suggests, true);
+//
+//                    isLoadMore = true;
+//                }
 
                 @Override
                 protected void onError(int code) {
@@ -144,39 +145,39 @@ public class MenuFragment extends BaseFragment {
         }
     }
 
-    private void initSpinnerCategories() {
-        spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            }
+//    private void initSpinnerCategories() {
+//        spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//            }
+//        });
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), R.layout.layout_spinner_item,
+//                SampleData.getSampleCategories());
+//        // Drop down layout style - list view with radio button
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerCategories.setAdapter(dataAdapter);
+//    }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), R.layout.layout_spinner_item,
-                SampleData.getSampleCategories());
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCategories.setAdapter(dataAdapter);
-    }
-
-    private void initSpinnerSort() {
-        spinnerSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), R.layout.layout_spinner_item,
-                SampleData.getSampleSortType());
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSort.setAdapter(dataAdapter);
-    }
+//    private void initSpinnerSort() {
+//        spinnerSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//            }
+//        });
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), R.layout.layout_spinner_item,
+//                SampleData.getSampleSortType());
+//        // Drop down layout style - list view with radio button
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerSort.setAdapter(dataAdapter);
+//    }
 
     private LinearLayoutManager layoutManager;
 
@@ -192,7 +193,7 @@ public class MenuFragment extends BaseFragment {
 
         dishes = new ArrayList<>();
         adapter = new MenuAdapter(getActivity(), dishes);
-        adapter.setSnackBarView(mRootView);
+//        adapter.setSnackBarView(mRootView);
         // adapter.setOnItemClickListener();
         rvMenu.setAdapter(adapter);
         rvMenu.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -206,7 +207,7 @@ public class MenuFragment extends BaseFragment {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (dy > 0 && layoutManager.findLastVisibleItemPosition() >= dishes.size() - 3) {
-                    loadMenu(((RadioButton) filterGroup.findViewById(R.id.take_away)).isChecked(), dishes.size(), 10);
+//                    loadMenu(((RadioButton) filterGroup.findViewById(R.id.take_away)).isChecked(), dishes.size(), 10);
                 }
             }
         });
@@ -222,11 +223,11 @@ public class MenuFragment extends BaseFragment {
                         loadMenu(false, 0, 10);
                         mFragmentSuggest.load(false, true);
                         break;
-                    case R.id.take_away:
-                        isLoadMore = false;
-                        loadMenu(true, 0, 10);
-                        mFragmentSuggest.load(true, true);
-                        break;
+//                    case R.id.take_away:
+//                        isLoadMore = false;
+//                        loadMenu(true, 0, 10);
+//                        mFragmentSuggest.load(true, true);
+//                        break;
                     default:
                         break;
                 }
@@ -268,9 +269,9 @@ public class MenuFragment extends BaseFragment {
     protected void findViews(View rootView) {
         tvNumberItem = (TextView) rootView.findViewById(R.id.number_item);
         rvMenu = (RecyclerView) rootView.findViewById(R.id.list);
-        spinnerCategories = (Spinner) rootView.findViewById(R.id.categories);
-        spinnerSort = (Spinner) rootView.findViewById(R.id.sort);
-        filterGroup = (RadioGroup) rootView.findViewById(R.id.filter);
+//        spinnerCategories = (Spinner) rootView.findViewById(R.id.categories);
+//        spinnerSort = (Spinner) rootView.findViewById(R.id.sort);
+//        filterGroup = (RadioGroup) rootView.findViewById(R.id.filter);
 //        mFragmentSuggest = (SuggestsFragment) getChildFragmentManager().findFragmentById(R.id.suggest);
         vError = rootView.findViewById(R.id.tvErrorMessage);
         vLoading = rootView.findViewById(R.id.request_progress);

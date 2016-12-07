@@ -1,20 +1,25 @@
 package vn.edu.dut.itf.e_market.activities;
 
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.adapters.AppBaseAdapter;
+import vn.edu.dut.itf.e_market.adapters.LanguageAdapter;
+import vn.edu.dut.itf.e_market.utils.AppPref;
 import vn.edu.dut.itf.e_market.views.customswitch.SwitchButton;
 
 public class SettingsActivity extends BaseActivity {
 	private RecyclerView rvLanguages;
-	SwitchButton swbNotification;
+	Switch swbNotification;
 
 	@Override
 	public int setLayout() {
@@ -24,7 +29,7 @@ public class SettingsActivity extends BaseActivity {
 	@Override
 	public void findViews() {
 		rvLanguages = (RecyclerView) findViewById(R.id.list);
-		swbNotification = (SwitchButton) findViewById(R.id.sb_ios);
+		swbNotification = (Switch) findViewById(R.id.sb_ios);
 	}
 
 	@Override
@@ -36,7 +41,7 @@ public class SettingsActivity extends BaseActivity {
 
 		rvLanguages.setHasFixedSize(true);
 		rvLanguages.addItemDecoration(new DividerItemDecoration(this,
-				ContextCompat.getDrawable(this, R.drawable.adapter_promotional_divider), true, true));
+				DividerItemDecoration.VERTICAL));
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 		rvLanguages.setLayoutManager(layoutManager);
 
@@ -69,7 +74,7 @@ public class SettingsActivity extends BaseActivity {
 
 		LanguageAdapter adapter = new LanguageAdapter(this, list, true);
 		rvLanguages.setAdapter(adapter);
-		adapter.setOnItemClickListener(new IItemClickListener<String>() {
+		adapter.setOnItemClickListener(new AppBaseAdapter.IItemClickListener<String>() {
 
 			@Override
 			public void onItemClick(String item, int position) {

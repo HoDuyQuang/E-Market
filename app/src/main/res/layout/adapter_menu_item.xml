@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <vn.com.brycen.restaurant.views.CustomFontTextView
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_bg_category"
+        android:padding="10dp"
+        android:text="Category"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:font="@string/font_light"/>
+
+    <View
+        android:id="@+id/separate"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/app_gray" />
+
+    <include
+        layout="@layout/item_favourite" />
+
+</LinearLayout>

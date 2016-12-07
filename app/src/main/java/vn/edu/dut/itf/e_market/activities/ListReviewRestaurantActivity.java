@@ -7,7 +7,10 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.adapters.ReviewAdapter;
 import vn.edu.dut.itf.e_market.models.Review;
+import vn.edu.dut.itf.e_market.tasks.GetListReviewRestaurantTask;
 
 
 public class ListReviewRestaurantActivity extends ListReviewActivity {
@@ -16,7 +19,7 @@ public class ListReviewRestaurantActivity extends ListReviewActivity {
 
     @Override
     void onAddReview() {
-        startActivityForResult(new Intent(ListReviewRestaurantActivity.this, RestaurantReviewActivity.class), REVIEW_COMPOSE_REQUEST_CODE);
+//        startActivityForResult(new Intent(ListReviewRestaurantActivity.this, RestaurantReviewActivity.class), REVIEW_COMPOSE_REQUEST_CODE);
     }
 
 
@@ -61,37 +64,37 @@ public class ListReviewRestaurantActivity extends ListReviewActivity {
                     isRunning = false;
                 }
 
-                protected void onSuccess(ArrayList<RestaurantReview> info, RestaurantRate rate, int reviewCount) {
-                    if (isLoadMore) {
-                        int size = mListReviews.size();
-                        for (RestaurantReview review : info) {
-                            boolean isContain = false;
-                            for (RestaurantReview item : mListReviews) {
-                                if (review.getReviewId().equals(item.getReviewId())) {
-                                    isContain = true;
-                                    break;
-                                }
-                            }
-                            if (!isContain) {
-                                mListReviews.add(review);
-                            }
-                        }
-                        adapter.notifyItemRangeInserted(size, mListReviews.size() - size);
-                    } else {
-                        mListReviews.clear();
-                        mListReviews.addAll(info);
-                        adapter.notifyDataSetChanged();
-                    }
-
-                    if (!isLoadMore) {
-                        numberReview.setText(getString(R.string.number_reviews, reviewCount));
-                        averageReviewPoint.setText(CommonUtils.formatRate(ListReviewRestaurantActivity.this, rate.getAverage()));
-                        SetRatePopUp(rate);
-                        tvRateString.setText(CommonUtils.getRateString(ListReviewRestaurantActivity.this, rate.getAverage()));
-                    }
-
-                    isLoadMore = true;
-                }
+//                protected void onSuccess(ArrayList<Review> info, RestaurantRate rate, int reviewCount) {
+//                    if (isLoadMore) {
+//                        int size = mListReviews.size();
+//                        for (RestaurantReview review : info) {
+//                            boolean isContain = false;
+//                            for (RestaurantReview item : mListReviews) {
+//                                if (review.getReviewId().equals(item.getReviewId())) {
+//                                    isContain = true;
+//                                    break;
+//                                }
+//                            }
+//                            if (!isContain) {
+//                                mListReviews.add(review);
+//                            }
+//                        }
+//                        adapter.notifyItemRangeInserted(size, mListReviews.size() - size);
+//                    } else {
+//                        mListReviews.clear();
+//                        mListReviews.addAll(info);
+//                        adapter.notifyDataSetChanged();
+//                    }
+//
+//                    if (!isLoadMore) {
+//                        numberReview.setText(getString(R.string.number_reviews, reviewCount));
+//                        averageReviewPoint.setText(CommonUtils.formatRate(ListReviewRestaurantActivity.this, rate.getAverage()));
+//                        SetRatePopUp(rate);
+//                        tvRateString.setText(CommonUtils.getRateString(ListReviewRestaurantActivity.this, rate.getAverage()));
+//                    }
+//
+//                    isLoadMore = true;
+//                }
 
                 @Override
                 protected void onError(int code) {
@@ -117,10 +120,10 @@ public class ListReviewRestaurantActivity extends ListReviewActivity {
      *
      * @param info
      */
-    RestaurantReviewAdapter adapter;
+    ReviewAdapter adapter;
 
     protected void RecycleFill() {
-        adapter = new RestaurantReviewAdapter(this, mListReviews);
+        adapter = new ReviewAdapter(this, mListReviews);
         adapter.setSnackBarView(findViewById(R.id.root_view));
         rvReviews.setAdapter(adapter);
     }
@@ -141,17 +144,17 @@ public class ListReviewRestaurantActivity extends ListReviewActivity {
         }
     }
 
-    @NonNull
-    @Override
-    ArrayList<Rating> getRatings(BaseRate rate) {
-        RestaurantRate info = (RestaurantRate) rate;
-        String[] titleArray = getResources().getStringArray(R.array.restaurant_rating_item);
-        ArrayList<Rating> ratings = new ArrayList<>();
-        ratings.add(new Rating(titleArray[0], info.getLocation()));
-        ratings.add(new Rating(titleArray[1], info.getPrice()));
-        ratings.add(new Rating(titleArray[2], info.getQuality()));
-        ratings.add(new Rating(titleArray[3], info.getServices()));
-        ratings.add(new Rating(titleArray[4], info.getDecoration()));
-        return ratings;
-    }
+//    @NonNull
+//    @Override
+//    ArrayList<Rating> getRatings(BaseRate rate) {
+//        RestaurantRate info = (RestaurantRate) rate;
+//        String[] titleArray = getResources().getStringArray(R.array.restaurant_rating_item);
+//        ArrayList<Rating> ratings = new ArrayList<>();
+//        ratings.add(new Rating(titleArray[0], info.getLocation()));
+//        ratings.add(new Rating(titleArray[1], info.getPrice()));
+//        ratings.add(new Rating(titleArray[2], info.getQuality()));
+//        ratings.add(new Rating(titleArray[3], info.getServices()));
+//        ratings.add(new Rating(titleArray[4], info.getDecoration()));
+//        return ratings;
+//    }
 }

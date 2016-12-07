@@ -13,6 +13,8 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import vn.edu.dut.itf.e_market.tasks.ServerUnavailableException;
+
 public class RequestUtils {
 
     private static final String HEADER_TOKEN = "Token";

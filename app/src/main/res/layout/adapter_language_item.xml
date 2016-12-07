@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1dp"
+    android:clickable="true"
+    android:gravity="center_vertical" >
+
+    <vn.com.brycen.restaurant.views.CustomFontTextView
+        android:id="@+id/language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:clickable="false"
+        android:gravity="center"
+        android:text="English"
+        android:textSize="13sp"
+        android:textColor="@color/app_white" />
+
+    <Button
+        android:id="@+id/check"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:clickable="false"
+        android:background="@drawable/ic_check_mark_circle" />
+
+</FrameLayout>

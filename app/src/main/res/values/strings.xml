@@ -352,5 +352,6 @@
     <string name="price">Price</string>
     <string name="thank_you">Thank you</string>
     <string name="check_order_info">Please check your order information such as below</string>
+    <string name="version_name" translatable="false">1.0</string>
 
 </resources>
