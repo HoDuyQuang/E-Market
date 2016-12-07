@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="3dp"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="300dp"
+            android:layout_height="225dp"
+            android:scaleType="centerCrop" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/new_mark"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/ic_new_purple" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <vn.com.brycen.restaurant.views.CustomFontTextView
+                    android:id="@+id/rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5dp"
+                    android:text="8.0"
+                    android:textColor="@color/app_hard_yellow"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:font="@string/font_light" />
+
+                <vn.com.brycen.restaurant.views.CustomFontTextView
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:text="Dish"
+                    android:textSize="15sp"
+                    app:font="@string/font_light" />
+            </LinearLayout>
+
+
+            <vn.com.brycen.restaurant.views.CustomFontTextView
+                android:id="@+id/order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="7dp"
+                android:text="@string/order_now"
+                android:textColor="@color/app_hard_yellow"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:font="@string/font_primary" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <vn.com.brycen.restaurant.views.CustomFontTextView
+                android:id="@+id/discount_percent"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/ic_discount_percent"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="30%"
+                android:textColor="@color/app_white"
+                android:textSize="12sp"
+                app:font="@string/font_primary" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <vn.com.brycen.restaurant.views.CustomFontTextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="$ 30 USD"
+                    app:font="@string/font_primary" />
+
+                <vn.com.brycen.restaurant.views.CustomFontTextView
+                    android:id="@+id/discount_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$ 20 USD"
+                    android:textStyle="bold"
+                    app:font="@string/font_primary" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

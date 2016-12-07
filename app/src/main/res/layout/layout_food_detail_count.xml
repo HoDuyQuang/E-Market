@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:paddingBottom="10dp"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    tools:showIn="@layout/activity_food_detail"
+    android:baselineAligned="false">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:id="@+id/tvNumPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="30"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNumPhoto"
+            android:gravity="center_horizontal"
+            android:text="@string/photo_string"
+            android:textAllCaps="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:id="@+id/tvNumReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="30"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNumReview"
+            android:gravity="center_horizontal"
+            android:text="@string/review_string"
+            android:textAllCaps="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:id="@+id/tvNumBookmark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="30"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNumBookmark"
+            android:gravity="center_horizontal"
+            android:text="@string/like_string"
+            android:textAllCaps="true" />
+    </RelativeLayout>
+</LinearLayout>

@@ -2,6 +2,7 @@ package vn.edu.dut.itf.e_market.activities;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,22 +11,21 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.com.brycen.restaurant.R;
-import vn.com.brycen.restaurant.adapters.AppBaseAdapter.IItemClickListener;
-import vn.com.brycen.restaurant.adapters.SuggestsAdapter;
-import vn.com.brycen.restaurant.models.Food;
-import vn.com.brycen.restaurant.tasks.GetSuggestTask;
-import vn.com.brycen.restaurant.utils.CommonUtils;
-import vn.com.brycen.restaurant.utils.Navigation;
-import vn.com.brycen.restaurant.views.DividerItemDecoration;
+import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.adapters.AppBaseAdapter;
+import vn.edu.dut.itf.e_market.adapters.SuggestsAdapter;
 import vn.edu.dut.itf.e_market.fragments.BaseFragment;
+import vn.edu.dut.itf.e_market.models.Food;
+import vn.edu.dut.itf.e_market.tasks.GetSuggestTask;
+import vn.edu.dut.itf.e_market.utils.CommonUtils;
+import vn.edu.dut.itf.e_market.utils.Navigation;
 
 /**
  * @author d_quang
  */
 public class SuggestsFragment extends BaseFragment {
-    public static final String ARG_IS_COLLAPSIBLE="is_collapsible";
-    public static final String ARG_IS_TAKE_AWAY="is_take_away";
+    public static final String ARG_IS_COLLAPSIBLE = "is_collapsible";
+    public static final String ARG_IS_TAKE_AWAY = "is_take_away";
     private RecyclerView rvSuggests;
     private TextView vCollapse;
     private View vTitle;
@@ -38,9 +38,9 @@ public class SuggestsFragment extends BaseFragment {
 
     @Override
     protected void processArguments() {
-        Bundle bundle=getArguments();
-        mIsCollapsible=bundle.getBoolean(ARG_IS_COLLAPSIBLE,false);
-        mIsTakeAway=bundle.getBoolean(ARG_IS_TAKE_AWAY,false);
+        Bundle bundle = getArguments();
+        mIsCollapsible = bundle.getBoolean(ARG_IS_COLLAPSIBLE, false);
+        mIsTakeAway = bundle.getBoolean(ARG_IS_TAKE_AWAY, false);
     }
 
     @Override
@@ -50,17 +50,17 @@ public class SuggestsFragment extends BaseFragment {
 
     @Override
     protected void showData() {
-        setData(new ArrayList<Food>(),mIsCollapsible);
-        load(mIsTakeAway,mIsCollapsible);
+        setData(new ArrayList<Food>(), mIsCollapsible);
+        load(mIsTakeAway, mIsCollapsible);
     }
 
-    public void onRefresh(){
-        load(mIsTakeAway,mIsCollapsible);
+    public void onRefresh() {
+        load(mIsTakeAway, mIsCollapsible);
     }
 
     public void load(boolean isTakeAway, final boolean isCollapsible) {
-        this.mIsTakeAway=isTakeAway;
-        this.mIsCollapsible =isCollapsible;
+        this.mIsTakeAway = isTakeAway;
+        this.mIsCollapsible = isCollapsible;
         task = new GetSuggestTask(getActivity(), isTakeAway) {
 
             @Override
@@ -71,7 +71,7 @@ public class SuggestsFragment extends BaseFragment {
             @Override
             protected void onSuccess(ArrayList<Food> suggests) {
                 super.onSuccess(suggests);
-                setData(suggests,isCollapsible);
+                setData(suggests, isCollapsible);
             }
 
             @Override
@@ -92,7 +92,7 @@ public class SuggestsFragment extends BaseFragment {
             rvSuggests.setAdapter(adapter);
             adapter.setSnackBarView(vSnackBarView);
 
-            adapter.setOnItemClickListener(new IItemClickListener<Food>() {
+            adapter.setOnItemClickListener(new AppBaseAdapter.IItemClickListener<Food>() {
 
                 @Override
                 public void onItemClick(Food item, int position) {
@@ -143,7 +143,7 @@ public class SuggestsFragment extends BaseFragment {
     protected void initViews() {
         rvSuggests.setHasFixedSize(true);
         rvSuggests.addItemDecoration(new DividerItemDecoration(getActivity(),
-                ContextCompat.getDrawable(getActivity(), R.drawable.adapter_promotional_divider), false, false));
+                DividerItemDecoration.VERTICAL));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,
                 false);
         rvSuggests.setLayoutManager(layoutManager);

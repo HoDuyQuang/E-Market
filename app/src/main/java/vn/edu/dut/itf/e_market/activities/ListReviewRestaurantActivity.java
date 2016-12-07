@@ -7,18 +7,12 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.com.brycen.restaurant.R;
-import vn.com.brycen.restaurant.adapters.RestaurantReviewAdapter;
-import vn.com.brycen.restaurant.models.BaseRate;
-import vn.com.brycen.restaurant.models.Rating;
-import vn.com.brycen.restaurant.models.RestaurantRate;
-import vn.com.brycen.restaurant.models.RestaurantReview;
-import vn.com.brycen.restaurant.tasks.GetListReviewRestaurantTask;
-import vn.com.brycen.restaurant.utils.CommonUtils;
+import vn.edu.dut.itf.e_market.models.Review;
+
 
 public class ListReviewRestaurantActivity extends ListReviewActivity {
 
-    private List<RestaurantReview> mListReviews;
+    private List<Review> mListReviews;
 
     @Override
     void onAddReview() {

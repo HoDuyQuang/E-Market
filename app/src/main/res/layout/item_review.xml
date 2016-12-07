@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <vn.com.brycen.restaurant.views.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/sample_avatar"
+            app:civ_border_color="#FFFFFF"
+            app:civ_border_width="0dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <vn.com.brycen.restaurant.views.CustomFontTextView
+                android:id="@+id/user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Huyen baby"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:font="@string/font_primary" />
+
+            <vn.com.brycen.restaurant.views.CustomFontTextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="04/24/2016 10:00 AM"
+                android:textSize="14sp"
+                app:font="@string/font_primary" />
+        </LinearLayout>
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:id="@+id/rate"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:text="7.0"
+            android:maxLines="1"
+            android:textColor="@color/app_hard_yellow"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:font="@string/font_primary" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:font="@string/font_light" />
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:id="@+id/review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This food is very delicious but so spicy, many pepper. Space is quite and romantic."
+            android:textSize="15sp"
+            app:font="@string/font_light" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/view_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:id="@+id/like"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_like"
+                android:button="@null" />
+
+            <vn.com.brycen.restaurant.views.CustomFontTextView
+                android:id="@+id/like_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/like"
+                android:textSize="15sp"
+                app:font="@string/font_primary" />
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_pink_comment" />
+
+        <vn.com.brycen.restaurant.views.CustomFontTextView
+            android:id="@+id/comment_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/comment"
+            android:textSize="15sp"
+            app:font="@string/font_primary" />
+    </LinearLayout>
+
+</LinearLayout>

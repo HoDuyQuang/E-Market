@@ -7,4 +7,20 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_pay">15sp</dimen>
+
+
+    <dimen name="item_review_height">180dp</dimen>
+
+    <!-- Home facilities -->
+    <dimen name="home_feature_icon_size">24dp</dimen>
+    <dimen name="home_feature_right_margin">30dp</dimen>
+    <dimen name="home_feature_arrow_right_size">20dp</dimen>
+
+    <!-- Switch -->
+
+    <dimen name="padding_footer_layout">5dp</dimen>
+    <!-- Home cover-->
+    <dimen name="home_cover_image_height">200dp</dimen>
+    <dimen name="popup_width">300dp</dimen>
+    <dimen name="popup_height">400dp</dimen>
 </resources>

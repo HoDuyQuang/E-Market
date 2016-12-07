@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <vn.edu.dut.itf.e_market.views.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/avatar_circle_blue_512dp"
+            app:civ_border_color="#FFFFFF"
+            app:civ_border_width="0dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical">
+
+            <vn.edu.dut.itf.e_market.views.CustomFontTextView
+                android:id="@+id/user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Huyen baby"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:font="@string/font_primary" />
+
+            <vn.edu.dut.itf.e_market.views.CustomFontTextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="04/24/2016 10:00 AM"
+                android:textSize="12sp"
+                app:font="@string/font_primary" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <vn.edu.dut.itf.e_market.views.CustomFontTextView
+        android:id="@+id/review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="This food is very delicious but so spicy, many pepper. Space is quite and romantic."
+        android:textSize="13sp"
+        app:font="@string/font_light" />
+
+
+    <LinearLayout
+        android:id="@+id/view_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:gravity="center_vertical|left">
+
+        <CheckBox
+            android:id="@+id/like"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_thumb_up"
+            android:button="@null" />
+
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
+            android:id="@+id/like_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="@string/like"
+            android:textSize="13sp"
+            app:font="@string/font_primary" />
+    </LinearLayout>
+
+
+</LinearLayout>

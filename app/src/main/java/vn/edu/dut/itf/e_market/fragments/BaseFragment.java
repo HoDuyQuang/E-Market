@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import vn.com.brycen.restaurant.R;
-import vn.com.brycen.restaurant.models.RequestStatus;
-import vn.com.brycen.restaurant.views.notification.TSnackbar;
+import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.models.RequestStatus;
+
 
 public abstract class BaseFragment extends Fragment {
     View mRootView;
@@ -68,17 +68,18 @@ public abstract class BaseFragment extends Fragment {
 
     protected void showNoConnection() {
         if (vSnackBarView != null) {
-            TSnackbar.make(vSnackBarView,"<b>"+getString(R.string.snack_network_error)+"</b><br/>"+getString(R.string.no_internet_connection), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_network_unavailable).show();
+            // TODO: 12/7/2016 Snack bar
+//            TSnackbar.make(vSnackBarView,"<b>"+getString(R.string.snack_network_error)+"</b><br/>"+getString(R.string.no_internet_connection), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_network_unavailable).show();
         } else if (mRootView != null) {
-            TSnackbar.make(mRootView,"<b>"+getString(R.string.snack_network_error)+"</b><br/>"+getString(R.string.no_internet_connection), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_network_unavailable).show();
+//            TSnackbar.make(mRootView,"<b>"+getString(R.string.snack_network_error)+"</b><br/>"+getString(R.string.no_internet_connection), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_network_unavailable).show();
         }
     }
 
     protected void showSuccessSnack(String message) {
         if (vSnackBarView != null) {
-            TSnackbar.make(vSnackBarView, "<b>"+getString(R.string.snack_success)+"</b><br/>"+message, TSnackbar.LENGTH_LONG).setTextColor(R.color.app_green).setIcon(R.drawable.ic_request_ok).show();
+//            TSnackbar.make(vSnackBarView, "<b>"+getString(R.string.snack_success)+"</b><br/>"+message, TSnackbar.LENGTH_LONG).setTextColor(R.color.app_green).setIcon(R.drawable.ic_request_ok).show();
         } else if (mRootView != null) {
-            TSnackbar.make(mRootView, "<b>"+getString(R.string.snack_success)+"</b><br/>"+message, TSnackbar.LENGTH_LONG).setTextColor(R.color.app_green).setIcon(R.drawable.ic_request_ok).show();
+//            TSnackbar.make(mRootView, "<b>"+getString(R.string.snack_success)+"</b><br/>"+message, TSnackbar.LENGTH_LONG).setTextColor(R.color.app_green).setIcon(R.drawable.ic_request_ok).show();
         }
     }
     protected View vSnackBarView;

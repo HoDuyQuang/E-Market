@@ -8,22 +8,21 @@ public class Food extends BaseModel implements Parcelable {
 	public static final int TYPE_NEW=1;
 	public static final int TYPE_SALE=2;
 	protected int id;
-	public String imageUrl;
-	public String name;
-	public float price;
-	public float discount;
-	public float sale;
-	public int type;
-	int likeStatus;
-	protected FoodRate rate;
+	protected String imageUrl;
+	protected String name;
+	protected float price;
+	protected float discount;
+	protected float sale;
+	protected int type;
+	protected int likeStatus;
 
 	public float getRateString() {
 		return rateString;
 	}
 
-	float rateString;
-	String description;
-	Category category;
+	protected float rateString;
+	protected String description;
+	protected Category category;
 
 	public String getDescription() {
 		return description;
@@ -37,9 +36,6 @@ public class Food extends BaseModel implements Parcelable {
 		this.category = category;
 	}
 
-	public FoodRate getRate() {
-		return rate;
-	}
 
 	public void setLikeStatus(int likeStatus) {
 		this.likeStatus = likeStatus;
@@ -96,7 +92,6 @@ public class Food extends BaseModel implements Parcelable {
 		dest.writeFloat(this.sale);
 		dest.writeInt(this.type);
 		dest.writeInt(this.likeStatus);
-		dest.writeParcelable(this.rate, flags);
 		dest.writeFloat(this.rateString);
 		dest.writeString(this.description);
 		dest.writeParcelable(this.category, flags);
@@ -111,7 +106,6 @@ public class Food extends BaseModel implements Parcelable {
 		this.sale = in.readFloat();
 		this.type = in.readInt();
 		this.likeStatus = in.readInt();
-		this.rate = in.readParcelable(FoodRate.class.getClassLoader());
 		this.rateString = in.readFloat();
 		this.description = in.readString();
 		this.category = in.readParcelable(Category.class.getClassLoader());

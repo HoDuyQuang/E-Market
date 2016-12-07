@@ -21,15 +21,13 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import vn.com.brycen.restaurant.R;
-import vn.com.brycen.restaurant.activities.BaseActivity;
-import vn.com.brycen.restaurant.models.RequestStatus;
-import vn.com.brycen.restaurant.utils.Authentication;
-import vn.com.brycen.restaurant.utils.CommonUtils;
-import vn.com.brycen.restaurant.utils.Navigation;
-import vn.com.brycen.restaurant.utils.ServerUnavailableException;
-import vn.com.brycen.restaurant.views.LoadingView;
-import vn.com.brycen.restaurant.views.notification.TSnackbar;
+import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.activities.BaseActivity;
+import vn.edu.dut.itf.e_market.models.RequestStatus;
+import vn.edu.dut.itf.e_market.utils.Authentication;
+import vn.edu.dut.itf.e_market.utils.CommonUtils;
+import vn.edu.dut.itf.e_market.utils.Navigation;
+
 
 /**
  * @author d_quang
@@ -99,7 +97,6 @@ public abstract class BaseApiTask extends AsyncTask<Void, Integer, String> {
                 hideError();
             } else if (code == TOKEN_INVALID){
                 Authentication.logout(mContext);
-                Navigation.showDialogPasswordChanged(mContext);
                 onError(code);
             } else {
                 mError = Error.UnableConnect;
@@ -179,12 +176,6 @@ public abstract class BaseApiTask extends AsyncTask<Void, Integer, String> {
         vLoading = view;
     }
 
-    public void setLoading(ViewGroup rootView) {
-        mRootView = rootView;
-        vLoading = new LoadingView(mContext);
-        LayoutParams layoutParamsDrawing = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        mRootView.addView(vLoading, layoutParamsDrawing);
-    }
 
     public void setSwipeRefreshView(SwipeRefreshLayout view) {
         vSwipeRefresh = view;
@@ -199,7 +190,7 @@ public abstract class BaseApiTask extends AsyncTask<Void, Integer, String> {
     }
 
     private void showError(Error mError) {
-        showSnackError(mError);
+//        showSnackError(mError);
 
         if (vError != null) {
             if (status == null || !status.isFirstSuccess()) {
@@ -213,21 +204,22 @@ public abstract class BaseApiTask extends AsyncTask<Void, Integer, String> {
         }
     }
 
-    protected void showSnackError(Error mError) {
-        if (mSnackbarView != null && mContext != null) {
-            if (mError == Error.InternetConnection) {
-                TSnackbar.make(mSnackbarView, "<b>" + mContext.getString(R.string.snack_network_error) + "</b><br/>" + mContext.getString(R.string.no_internet_connection), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_network_unavailable).show();
-                return ;
-            }
-            if (mError == Error.UnableConnect) {
-                TSnackbar.make(mSnackbarView, "<b>" + mContext.getString(R.string.snack_server_error) + "</b><br/>" + mContext.getString(R.string.unable_connect_server), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_server_unavailable).show();
-            }
-            if (mError == Error.ParsingError) {
-                TSnackbar.make(mSnackbarView, "<b>" + mContext.getString(R.string.snack_server_error) + "</b><br/>" + mContext.getString(R.string.unable_perform_action), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_server_unavailable).show();
-            }
-//            TSnackbar.make(mSnackbarView, getErrorMessage(mError), TSnackbar.LENGTH_LONG).show();
-        }
-    }
+//    protected void showSnackError(Error mError) {
+//        if (mSnackbarView != null && mContext != null) {
+//            if (mError == Error.InternetConnection) {
+//
+//                TSnackbar.make(mSnackbarView, "<b>" + mContext.getString(R.string.snack_network_error) + "</b><br/>" + mContext.getString(R.string.no_internet_connection), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_network_unavailable).show();
+//                return ;
+//            }
+//            if (mError == Error.UnableConnect) {
+//                TSnackbar.make(mSnackbarView, "<b>" + mContext.getString(R.string.snack_server_error) + "</b><br/>" + mContext.getString(R.string.unable_connect_server), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_server_unavailable).show();
+//            }
+//            if (mError == Error.ParsingError) {
+//                TSnackbar.make(mSnackbarView, "<b>" + mContext.getString(R.string.snack_server_error) + "</b><br/>" + mContext.getString(R.string.unable_perform_action), TSnackbar.LENGTH_LONG).setIcon(R.drawable.ic_server_unavailable).show();
+//            }
+////            TSnackbar.make(mSnackbarView, getErrorMessage(mError), TSnackbar.LENGTH_LONG).show();
+//        }
+//    }
 
     private String getErrorMessage(Error mError) {
         if (mError == Error.InternetConnection) {

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -64,5 +64,267 @@
         <item name="android:layout_margin">3dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingLeft">15dp</item>
+    </style>
+
+
+
+    <style name="AppTheme.Radio" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/app_hard_yellow</item>
+        <item name="colorPrimaryDark">@color/app_hard_yellow</item>
+        <item name="colorAccent">@color/app_hard_yellow</item>
+        <item name="android:textColorSecondary">@color/abc_primary_text_material_dark</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme.NoActionBar" >
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
+    <style name="PhotoDetailTheme" parent="AppTheme.NoActionBar" >
+        <item name="android:windowBackground">@color/black</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.Fullscreen" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+
+    <style name="AppTheme.TabLayout">
+        <item name="colorPrimary">@color/app_hard_yellow</item>
+        <item name="colorAccent">@color/app_hard_yellow</item>
+    </style>
+    <style name="AppTheme.Button.WriteComment" parent="Widget.AppCompat.Button">
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/app_white</item>
+    </style>
+
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/app_white</item>
+    </style>
+
+    <style name="AppTheme.Button.Pink" parent="AppTheme.Button">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Button.Red" parent="AppTheme.Button">
+        <item name="colorButtonNormal">@color/app_red</item>
+    </style>
+
+    <style name="AppTheme.Button.Yellow" parent="AppTheme.Button">
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.Button.LightGreen" parent="AppTheme.Button">
+        <item name="colorButtonNormal">@color/app_light_green</item>
+    </style>
+
+    <style name="AppTheme.Button.DarkGray" parent="AppTheme.Button">
+        <item name="colorButtonNormal">@color/app_gray_dark</item>
+    </style>
+
+    <style name="AppTheme.FacilitiesIcon">
+        <item name="android:layout_width">@dimen/home_feature_icon_size</item>
+        <item name="android:layout_height">@dimen/home_feature_icon_size</item>
+        <item name="android:layout_marginRight">@dimen/home_feature_right_margin</item>
+    </style>
+
+    <style name="SpinnerTheme">
+        <item name="android:dropDownSelector">@drawable/ic_spinner_arrow_white</item>
+    </style>
+
+    <style name="AppTheme.SeekBar.Rate" parent="@style/AppTheme">
+        <item name="colorAccent">@color/app_light_green</item>
+    </style>
+    <style name="AppTheme.TextView.OrderNow">
+        <item name="android:textColor">@color/app_hard_yellow</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+
+    <style name="Animations" />
+
+    <!-- PopDownMenu -->
+    <style name="Animations.PopDownMenu" />
+
+    <style name="Animations.PopDownMenu.Center">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_top</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_bottom</item>
+    </style>
+
+    <style name="Animations.PopDownMenu.Left">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_topleft_to_bottomright</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_bottomright_to_topleft</item>
+    </style>
+
+    <style name="Animations.PopDownMenu.Right">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_topright_to_bottomleft</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_bottomleft_to_topright</item>
+    </style>
+
+    <style name="Animations.PopDownMenu.Reflect">
+        <item name="@android:windowEnterAnimation">@anim/pump_top</item>
+        <item name="@android:windowExitAnimation">@anim/disappear</item>
+    </style>
+
+    <!-- PopUpMenu -->
+    <style name="Animations.PopUpMenu" />
+
+    <style name="Animations.PopUpMenu.Center">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_bottom</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_top</item>
+    </style>
+
+    <style name="Animations.PopUpMenu.Left">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_bottomleft_to_topright</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_topright_to_bottomleft</item>
+    </style>
+
+    <style name="Animations.PopUpMenu.Right">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_bottomright_to_topleft</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_topleft_to_bottomright</item>
+    </style>
+
+    <style name="Animations.PopUpMenu.Reflect">
+        <item name="@android:windowEnterAnimation">@anim/pump_bottom</item>
+        <item name="@android:windowExitAnimation">@anim/disappear</item>
+    </style>
+
+    <style name="SwitchButtonStyle">
+        <item name="android:paddingLeft">10.0dip</item>
+        <item name="android:paddingTop">4.0dip</item>
+        <item name="android:paddingRight">10.0dip</item>
+        <item name="android:paddingBottom">4.0dip</item>
+    </style>
+
+    <style name="FacebookLoginButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/ic_facebook</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:drawablePadding">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+    </style>
+
+
+
+    <style name="Help">Help</style>
+    <style name="Help.Buy">Help.Buy</style>
+    <style name="Help.Buy.Line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@color/app_gray</item>
+    </style>
+
+    <style name="Help.Buy.Step">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart" tools:targetApi="jelly_bean_mr1">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Help.Buy.StepNum">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+
+    <style name="Help.Buy.GuideLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Help.Buy.Guide">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Help.Buy.GuideBold">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Help.Buy.Image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@drawable/bg_image_view_border</item>
+    </style>
+
+    <style name="Help.Buy.StepLayout">
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.TextView.EmptyMessage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/us_white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/app_gray_dark</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+
+    <color name="OvalButton.GreenBackground">@color/app_light_green</color>
+
+    <style name="AppTheme.TextView.Point">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_circle</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="AppTheme.Button.FoodDetail">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="NormalFragment">
+        <item name="android:background">#ffffff</item>
+    </style>
+
+    <style name="HomeFooterLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#212121</item>
+        <item name="android:paddingTop">@dimen/padding_footer_layout</item>
+        <item name="android:paddingBottom">@dimen/padding_footer_layout</item>
+        <item name="android:baselineAligned">false</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 </resources>

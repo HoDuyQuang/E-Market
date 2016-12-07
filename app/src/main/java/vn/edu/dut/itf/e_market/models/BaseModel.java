@@ -8,10 +8,9 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.Date;
 
-import vn.com.brycen.restaurant.api.BooleanSerializer;
-import vn.com.brycen.restaurant.api.DateTimeSerializer;
-import vn.com.brycen.restaurant.api.LatLongSerializer;
-import vn.com.brycen.restaurant.api.OpenTimeSerializer;
+import vn.edu.dut.itf.e_market.api.BooleanSerializer;
+import vn.edu.dut.itf.e_market.api.DateTimeSerializer;
+import vn.edu.dut.itf.e_market.api.LatLongSerializer;
 
 public abstract class BaseModel {
 
@@ -33,7 +32,6 @@ public abstract class BaseModel {
 			b.registerTypeAdapter(Boolean.class, serializer);
 			b.registerTypeAdapter(boolean.class, serializer);
 			b.registerTypeAdapter(LatLng.class, new LatLongSerializer());
-			b.registerTypeAdapter(OpenTime.class, new OpenTimeSerializer());
 			b.registerTypeAdapter(Date.class, new DateTimeSerializer());
 			mGson = b.create();
 		}
