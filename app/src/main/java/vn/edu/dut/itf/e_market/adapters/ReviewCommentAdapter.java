@@ -38,10 +38,10 @@ public class ReviewCommentAdapter extends AppBaseAdapter<Review, ReviewCommentAd
 
     @Override
     void onBind(final CommentViewHolder itemHolder, final Review model, int position) {
-        if (!TextUtils.isEmpty(model.content)) {
-            itemHolder.tvContent.setText(model.content);
+        if (!TextUtils.isEmpty(model.getContent())) {
+            itemHolder.tvContent.setText(model.getContent());
         }
-        itemHolder.tvName.setText(model.name);
+        itemHolder.tvName.setText(model.getName());
         itemHolder.likeNum.setText(mContext.getString(R.string.like, model.getLike()));
 //        itemHolder.commentNum.setText(mContext.getString(R.string.comment, model.getComment()));
         itemHolder.tvDateTime.setText(CommonUtils.formatDateTime(mContext, model.getDate()));

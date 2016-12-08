@@ -1,7 +1,6 @@
-package vn.edu.dut.itf.e_market.activities;
+package vn.edu.dut.itf.e_market.fragments;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.activities.BaseActivity;
 import vn.edu.dut.itf.e_market.adapters.ReviewCommentAdapter;
 import vn.edu.dut.itf.e_market.models.Review;
 import vn.edu.dut.itf.e_market.utils.Authentication;
@@ -24,7 +24,7 @@ import vn.edu.dut.itf.e_market.utils.CommonUtils;
 import vn.edu.dut.itf.e_market.utils.Navigation;
 
 
-public abstract class ReviewDetailActivity extends BaseActivity implements View.OnClickListener {
+public abstract class ReviewDetailFragment extends BaseActivity implements View.OnClickListener {
 
     public static final String REVIEW_ID = "reviewId";
     private EditText etMessage;
@@ -76,19 +76,19 @@ public abstract class ReviewDetailActivity extends BaseActivity implements View.
     abstract void requestApi();
 
     protected void setData(Review review) {
-        tvName.setText(review.name);
-        if (review.title != null && review.title.trim().length() > 0) {
-            tvTitle.setText(review.title);
+        tvName.setText(review.getName());
+        if (review.getTitle() != null && review.getTitle().trim().length() > 0) {
+            tvTitle.setText(review.getTitle());
             tvTitle.setVisibility(View.VISIBLE);
         } else {
             tvTitle.setVisibility(View.GONE);
         }
-        tvTitle.setText(review.title);
-        tvContent.setText(review.content);
+        tvTitle.setText(review.getTitle());
+        tvContent.setText(review.getContent());
         tvLike.setText(getString(R.string.like, review.getLike()));
         tvComment.setText(getString(R.string.comment, review.getComment()));
 
-        tvDateTime.setText(CommonUtils.formatDateTime(this, review.date));
+        tvDateTime.setText(CommonUtils.formatDateTime(this, review.getDate()));
         mComments.clear();
         mComments.addAll(review.listComments);
 
@@ -143,9 +143,9 @@ public abstract class ReviewDetailActivity extends BaseActivity implements View.
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b){
-                    if (!Authentication.isLoggedIn(ReviewDetailActivity.this)){
+                    if (!Authentication.isLoggedIn(ReviewDetailFragment.this)){
                         etMessage.clearFocus();
-                        Navigation.showDialogLogin(ReviewDetailActivity.this);
+                        Navigation.showDialogLogin(ReviewDetailFragment.this);
                     }
                 }
             }

@@ -220,8 +220,8 @@
     <string name="profile">Profile</string>
 
     <!-- Fragment review history restaurant -->
-    <string name="like">Like (%1$d)</string>
-    <string name="comment">Comment (%1$d)</string>
+    <string name="like">%1$d</string>
+    <string name="comment">%1$d</string>
 
     <!-- Fragment review list -->
 

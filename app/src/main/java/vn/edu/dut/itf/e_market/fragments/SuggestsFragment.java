@@ -1,4 +1,4 @@
-package vn.edu.dut.itf.e_market.activities;
+package vn.edu.dut.itf.e_market.fragments;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;

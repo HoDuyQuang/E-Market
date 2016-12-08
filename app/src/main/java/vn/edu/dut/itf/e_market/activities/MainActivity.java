@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.fragments.ListReviewActivity;
 import vn.edu.dut.itf.e_market.tasks.GetLogOutTask;
 import vn.edu.dut.itf.e_market.views.CustomTypefaceSpan;
 

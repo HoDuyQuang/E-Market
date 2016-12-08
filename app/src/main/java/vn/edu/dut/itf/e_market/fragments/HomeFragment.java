@@ -20,7 +20,7 @@
 //
 //import java.util.Calendar;
 //
-//import vn.edu.dut.itf.e_market.activities.SuggestsFragment;
+//import vn.edu.dut.itf.e_market.fragments.SuggestsFragment;
 //
 //
 ///**

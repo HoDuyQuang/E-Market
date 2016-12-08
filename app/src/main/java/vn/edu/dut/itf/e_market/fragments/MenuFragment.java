@@ -7,9 +7,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
@@ -19,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.dut.itf.e_market.R;
-import vn.edu.dut.itf.e_market.activities.SuggestsFragment;
 import vn.edu.dut.itf.e_market.adapters.MenuAdapter;
 import vn.edu.dut.itf.e_market.models.Food;
 import vn.edu.dut.itf.e_market.tasks.GetMenuTask;

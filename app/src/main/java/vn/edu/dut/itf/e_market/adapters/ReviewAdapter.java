@@ -13,6 +13,8 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import vn.edu.dut.itf.e_market.R;
@@ -45,23 +47,12 @@ public class ReviewAdapter extends AppBaseAdapter<Review, ReviewAdapter.ReviewVi
         mainHolder.likeNum.setText(mContext.getString(R.string.like, model.getLike()));
         mainHolder.commentNum.setText(mContext.getString(R.string.comment, model.getComment()));
         mainHolder.time.setText(CommonUtils.formatDateTime(mContext, model.getDate()));
-        mainHolder.vLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (CommonUtils.isNetworkConnected(mContext)) {
-                    mainHolder.like.performClick();
-                } else {
-                    showNoConnection();
-                }
-            }
-        });
-
         setOnItemClickListener(new ReviewAdapter.IItemClickListener<Review>() {
 
             @Override
             public void onItemClick(Review item, int position) {
                 if (CommonUtils.isNetworkConnected(mContext)) {
-                    Navigation.showRestaurantReviewDetail(mContext, item.reviewId);
+                    Navigation.showRestaurantReviewDetail(mContext, item.getReviewId());
                 } else {
                     showNoConnection();
                 }
@@ -73,6 +64,8 @@ public class ReviewAdapter extends AppBaseAdapter<Review, ReviewAdapter.ReviewVi
         setCheckChanged(mainHolder, model);
 
         setAnimation(mainHolder.itemView,position);
+
+        Picasso.with(mContext).load(model.getImageUrl()).into(mainHolder.image);
     }
 
     protected void setName(ReviewViewHolder mainHolder, Review model) {
@@ -145,6 +138,7 @@ public class ReviewAdapter extends AppBaseAdapter<Review, ReviewAdapter.ReviewVi
 
     class ReviewViewHolder extends RecyclerView.ViewHolder {
 
+        private ImageView avatar;
         private ImageView image;
         private TextView name;
         private TextView rate;
@@ -154,7 +148,6 @@ public class ReviewAdapter extends AppBaseAdapter<Review, ReviewAdapter.ReviewVi
         private TextView time;
         private TextView title;
         private CheckBox like;
-        private View vLike;
 
         ReviewViewHolder(View view) {
             super(view);
@@ -164,10 +157,10 @@ public class ReviewAdapter extends AppBaseAdapter<Review, ReviewAdapter.ReviewVi
             this.rate = (TextView) view.findViewById(R.id.rate);
             this.likeNum = (TextView) view.findViewById(R.id.like_num);
             this.commentNum = (TextView) view.findViewById(R.id.comment_num);
-            this.image = (ImageView) view.findViewById(R.id.avatar);
+            this.avatar = (ImageView) view.findViewById(R.id.avatar);
+            this.image = (ImageView) view.findViewById(R.id.ivThumbnailFavourite);
             this.time = (TextView) view.findViewById(R.id.time);
             this.like = (CheckBox) view.findViewById(R.id.like);
-            this.vLike = view.findViewById(R.id.view_like);
         }
 
         public void clearAnimation()

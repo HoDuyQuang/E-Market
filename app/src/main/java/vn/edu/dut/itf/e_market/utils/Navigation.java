@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 
 import vn.edu.dut.itf.e_market.R;
 import vn.edu.dut.itf.e_market.activities.LoginActivity;
-import vn.edu.dut.itf.e_market.activities.ReviewDetailActivity;
+import vn.edu.dut.itf.e_market.fragments.ReviewDetailFragment;
 import vn.edu.dut.itf.e_market.fragments.BaseFragment;
 
 
@@ -30,8 +28,8 @@ public class Navigation {
 //    }
 //
     public static void showRestaurantReviewDetail(Context context, String reviewId) {
-        Intent intent = new Intent(context, ReviewDetailActivity.class);
-        intent.putExtra(ReviewDetailActivity.REVIEW_ID, reviewId);
+        Intent intent = new Intent(context, ReviewDetailFragment.class);
+        intent.putExtra(ReviewDetailFragment.REVIEW_ID, reviewId);
         context.startActivity(intent);
     }
 

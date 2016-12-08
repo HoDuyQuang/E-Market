@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Review extends BaseModel {
-	public String reviewId;
-	public String name;
-	public Date date;
-	public String title;
-	public String content;
-	public int like;
-	public int comment;
-	protected int likeStatus;
+	String reviewId;
+	String imageUrl;
+	String name;
+	Date date;
+	String title;
+	String content;
+	int like;
+	int comment;
+	int likeStatus;
 
 	public Review(String reviewId, String name, Date date, String title, String content, int like, int likeStatus) {
 		this.reviewId = reviewId;
@@ -21,6 +22,14 @@ public class Review extends BaseModel {
 		this.content = content;
 		this.like = like;
 		this.likeStatus = likeStatus;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public ArrayList<Review> listComments;
