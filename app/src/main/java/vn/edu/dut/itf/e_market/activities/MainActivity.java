@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void findViews() {
-//        View headerView = ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0);
+        View headerView = ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0);
 //        headerView.findViewById(R.id.nav_register).setOnClickListener(new View.OnClickListener() {
 //
 //            @Override
@@ -103,16 +103,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 //                drawer.closeDrawer(GravityCompat.START);
 //            }
 //        });
-//
-//        headerView.findViewById(R.id.nav_login).setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                startActivityForResult(intent, REQUEST_CODE_LOGIN);
-//                drawer.closeDrawer(GravityCompat.START);
-//            }
-//        });
+
+        headerView.findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_LOGIN);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
 //        headerView.findViewById(R.id.avatar).setOnClickListener(new View.OnClickListener() {
 //
 //            @Override
