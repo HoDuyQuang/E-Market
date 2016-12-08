@@ -29,7 +29,6 @@ public class GetProvinceTask extends BaseApiTask {
 	@Override
 	String request() throws IOException, ServerUnavailableException {
 		HashMap<String, String> params = new HashMap<>();
-		params.put("restaurantId", APIConfig.RESTAURANT_ID);
 		return RequestUtils.sendGET(APIConfig.URL_29_GET_LIST_PROVINCES, params);
 	}
 
@@ -42,9 +41,6 @@ public class GetProvinceTask extends BaseApiTask {
 	protected void parseData(JSONObject jsonObject) throws JSONException {
 		Type listType = new TypeToken<List<Province>>() {
 		}.getType();
-		AppPref.getInstance(mContext).putString(AppPref.KEY_CURRENCY, jsonObject.getString("currencyUnit"));
-		AppPref.getInstance(mContext).putString(AppPref.KEY_DATETIME_FORMAT, jsonObject.getString("dateTimeFormat_android"));
-		AppPref.getInstance(mContext).putString(AppPref.KEY_EXPECT_TIME_TEXT, jsonObject.getString("expectTime"));
 		List<Province> province = BaseModel.getGson().fromJson(jsonObject.getString("listProvinces"), listType);
 		ProvinceDao dao = new ProvinceDao(mContext);
 		dao.deleteAll();

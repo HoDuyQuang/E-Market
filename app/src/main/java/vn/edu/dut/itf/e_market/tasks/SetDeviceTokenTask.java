@@ -31,7 +31,6 @@ public class SetDeviceTokenTask extends BaseApiTask {
 
     private String setToken(Context context) throws IOException {
         HashMap<String, String> params = new HashMap<>();
-        params.put("restaurantId", APIConfig.RESTAURANT_ID);
 
         String token = FirebaseInstanceId.getInstance().getToken();
 

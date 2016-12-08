@@ -12,8 +12,6 @@ public class AppPref {
 	public static final String KEY_RESTAURANT_NAME = "RESTAURANT_NAME";
 	public static final String KEY_PROVINCE = "LOAD_PROVINCE";
 	public static final String KEY_CURRENCY = "LOAD_CURRENCY";
-	public static final String KEY_DATETIME_FORMAT = "KEY_DATETIME_FORMAT";
-	public static final String KEY_EXPECT_TIME_TEXT = "EXPECT_TIME_TEXT";
 	public static final String KEY_LANGUAGE = "LANGUAGE";
 	public static final String KEY_AUTH_TOKEN = "AUTH_TOKEN";
 	public static final String KEY_DEVICE_TOKEN = "DEVICE_TOKEN";

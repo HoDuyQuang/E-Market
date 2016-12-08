@@ -1,18 +1,11 @@
 package vn.edu.dut.itf.e_market.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,7 +16,6 @@ import vn.edu.dut.itf.e_market.R;
 import vn.edu.dut.itf.e_market.database.ProvinceDao;
 import vn.edu.dut.itf.e_market.models.District;
 import vn.edu.dut.itf.e_market.models.Province;
-import vn.edu.dut.itf.e_market.utils.CommonUtils;
 import vn.edu.dut.itf.e_market.utils.Validator;
 
 
@@ -41,14 +33,8 @@ public class PayActivity extends BaseActivity {
 //    private List<AddressType> addressTypes;
 
     private EditText etFirstName, etLastName, etAddress, etPhone, etEmail, etNote;
-    private TextView tvDate;
-    private RadioGroup grTime;
-    private RadioButton rbTime, rbAsSoonAs;
+
     private Calendar deliveryDateTime;
-    private float fee = 0;
-    private TextView tvSubTotal;
-    private TextView tvTotal;
-    private TextView tvDeliveryFee;
 
     private SwipeRefreshLayout vRefresh;
     private boolean isOrderNow = false;
@@ -239,25 +225,9 @@ public class PayActivity extends BaseActivity {
 
         etFirstName = (EditText) findViewById(R.id.etFirstName);
         etLastName = (EditText) findViewById(R.id.etLastName);
-        etAddress = (EditText) findViewById(R.id.etAddress);
-        etPhone = (EditText) findViewById(R.id.etPhone);
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        etNote = (EditText) findViewById(R.id.etNote);
 
         layoutFirstName = (TextInputLayout) findViewById(R.id.input_layout_first_name);
         layoutLastName = (TextInputLayout) findViewById(R.id.input_layout_last_name);
-        layoutAddress = (TextInputLayout) findViewById(R.id.input_layout_address);
-        layoutPhone = (TextInputLayout) findViewById(R.id.input_layout_phone);
-        layoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
-
-
-        tvDate = (TextView) findViewById(R.id.tvDate);
-        grTime = (RadioGroup) findViewById(R.id.grTime);
-        rbTime = (RadioButton) findViewById(R.id.rbTime);
-        rbAsSoonAs = (RadioButton) findViewById(R.id.rbAsSoonAs);
-        tvSubTotal = (TextView) findViewById(R.id.tvSubtotal);
-        tvDeliveryFee = (TextView) findViewById(R.id.tvDeliveryFee);
-        tvTotal = (TextView) findViewById(R.id.tvTotal);
 
 
         vRefresh = (SwipeRefreshLayout) findViewById(R.id.refresh);
@@ -274,51 +244,6 @@ public class PayActivity extends BaseActivity {
         }
         getSupportActionBar().setTitle(R.string.pay);
 
-//        findViewById(R.id.btPayDone).setOnClickListener(clickListener);
-//        tvDate.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                SelectDateFragment newFragment = new SelectDateFragment();
-//                Bundle bundle = new Bundle();
-//                if (deliveryDateTime != null) {
-//                    bundle.putLong(SelectDateFragment.ARG_DATE, deliveryDateTime.getTime().getTime());
-//                    newFragment.setArguments(bundle);
-//                }
-//                newFragment.setOnDateSetListener(new SelectDateFragment.IOnDateSetListener() {
-//
-//                    @Override
-//                    public void onDateSet(Calendar calendar) {
-//                        setDate(calendar);
-//                    }
-//                });
-//                newFragment.show(getSupportFragmentManager(), "DatePicker");
-//            }
-//        });
-//
-//        rbTime.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                SelectTimeFragment newFragment = new SelectTimeFragment();
-//                Bundle bundle = new Bundle();
-//                if (deliveryDateTime != null) {
-//                    bundle.putLong(SelectTimeFragment.ARG_TIME, deliveryDateTime.getTime().getTime());
-//                    newFragment.setArguments(bundle);
-//                }
-//                newFragment.setOnDateSetListener(new SelectTimeFragment.IOnTimeSetListener() {
-//
-//                    @Override
-//                    public void onTimeSet(Calendar calendar) {
-//                        deliveryDateTime.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
-//                        deliveryDateTime.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
-//                        rbTime.setText(CommonUtils.formatTime(PayActivity.this, deliveryDateTime.getTime()));
-//                    }
-//                });
-//                newFragment.show(getSupportFragmentManager(), "TimePicker");
-//            }
-//        });
-//
 //        vRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 //            @Override
 //            public void onRefresh() {
@@ -326,15 +251,6 @@ public class PayActivity extends BaseActivity {
 //                vRefresh.setRefreshing(false);
 //            }
 //        });
-//
-//        isOrderNow = getIntent().getBooleanExtra(ARG_ORDER_NOW, false);
-//        rbAsSoonAs.setText(AppPref.getInstance(this).getString(AppPref.KEY_EXPECT_TIME_TEXT, getString(R.string.as_soon_as)));
-    }
-
-    private void setDate(Calendar calendar) {
-        deliveryDateTime.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        tvDate.setText(CommonUtils.formatDate(PayActivity.this, deliveryDateTime.getTime()));
-
     }
 
     @Override
@@ -427,34 +343,6 @@ public class PayActivity extends BaseActivity {
 //        }
     }
 
-
-//    private void getFee() {
-//        tvDeliveryFee.setText(R.string.loading);
-//        GetFeeTask task = new GetFeeTask(this, ((District) spDistrict.getSelectedItem()).getId()) {
-//            @Override
-//            protected void onSuccess(float fee) {
-//                super.onSuccess(fee);
-//                getFeeDone = true;
-//                PayActivity.this.fee = fee;
-//                if (fee>0) {
-//                    tvDeliveryFee.setText(CommonUtils.formatPrice(PayActivity.this, fee));
-//                } else{
-//                    tvDeliveryFee.setText(R.string.free);
-//                }
-//                tvTotal.setText(CommonUtils.formatPrice(PayActivity.this, subTotal + fee));
-//            }
-//
-//            @Override
-//            protected void onError(int code) {
-//                super.onError(code);
-//                getFeeDone = false;
-//                tvDeliveryFee.setText(R.string.free);
-//                tvTotal.setText(CommonUtils.formatPrice(PayActivity.this, subTotal));
-//            }
-//        };
-//        task.setShowProgressDialog(null, getString(R.string.loading), false);
-//        task.execute();
-//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

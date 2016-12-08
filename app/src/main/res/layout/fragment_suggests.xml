@@ -28,7 +28,7 @@
         android:paddingRight="5dp"
         android:paddingTop="10dp">
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

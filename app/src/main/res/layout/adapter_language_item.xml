@@ -6,7 +6,7 @@
     android:clickable="true"
     android:gravity="center_vertical" >
 
-    <vn.com.brycen.restaurant.views.CustomFontTextView
+    <vn.edu.dut.itf.e_market.views.CustomFontTextView
         android:id="@+id/language"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

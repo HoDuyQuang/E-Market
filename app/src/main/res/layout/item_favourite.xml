@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <vn.com.brycen.restaurant.views.CustomFontTextView
+            <vn.edu.dut.itf.e_market.views.CustomFontTextView
                 android:id="@+id/tvOrderNow"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -54,7 +54,7 @@
                 android:padding="6dp"
                 android:src="@drawable/ic_cart_full_white" />
 
-            <vn.com.brycen.restaurant.views.CustomFontTextView
+            <vn.edu.dut.itf.e_market.views.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"

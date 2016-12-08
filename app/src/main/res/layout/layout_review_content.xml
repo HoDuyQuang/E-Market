@@ -9,10 +9,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +22,7 @@
             android:textStyle="bold"
             app:font="@string/font_light" />
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:id="@+id/review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,10 +54,10 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_like"
+                android:background="@drawable/ic_thumb_up"
                 android:button="@null" />
 
-            <vn.com.brycen.restaurant.views.CustomFontTextView
+            <vn.edu.dut.itf.e_market.views.CustomFontTextView
                 android:id="@+id/like_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,7 +74,7 @@
             android:layout_marginLeft="10dp"
             android:src="@drawable/ic_pink_comment" />
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:id="@+id/comment_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

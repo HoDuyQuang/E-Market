@@ -1,11 +1,11 @@
 package vn.edu.dut.itf.e_market.api;
 
 public class APIConfig {
-	public static final String RESTAURANT_ID = "1";
-	private static final String DOMAIN = "http://192.168.1.164";
-	private static final String PATH = "/restaurant/api/";
+	private static final String DOMAIN = "http://127.0.0.1";
+	private static final String PATH = "/emarket/public/api/";
 	private static final String BASE_URL = DOMAIN + PATH;
 
+	public static final String URL_29_GET_LIST_PROVINCES = BASE_URL + "requests/get_province";
 
 	public static final String URL_1_GET_HOME_PAGE_API = BASE_URL + "requests/getHome";
 	public static final String URL_2_GET_RESTAURANT_INFO = BASE_URL + "Restaurants/getRestaurantInfo";
@@ -37,7 +37,7 @@ public class APIConfig {
 	public static final String URL_25_GET_DELIVERY_PROCESS = BASE_URL + "requests/getDeliveryProcess";
 
 	public static final String URL_28_POST_ORDER = BASE_URL + "orders/postOrder";
-	public static final String URL_29_GET_LIST_PROVINCES = BASE_URL + "requests/getListProvinces";
+
 	public static final String URL_30_POST_CHANGE_PASS = BASE_URL + "users/postChangePassword";
 	public static final String URL_31_LOGIN = BASE_URL+"users/postLogin";
 	public static final String URL_32_POST_REGISTER = BASE_URL+ "users/postRegister";

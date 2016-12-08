@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:id="@+id/tvNumPhoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvNumPhoto"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:id="@+id/tvNumReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvNumReview"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:id="@+id/tvNumBookmark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <vn.com.brycen.restaurant.views.CustomFontTextView
+        <vn.edu.dut.itf.e_market.views.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvNumBookmark"

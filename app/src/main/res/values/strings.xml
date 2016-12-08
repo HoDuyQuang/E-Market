@@ -94,9 +94,9 @@
     <string name="website">Website</string>
     <string name="map">Map</string>
     <!-- font -->
-    <string name="font_primary" translatable="false">Roboto-Regular.ttf</string>
-    <string name="font_light" translatable="false">Roboto-Light.ttf</string>
-    <string name="font_thin" translatable="false">Roboto-Thin.ttf</string>
+    <string name="font_primary" translatable="false">helveticaneue.ttf</string>
+    <string name="font_light" translatable="false">helveticaneuelight.ttf</string>
+    <string name="font_thin" translatable="false">helveticaneueultralight.ttf</string>
     <string name="myanmar_font" translatable="false">ZawgyiOne.ttf</string>
     <!-- Languages -->
     <string name="english" translatable="false">English</string>
@@ -353,5 +353,6 @@
     <string name="thank_you">Thank you</string>
     <string name="check_order_info">Please check your order information such as below</string>
     <string name="version_name" translatable="false">1.0</string>
+    <string name="title">Title</string>
 
 </resources>

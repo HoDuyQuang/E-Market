@@ -49,7 +49,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <vn.com.brycen.restaurant.views.ScaleImageView
+                            <vn.edu.dut.itf.e_market.views.ScaleImageView
                                 android:id="@+id/ivFoodImage"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
 
                             <include layout="@layout/layout_food_detail_info" />
 
-                            <vn.com.brycen.restaurant.views.CustomFontTextView
+                            <vn.edu.dut.itf.e_market.views.CustomFontTextView
                                 android:id="@+id/tvDescriptionTitle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
-                            <vn.com.brycen.restaurant.views.ExpandableTextView
+                            <vn.edu.dut.itf.e_market.views.ExpandableTextView
                                 android:id="@+id/description"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

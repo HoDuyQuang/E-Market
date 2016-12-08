@@ -35,7 +35,6 @@ public class GetListReviewRestaurantTask extends BaseApiTask {
 		HashMap<String, String> params = new HashMap<>();
 		params.put("from", mStart+"");
 		params.put("count", mCount+"");
-		params.put("restaurantId", APIConfig.RESTAURANT_ID);
 		return RequestUtils.sendGET(APIConfig.URL_11_GET_LIST_REVIEW_RESTAURANT,params, Authentication.getAuthToken(mContext));
 	}
 

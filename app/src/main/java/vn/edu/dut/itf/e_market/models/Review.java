@@ -12,6 +12,17 @@ public class Review extends BaseModel {
 	public int like;
 	public int comment;
 	protected int likeStatus;
+
+	public Review(String reviewId, String name, Date date, String title, String content, int like, int likeStatus) {
+		this.reviewId = reviewId;
+		this.name = name;
+		this.date = date;
+		this.title = title;
+		this.content = content;
+		this.like = like;
+		this.likeStatus = likeStatus;
+	}
+
 	public ArrayList<Review> listComments;
 
 	public ArrayList<Review> getListComments() {

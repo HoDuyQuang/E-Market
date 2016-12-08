@@ -30,7 +30,6 @@ public class GetSuggestTask extends BaseApiTask {
 	String request() throws IOException, ServerUnavailableException {
 		HashMap<String, String> params = new HashMap<>();
 		params.put("isTakeAway", isTakeAway ? "1" : "0");
-		params.put("restaurantId", APIConfig.RESTAURANT_ID);
 		return RequestUtils.sendGET(APIConfig.URL_48_GET_SUGGEST, params, null);
 	}
 

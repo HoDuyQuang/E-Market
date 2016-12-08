@@ -73,7 +73,7 @@
                     android:layout_alignParentBottom="true"
                     android:background="#dddddd">
 
-                    <vn.com.brycen.restaurant.views.CustomFontEditText
+                    <vn.edu.dut.itf.e_market.views.CustomFontEditText
                         android:id="@+id/etMessage"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -84,7 +84,7 @@
                         android:inputType="textMultiLine"
                         android:paddingLeft="8dp" />
 
-                    <vn.com.brycen.restaurant.views.CustomFontTextView
+                    <vn.edu.dut.itf.e_market.views.CustomFontTextView
                         android:id="@+id/tvPost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
             android:gravity="center"
             android:visibility="gone">
 
-            <vn.com.brycen.restaurant.views.CustomFontTextView
+            <vn.edu.dut.itf.e_market.views.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/us_white"

@@ -94,25 +94,10 @@ public class CommonUtils {
     }
 
     public static String formatDateTime(Context context, Date date) {
-        if (date != null && AppPref.getInstance(context).getString(AppPref.KEY_DATETIME_FORMAT) != null) {
-            SimpleDateFormat df;
-            if (AppPref.getInstance(context).getString(AppPref.KEY_DATETIME_FORMAT).length() > 0) {
-                try {
-                    df = new SimpleDateFormat(AppPref.getInstance(context).getString(AppPref.KEY_DATETIME_FORMAT),
-                            CommonUtils.getAppLocale(context));
-                } catch (IllegalArgumentException e) {
-                    df = new SimpleDateFormat("MM/dd/yyyy hh:mm a",
-                            CommonUtils.getAppLocale(context));
-                }
-            } else {
-                df = new SimpleDateFormat("MM/dd/yyyy hh:mm a",
-                        CommonUtils.getAppLocale(context));
-            }
-            df.setTimeZone(TimeZone.getDefault());
-            return df.format(date);
-        } else {
-            return "";
-        }
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a",
+                CommonUtils.getAppLocale(context));
+        df.setTimeZone(TimeZone.getDefault());
+        return df.format(date);
     }
 
 

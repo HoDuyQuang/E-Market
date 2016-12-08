@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <vn.com.brycen.restaurant.views.CustomFontTextView
+                <vn.edu.dut.itf.e_market.views.CustomFontTextView
                     android:id="@+id/rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                     android:textStyle="bold"
                     app:font="@string/font_light" />
 
-                <vn.com.brycen.restaurant.views.CustomFontTextView
+                <vn.edu.dut.itf.e_market.views.CustomFontTextView
                     android:id="@+id/name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             </LinearLayout>
 
 
-            <vn.com.brycen.restaurant.views.CustomFontTextView
+            <vn.edu.dut.itf.e_market.views.CustomFontTextView
                 android:id="@+id/order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
             android:orientation="horizontal">
 
 
-            <vn.com.brycen.restaurant.views.CustomFontTextView
+            <vn.edu.dut.itf.e_market.views.CustomFontTextView
                 android:id="@+id/discount_percent"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <vn.com.brycen.restaurant.views.CustomFontTextView
+                <vn.edu.dut.itf.e_market.views.CustomFontTextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                     android:text="$ 30 USD"
                     app:font="@string/font_primary" />
 
-                <vn.com.brycen.restaurant.views.CustomFontTextView
+                <vn.edu.dut.itf.e_market.views.CustomFontTextView
                     android:id="@+id/discount_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

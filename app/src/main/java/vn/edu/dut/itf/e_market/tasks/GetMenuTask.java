@@ -35,7 +35,6 @@ public class GetMenuTask extends BaseApiTask {
 	String request() throws IOException, ServerUnavailableException {
 		HashMap<String, String> params = new HashMap<>();
 		params.put("isTakeAway", isTakeAway ? "1" : "0");
-		params.put("restaurantId", APIConfig.RESTAURANT_ID);
 		params.put("from", String.valueOf(mFrom));
 		params.put("count", String.valueOf(mCount));
 		return RequestUtils.sendGET(APIConfig.URL_5_GET_LIST_MENU, params, null);

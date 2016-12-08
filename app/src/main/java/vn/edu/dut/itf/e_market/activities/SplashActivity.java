@@ -66,33 +66,33 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        if (!AppPref.getInstance(this).getBoolean(AppPref.KEY_PROVINCE)) {
-            GetProvinceTask task = new GetProvinceTask(this) {
-                @Override
-                protected void onSuccess(List<Province> provinces) {
-                    nextStep();
-                }
-
-                @Override
-                protected void onError(int code) {
-                    super.onError(code);
-                }
-            };
-            task.setErrorDialog(getString(R.string.retry), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    initData();
-                }
-            }, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    finish();
-                }
-            });
-            task.execute();
-        } else {
+//        if (!AppPref.getInstance(this).getBoolean(AppPref.KEY_PROVINCE)) {
+//            GetProvinceTask task = new GetProvinceTask(this) {
+//                @Override
+//                protected void onSuccess(List<Province> provinces) {
+//                    nextStep();
+//                }
+//
+//                @Override
+//                protected void onError(int code) {
+//                    super.onError(code);
+//                }
+//            };
+//            task.setErrorDialog(getString(R.string.retry), new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//                    initData();
+//                }
+//            }, new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//                    finish();
+//                }
+//            });
+//            task.execute();
+//        } else {
             nextStep();
-        }
+//        }
     }
 
     private void nextStep() {
