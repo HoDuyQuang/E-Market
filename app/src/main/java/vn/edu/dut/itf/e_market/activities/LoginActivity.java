@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -42,6 +43,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -93,6 +95,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private GoogleApiClient mGoogleApiClient;
     private CallbackManager mCallbackManager;
 
+    private static final String TAG = "FacebookLogin";
+    private static final int RC_SIGN_IN = 1010;
+
+    private static final String FACEBOOK = "FACEBOOK";
+    private static final String GOOGLE = "GOOGLE";
+    private static final String TWITTER = "TWITTER";
+
+    private CallbackManager mFacebookCallbackManager;
+
+    private EditText edtUserName;
+    private EditText edtPassword;
+
+    private Button btnSignIn;
+    private Button btnRegister;
+    private TwitterLoginButton btnTwitter;
+
+    private PostLoginTask mPostLogin;
+
+    private GoogleApiClient mGoogleApiClient;
+    private SignInButton btnGoogle;
+    private GoogleSignInOptions gso;
+    private PostRegisterTask mPostRegister;
+    private TextView tvForgotPassword;
+    private TextInputLayout layoutPassword;
+    private TextInputLayout layoutUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
