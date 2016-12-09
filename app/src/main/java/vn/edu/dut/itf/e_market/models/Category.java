@@ -13,6 +13,11 @@ public class Category extends BaseModel implements Parcelable {
 	@SerializedName("category")
 	private	String category;
 
+	public class CategoryTable {
+		public static final String TABLE_NAME = "Category";
+		public static final String ID = "id";
+		public static final String NAME = "name";
+	}
 	public static Creator<Category> CREATOR = new Creator<Category>() {
 		public Category createFromParcel(Parcel source) {
 			return new Category(source);
@@ -29,6 +34,14 @@ public class Category extends BaseModel implements Parcelable {
 
 	public String getCategory() {
 		return category;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public Category(int id, String category) {

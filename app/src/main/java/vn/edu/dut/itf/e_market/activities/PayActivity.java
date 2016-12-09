@@ -5,6 +5,8 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -13,9 +15,14 @@ import java.util.List;
 
 import fr.ganfra.materialspinner.MaterialSpinner;
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.adapters.CategoryAdapter;
+import vn.edu.dut.itf.e_market.adapters.CollegeAdapter;
+import vn.edu.dut.itf.e_market.adapters.ProvinceAdapter;
+import vn.edu.dut.itf.e_market.database.CategoryDao;
 import vn.edu.dut.itf.e_market.database.ProvinceDao;
+import vn.edu.dut.itf.e_market.models.Category;
+import vn.edu.dut.itf.e_market.models.College;
 import vn.edu.dut.itf.e_market.models.District;
-import vn.edu.dut.itf.e_market.models.Province;
 import vn.edu.dut.itf.e_market.utils.Validator;
 
 
@@ -24,13 +31,13 @@ public class PayActivity extends BaseActivity {
     public static final String ARG_FOOD_ID = "cart";
     public static final String ARG_ORDER_NOW = "order_now";
 
-    private MaterialSpinner spProvince, spDistrict, spAddressType;
-//    private ProvinceAdapter adProvince;
-//    private DistrictAdapter adDistrict;
-//    private AddressTypeAdapter adAddressType;
-    private List<Province> provinces;
+    private MaterialSpinner spProvince, spCollege, spCategory;
+    private ProvinceAdapter adapterProvince;
+    private CollegeAdapter adapterCollege;
+    private CategoryAdapter adapterCategory;
     private List<District> districts;
-//    private List<AddressType> addressTypes;
+    private List<College> colleges;
+    private List<Category> addressTypes;
 
     private EditText etFirstName, etLastName, etAddress, etPhone, etEmail, etNote;
 
@@ -111,11 +118,11 @@ public class PayActivity extends BaseActivity {
             spProvince.setError(null);
         }
 
-        if (spDistrict.getSelectedItemPosition() == 0) {
-            spDistrict.setError(R.string.choose_district);
+        if (spCollege.getSelectedItemPosition() == 0) {
+            spCollege.setError(R.string.choose_district);
             result = false;
         } else {
-            spDistrict.setError(null);
+            spCollege.setError(null);
         }
 
         if (address.isEmpty()) {
@@ -178,14 +185,14 @@ public class PayActivity extends BaseActivity {
 //                    String email = etEmail.getText().toString().trim();
 //
 //                    String note = etNote.getText().toString();
-//                    int addressType = addressTypes.get(spAddressType.getSelectedItemPosition()).getId();
+//                    int addressType = addressTypes.get(spCategory.getSelectedItemPosition()).getId();
 //
 //                    if (checkField(firstName, lastName, address, phone, email)) {
-//                        if (spDistrict.getSelectedItemPosition() == 0) {
+//                        if (spCollege.getSelectedItemPosition() == 0) {
 //                            TSnackbar.make(findViewById(R.id.view_data), R.string.choose_district, TSnackbar.LENGTH_LONG).show();
 //                            break;
 //                        }
-//                        String districtId = ((District) spDistrict.getSelectedItem()).getId();
+//                        String districtId = ((District) spCollege.getSelectedItem()).getId();
 //                        if (getFeeDone) {
 //                            mPostTask = new PostOrderTask(PayActivity.this, fee, mCarts, firstName, lastName, districtId, address, phone, email, note, addressType, deliveryDateTime, rbAsSoonAs.isChecked()) {
 //                                @Override
@@ -220,8 +227,8 @@ public class PayActivity extends BaseActivity {
     @Override
     public void findViews() {
         spProvince = (MaterialSpinner) findViewById(R.id.spProvice);
-        spDistrict = (MaterialSpinner) findViewById(R.id.spDistrict);
-        spAddressType = (MaterialSpinner) findViewById(R.id.spAddressType);
+        spCollege = (MaterialSpinner) findViewById(R.id.spDistrict);
+        spCategory = (MaterialSpinner) findViewById(R.id.spAddressType);
 
         etFirstName = (EditText) findViewById(R.id.etFirstName);
         etLastName = (EditText) findViewById(R.id.etLastName);
@@ -259,73 +266,73 @@ public class PayActivity extends BaseActivity {
         if (b != null) {
 //            mCarts = b.getParcelableArrayList(ARG_FOOD_ID);
         }
-        provinces = new ProvinceDao(this).getProvinces();
+        districts = new ProvinceDao(this).getProvinces();
 //        provinces.add(0, new Province(null, getString(R.string.choose_province)));
 
-        districts = new ArrayList<>();
-//        addressTypes = new AddressTypeDao(this).getAll();
+        colleges = new ArrayList<>();
+        addressTypes = new CategoryDao(this).getAll();
         deliveryDateTime = Calendar.getInstance();
     }
 
     @Override
     public void showData() {
-//
-//        if (provinces != null) {
-//            adProvince = new ProvinceAdapter(getApplicationContext(), provinces);
-//            spProvince.setAdapter(adProvince);
-//        }
-//        adDistrict = new DistrictAdapter(getApplicationContext(), districts);
-//        spDistrict.setAdapter(adDistrict);
-//        spDistrict.setOnItemSelectedListener(new OnItemSelectedListener() {
-//
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        if (districts != null) {
+            adapterProvince = new ProvinceAdapter(getApplicationContext(), districts);
+            spProvince.setAdapter(adapterProvince);
+        }
+        adapterCollege = new CollegeAdapter(getApplicationContext(), colleges);
+        spCollege.setAdapter(adapterCollege);
+        spCollege.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                if (position != -1) {
-////                    if (Authentication.isLoggedIn(PayActivity.this) && profile != null) {
+//                    if (Authentication.isLoggedIn(PayActivity.this) && profile != null) {
 //                    getFee();
-////                    }
+//                    }
 //                } else {
 //                    tvDeliveryFee.setText(R.string.free);
 //                    tvTotal.setText(CommonUtils.formatPrice(PayActivity.this, subTotal + fee));
 //                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//            }
-//        });
-//        adAddressType = new AddressTypeAdapter(getApplicationContext(), addressTypes);
-//        spAddressType.setAdapter(adAddressType);
-//        if (addressTypes.size() > 0) {
-//            spAddressType.setSelection(0);
-//        }
-//        spProvince.setOnItemSelectedListener(new OnItemSelectedListener() {
-//
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        adapterCategory = new CategoryAdapter(getApplicationContext(), addressTypes);
+        spCategory.setAdapter(adapterCategory);
+        if (addressTypes.size() > 0) {
+            spCategory.setSelection(0);
+        }
+        spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                districts.clear();
 //                if (position != -1) {
-//                    districts.addAll(((Province) spProvince.getSelectedItem()).getListDistricts());
+//                    districts.addAll(((District) spProvince.getSelectedItem()).getListDistricts());
 //                }
-////                districts.add(0, new District(null, getString(R.string.choose_district)));
-//                adDistrict.notifyDataSetChanged();
-//
+//                districts.add(0, new District(null, getString(R.string.choose_district)));
+//                adapterCollege.notifyDataSetChanged();
+
 //                if (profile != null) {
 //                    if (position == ProfileFragment.indexOfProvince(provinces, ProfileFragment.getProvinceIdByDistricId(provinces, profile.getDistrict()))) {
-//                        spDistrict.setSelection(ProfileFragment.indexOfDistrict(districts, profile.getDistrict()) + 1);
+//                        spCollege.setSelection(ProfileFragment.indexOfDistrict(districts, profile.getDistrict()) + 1);
 //                    } else {
-//                        spDistrict.setSelection(0);
+//                        spCollege.setSelection(0);
 //                    }
 //                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                // TODO Auto-generated method stub
-//
-//            }
-//
-//        });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
 //
 //
 //        subTotal = CartFragment.calculateSummaryPayment(mCarts);

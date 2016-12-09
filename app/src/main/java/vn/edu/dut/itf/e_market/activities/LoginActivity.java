@@ -46,6 +46,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -53,18 +54,20 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.tasks.PostRegisterTask;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor>, GoogleApiClient.OnConnectionFailedListener {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -95,9 +98,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private GoogleApiClient mGoogleApiClient;
     private CallbackManager mCallbackManager;
 
-    private static final String TAG = "FacebookLogin";
-    private static final int RC_SIGN_IN = 1010;
-
     private static final String FACEBOOK = "FACEBOOK";
     private static final String GOOGLE = "GOOGLE";
     private static final String TWITTER = "TWITTER";
@@ -111,9 +111,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private Button btnRegister;
     private TwitterLoginButton btnTwitter;
 
-    private PostLoginTask mPostLogin;
+//    private PostLoginTask mPostLogin;
 
-    private GoogleApiClient mGoogleApiClient;
     private SignInButton btnGoogle;
     private GoogleSignInOptions gso;
     private PostRegisterTask mPostRegister;
@@ -123,11 +122,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         if (!FacebookSdk.isInitialized()){
             FacebookSdk.sdkInitialize(getApplicationContext());
         }
-        setContentView(R.layout.activity_login);
+        super.onCreate(savedInstanceState);
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -144,7 +143,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        findViewById(R.id.google_sign_in_button).setOnClickListener(new OnClickListener() {
+        findViewById(R.id.login_google).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 signIn();
@@ -278,6 +277,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    private void firebaseAuthWithEmail(String email, String password){
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+            }
+        }).addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
@@ -513,6 +526,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public int setLayout() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    public void findViews() {
+
+    }
+
+    @Override
+    public void initViews() {
+
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public void showData() {
 
     }
 

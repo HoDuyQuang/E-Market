@@ -2,64 +2,51 @@ package vn.edu.dut.itf.e_market.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class District extends BaseModel {
-	@SerializedName("id")
-	private String id;
-	@SerializedName("name")
-	private String name;
-	@SerializedName("lat")
-	private double lat;
-	@SerializedName("long")
-	private double lng;
+    @SerializedName("id")
+    private String id;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("listDistricts")
+    private ArrayList<College> listColleges = new ArrayList<>();
 
-	public District(String id, String name){
-		this.id = id;
-		this.name = name;
-	}
+    public District(){
 
-	public District() {
+    }
+    public District(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public ArrayList<College> getListColleges() {
+        return listColleges;
+    }
 
-	public double getLat() {
-		return lat;
-	}
+    public void setListColleges(ArrayList<College> listColleges) {
+        this.listColleges = listColleges;
+    }
 
-	public void setLat(double lat) {
-		this.lat = lat;
-	}
-
-	public double getLng() {
-		return lng;
-	}
-
-	public void setLng(double lng) {
-		this.lng = lng;
-	}
-
-	public class DistrictTable {
-
-		public static final String TABLE_NAME = "District";
-		public static final String ID = "id";
-		public static final String NAME = "name";
-		public static final String LAT = "lat";
-		public static final String LONG = "long";
-		public static final String PROVINCE_ID = "province_id";
-	}
+    public class ProvinceTable {
+        public static final String TABLE_NAME = "Province";
+        public static final String ID = "id";
+        public static final String NAME = "name";
+    }
 }

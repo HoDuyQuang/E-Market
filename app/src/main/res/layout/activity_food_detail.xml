@@ -49,6 +49,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
+                            <vn.edu.dut.itf.e_market.views.SlideShowViewPager
+                            android:id="@+id/pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp" />
                             <vn.edu.dut.itf.e_market.views.ScaleImageView
                                 android:id="@+id/ivFoodImage"
                                 android:layout_width="match_parent"

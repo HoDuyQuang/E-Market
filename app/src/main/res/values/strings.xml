@@ -68,8 +68,8 @@
     <string name="lbFood">Foods</string>
     <string name="lbDeliveryInfor">Delivery Information</string>
     <string name="lbName">Name</string>
-    <string name="province">Province</string>
-    <string name="district">District</string>
+    <string name="district">Province</string>
+    <string name="college">District</string>
     <string name="address">Address</string>
     <string name="lbPhone">Phone</string>
 
@@ -337,9 +337,9 @@
     <string name="female">Female</string>
     <string name="error_email_registerd_multiple_user">This email have been registered by multiple users</string>
     <string name="forgot_pass_username_incorrect">Your username is incorrect</string>
-    <string name="choose_province">Choose province</string>
-    <string name="choose_district">Choose district</string>
-    <string name="unable_get_fee">Can\'t get delivery fee for this district</string>
+    <string name="choose_province">Choose district</string>
+    <string name="choose_district">Choose college</string>
+    <string name="unable_get_fee">Can\'t get delivery fee for this college</string>
     <string name="choose_gender">Choose gender</string>
     <string name="food_no_longer_serve">We no longer serve some food added in your cart</string>
     <string name="time_expect">Time expect</string>
@@ -354,5 +354,7 @@
     <string name="check_order_info">Please check your order information such as below</string>
     <string name="version_name" translatable="false">1.0</string>
     <string name="title">Title</string>
+    <string name="twitter_key">76JBBINYAN9TSDoIjwGbz5CQc</string>
+    <string name="twitter_secret">hXZvMtcgpTILFz2zbNZG0dtbnLNpEqtjZ4DrpZy4NCToHfIOyp</string>
 
 </resources>

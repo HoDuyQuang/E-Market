@@ -52,7 +52,7 @@ public class ReviewAdapter extends AppBaseAdapter<Review, ReviewAdapter.ReviewVi
             @Override
             public void onItemClick(Review item, int position) {
                 if (CommonUtils.isNetworkConnected(mContext)) {
-                    Navigation.showRestaurantReviewDetail(mContext, item.getReviewId());
+                    Navigation.showFoodDetail(mContext, 1);
                 } else {
                     showNoConnection();
                 }

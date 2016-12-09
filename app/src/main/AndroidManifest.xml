@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -52,6 +53,10 @@
             </intent-filter>
         </activity>
         <meta-data android:name="com.facebook.sdk.ApplicationId"   android:value="@string/app_id"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="3b00099392931cc551f640e6da3f93b7b69c475e"
+            />
     </application>
 
 </manifest>

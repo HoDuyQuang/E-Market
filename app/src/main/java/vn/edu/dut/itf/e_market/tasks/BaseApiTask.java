@@ -35,7 +35,7 @@ import vn.edu.dut.itf.e_market.utils.Navigation;
  *         Base class for request API
  */
 public abstract class BaseApiTask extends AsyncTask<Void, Integer, String> {
-    private static final int SUCCESS = 0;
+    private static final int SUCCESS = 100;
     private static final int TOKEN_INVALID = 7;
 
     private ProgressDialog mProgressDialog;
@@ -86,7 +86,7 @@ public abstract class BaseApiTask extends AsyncTask<Void, Integer, String> {
         try {
             Log.d("result", result);
             JSONObject object = new JSONObject(result);
-            int code = object.getJSONObject("error").getInt("code");
+            int code = object.getInt("code");
             if (code == SUCCESS) {
                 parseData(object);
                 if (mContext instanceof BaseActivity) {

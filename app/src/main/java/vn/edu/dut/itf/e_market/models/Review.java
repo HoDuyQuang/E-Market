@@ -10,6 +10,9 @@ public class Review extends BaseModel {
 	Date date;
 	String title;
 	String content;
+	int categoryId;
+	int collegeId;
+
 	int like;
 	int comment;
 	int likeStatus;

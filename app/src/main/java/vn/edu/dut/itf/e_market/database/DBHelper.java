@@ -55,11 +55,24 @@ public class DBHelper {
 		public void onCreate(SQLiteDatabase db) {
 			try {
 				db.execSQL(
-						"CREATE TABLE \"Cart\" (	`DishId`	INTEGER NOT NULL DEFAULT (null),	`Quantity`	INTEGER NOT NULL, \"Price\" FLOAT,	PRIMARY KEY(DishId))");
+						"CREATE TABLE `Category` (`id` INTEGER NOT NULL,`name` TEXT,PRIMARY KEY(`id`));");
 				db.execSQL(
-						"CREATE TABLE \"District\" (	`id`	INTEGER NOT NULL,	`name`	TEXT NOT NULL,	`lat`	REAL NOT NULL DEFAULT 0,	`long`	REAL NOT NULL DEFAULT 0,	`province_id`	INTEGER NOT NULL,	PRIMARY KEY(id))");
+						"CREATE TABLE `College` (\n" +
+								"\t`id`\tTEXT NOT NULL,\n" +
+								"\t`name`\tTEXT NOT NULL,\n" +
+								"\t`lat`\tREAL NOT NULL DEFAULT 0,\n" +
+								"\t`long`\tREAL NOT NULL DEFAULT 0,\n" +
+								"\t`district_id`\tINTEGER NOT NULL,\n" +
+								"\tPRIMARY KEY(`id`)\n" +
+								");");
 				db.execSQL(
-						"CREATE TABLE \"Province\" (	`id`	INTEGER NOT NULL,	`name`	TEXT NOT NULL,	PRIMARY KEY(id))");
+						"CREATE TABLE `District` (\n" +
+								"\t`id`\tTEXT NOT NULL,\n" +
+								"\t`name`\tTEXT NOT NULL,\n" +
+								"\t`lat`\tREAL NOT NULL DEFAULT 0,\n" +
+								"\t`long`\tREAL NOT NULL,\n" +
+								"\tPRIMARY KEY(`id`)\n" +
+								");");
 			} catch (Exception exception) {
 				Log.i(LOG_TAG, "Exception onCreate() exception");
 			}
