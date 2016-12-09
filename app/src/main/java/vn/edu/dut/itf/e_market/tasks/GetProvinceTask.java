@@ -15,7 +15,8 @@ import java.util.List;
 import vn.edu.dut.itf.e_market.api.APIConfig;
 import vn.edu.dut.itf.e_market.database.ProvinceDao;
 import vn.edu.dut.itf.e_market.models.BaseModel;
-import vn.edu.dut.itf.e_market.models.Province;
+import vn.edu.dut.itf.e_market.models.College;
+import vn.edu.dut.itf.e_market.models.District;
 import vn.edu.dut.itf.e_market.utils.AppPref;
 import vn.edu.dut.itf.e_market.utils.RequestUtils;
 
@@ -39,18 +40,23 @@ public class GetProvinceTask extends BaseApiTask {
 
 	@Override
 	protected void parseData(JSONObject jsonObject) throws JSONException {
-		Type listType = new TypeToken<List<Province>>() {
+		Type listType = new TypeToken<List<District>>() {
 		}.getType();
-		List<Province> province = BaseModel.getGson().fromJson(jsonObject.getString("listProvinces"), listType);
+		List<District> district = BaseModel.getGson().fromJson(jsonObject.getJSONObject("data").getString("districts"), listType);
+		listType = new TypeToken<List<College>>() {
+		}.getType();
+		List<College> listCollege = BaseModel.getGson().fromJson(jsonObject.getJSONObject("data").getString("colleges"), listType);
+
 		ProvinceDao dao = new ProvinceDao(mContext);
 		dao.deleteAll();
-		dao.save(province);
+		dao.saveDistrict(district);
+		dao.saveCollege(listCollege);
 		AppPref.getInstance(mContext).putBoolean(AppPref.KEY_PROVINCE, true);
 
-		onSuccess(province);
+		onSuccess(district);
 
 	}
 
-	protected void onSuccess(List<Province> provinces) {
+	protected void onSuccess(List<District> districts) {
 	}
 }

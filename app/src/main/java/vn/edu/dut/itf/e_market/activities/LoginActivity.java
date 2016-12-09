@@ -53,11 +53,13 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.tasks.PostRegisterTask;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -95,9 +97,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private GoogleApiClient mGoogleApiClient;
     private CallbackManager mCallbackManager;
 
-    private static final String TAG = "FacebookLogin";
-    private static final int RC_SIGN_IN = 1010;
-
     private static final String FACEBOOK = "FACEBOOK";
     private static final String GOOGLE = "GOOGLE";
     private static final String TWITTER = "TWITTER";
@@ -111,9 +110,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private Button btnRegister;
     private TwitterLoginButton btnTwitter;
 
-    private PostLoginTask mPostLogin;
+//    private PostLoginTask mPostLogin;
 
-    private GoogleApiClient mGoogleApiClient;
     private SignInButton btnGoogle;
     private GoogleSignInOptions gso;
     private PostRegisterTask mPostRegister;

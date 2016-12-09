@@ -1,11 +1,12 @@
 package vn.edu.dut.itf.e_market.api;
 
 public class APIConfig {
-	private static final String DOMAIN = "http://127.0.0.1";
+//	private static final String DOMAIN = "http://127.0.0.1";
+	private static final String DOMAIN = "http://192.168.1.167";
 	private static final String PATH = "/emarket/public/api/";
 	private static final String BASE_URL = DOMAIN + PATH;
 
-	public static final String URL_29_GET_LIST_PROVINCES = BASE_URL + "requests/get_province";
+	public static final String URL_29_GET_LIST_PROVINCES = BASE_URL + "requests/init";
 
 	public static final String URL_1_GET_HOME_PAGE_API = BASE_URL + "requests/getHome";
 	public static final String URL_2_GET_RESTAURANT_INFO = BASE_URL + "Restaurants/getRestaurantInfo";

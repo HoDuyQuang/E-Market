@@ -28,7 +28,7 @@ import vn.edu.dut.itf.e_market.utils.CommonUtils;
 import vn.edu.dut.itf.e_market.utils.Navigation;
 
 
-public class ListReviewActivity extends BaseFragment {
+public class ListReviewFragment extends BaseFragment {
     public static final int REVIEW_LOGIN_CODE = 2;
 
     protected RecyclerView rvReviews;

@@ -26,7 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import vn.edu.dut.itf.e_market.R;
-import vn.edu.dut.itf.e_market.fragments.ListReviewActivity;
+import vn.edu.dut.itf.e_market.fragments.ListReviewFragment;
 import vn.edu.dut.itf.e_market.tasks.GetLogOutTask;
 import vn.edu.dut.itf.e_market.views.CustomTypefaceSpan;
 
@@ -176,7 +176,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void chooseHome() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, new ListReviewActivity()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, new ListReviewFragment()).commit();
         currentMenuItem = navigationView.getMenu().getItem(0);
         currentMenuItem.setChecked(true);
         setTitle(getString(R.string.home));
@@ -215,7 +215,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.nav_home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.content, new ListReviewActivity()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content, new ListReviewFragment()).commit();
                         setTitle(getString(R.string.home));
                         break;
 //                    case R.id.nav_menu:

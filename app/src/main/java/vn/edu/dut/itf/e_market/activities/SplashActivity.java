@@ -19,7 +19,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import vn.edu.dut.itf.e_market.R;
-import vn.edu.dut.itf.e_market.models.Province;
+import vn.edu.dut.itf.e_market.models.District;
 import vn.edu.dut.itf.e_market.tasks.GetProvinceTask;
 import vn.edu.dut.itf.e_market.tasks.SetDeviceTokenTask;
 import vn.edu.dut.itf.e_market.utils.AppPref;
@@ -44,7 +44,7 @@ public class SplashActivity extends AppCompatActivity {
 //		fadeIn.setInterpolator(new DecelerateInterpolator()); // add this
 //		fadeIn.setDuration(DURATION);
         // findViewById(R.id.logo).startAnimation(fadeIn);
-        new SetDeviceTokenTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//        new SetDeviceTokenTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 //		logFacebookHash();
         initData();
@@ -66,33 +66,33 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void initData() {
-//        if (!AppPref.getInstance(this).getBoolean(AppPref.KEY_PROVINCE)) {
-//            GetProvinceTask task = new GetProvinceTask(this) {
-//                @Override
-//                protected void onSuccess(List<Province> provinces) {
-//                    nextStep();
-//                }
-//
-//                @Override
-//                protected void onError(int code) {
-//                    super.onError(code);
-//                }
-//            };
-//            task.setErrorDialog(getString(R.string.retry), new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    initData();
-//                }
-//            }, new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    finish();
-//                }
-//            });
-//            task.execute();
-//        } else {
+        if (!AppPref.getInstance(this).getBoolean(AppPref.KEY_PROVINCE)) {
+            GetProvinceTask task = new GetProvinceTask(this) {
+                @Override
+                protected void onSuccess(List<District> provinces) {
+                    nextStep();
+                }
+
+                @Override
+                protected void onError(int code) {
+                    super.onError(code);
+                }
+            };
+            task.setErrorDialog(getString(R.string.retry), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    initData();
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            });
+            task.execute();
+        } else {
             nextStep();
-//        }
+        }
     }
 
     private void nextStep() {

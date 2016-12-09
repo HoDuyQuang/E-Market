@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vn.edu.dut.itf.e_market.views.CustomFontTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="0dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="0dp"
+    android:gravity="center_vertical"
+    android:textColor="@color/black"
+    android:textSize="@dimen/text_pay" />
