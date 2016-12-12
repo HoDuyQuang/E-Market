@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="fill_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_email_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp">
+
+        <vn.com.brycen.restaurant.views.CustomFontEditText
+            android:id="@+id/edtEmailPhone"
+            style="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:hint="@string/email_or_phone">
+        </vn.com.brycen.restaurant.views.CustomFontEditText>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_password"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/input_layout_email_phone"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <vn.com.brycen.restaurant.views.CustomFontEditText
+            android:id="@+id/edtPassword"
+            style="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_layout_password"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <vn.com.brycen.restaurant.views.CustomFontEditText
+            android:id="@+id/edtRePassword"
+            style="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="@string/confirmpass"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_username"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/input_layout_confirm_password"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <vn.com.brycen.restaurant.views.CustomFontEditText
+            android:id="@+id/edtUserName"
+            style="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/display_name"
+            android:inputType="textPersonName|textCapWords" />
+    </android.support.design.widget.TextInputLayout>
+
+    <vn.com.brycen.restaurant.views.CustomFontButton
+        android:id="@+id/btnDone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_layout_username"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/OvalButton.Green"
+        android:text="@string/done"
+        android:textColor="@color/white" />
+
+    <vn.com.brycen.restaurant.views.CustomFontTextView
+        android:id="@+id/tvError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="@string/regerrpass"
+        android:textColor="#FF6600"
+        android:visibility="invisible" />
+
+</RelativeLayout>
