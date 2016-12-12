@@ -65,11 +65,11 @@ public class College extends BaseModel {
 
 	public class DistrictTable {
 
-		public static final String TABLE_NAME = "District";
+		public static final String TABLE_NAME = "College";
 		public static final String ID = "id";
 		public static final String NAME = "name";
 		public static final String LAT = "lat";
 		public static final String LONG = "long";
-		public static final String PROVINCE_ID = "province_id";
+		public static final String PROVINCE_ID = "district_id";
 	}
 }

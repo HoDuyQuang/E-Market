@@ -86,7 +86,7 @@ public class ReviewCommentAdapter extends AppBaseAdapter<Review, ReviewCommentAd
         } else {
             like = 0;
         }
-        SetLikeRestaurantReviewCommentTask task = new SetLikeRestaurantReviewCommentTask(mContext, model.getReviewId(), like) {
+        SetLikeRestaurantReviewCommentTask task = new SetLikeRestaurantReviewCommentTask(mContext, model.getId(), like) {
             @Override
             protected void onSuccess() {
                 super.onSuccess();

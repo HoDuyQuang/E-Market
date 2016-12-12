@@ -45,7 +45,7 @@ public class District extends BaseModel {
     }
 
     public class ProvinceTable {
-        public static final String TABLE_NAME = "Province";
+        public static final String TABLE_NAME = "District";
         public static final String ID = "id";
         public static final String NAME = "name";
     }

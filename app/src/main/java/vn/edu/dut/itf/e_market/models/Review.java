@@ -1,24 +1,29 @@
 package vn.edu.dut.itf.e_market.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Review extends BaseModel {
-	String reviewId;
+	String id;
 	String imageUrl;
 	String name;
+	@SerializedName("created_at")
 	Date date;
 	String title;
 	String content;
 	int categoryId;
 	int collegeId;
+	String phone;
+	String address;
 
 	int like;
 	int comment;
 	int likeStatus;
 
-	public Review(String reviewId, String name, Date date, String title, String content, int like, int likeStatus) {
-		this.reviewId = reviewId;
+	public Review(String id, String name, Date date, String title, String content, int like, int likeStatus) {
+		this.id = id;
 		this.name = name;
 		this.date = date;
 		this.title = title;
@@ -94,11 +99,11 @@ public class Review extends BaseModel {
 		return likeStatus;
 	}
 
-	public String getReviewId() {
-		return reviewId;
+	public String getId() {
+		return id;
 	}
 
-	public void setReviewId(String reviewId) {
-		this.reviewId = reviewId;
+	public void setId(String id) {
+		this.id = id;
 	}
 }

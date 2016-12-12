@@ -1,14 +1,9 @@
 package vn.edu.dut.itf.e_market.utils;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.DisplayMetrics;
@@ -19,18 +14,47 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.UUID;
 
 import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.database.CategoryDao;
+import vn.edu.dut.itf.e_market.database.ProvinceDao;
+import vn.edu.dut.itf.e_market.models.Category;
+import vn.edu.dut.itf.e_market.models.College;
+import vn.edu.dut.itf.e_market.models.District;
 
 
 public class CommonUtils {
     private static DecimalFormat formatterPrice;
     private static String currency;
+    static List<District> districts;
+    static List<Category> categories;
+    static List<College> colleges;
+
+    public static List<District> getDistrictList(Context context) {
+        if (districts == null) {
+            districts = new ProvinceDao(context).getDistricts();
+        }
+        return districts;
+    }
+
+    public static List<Category> getCategories(Context context) {
+        if (categories == null) {
+            categories = new CategoryDao(context).getAll();
+
+        } return categories;
+    }
+
+    public static List<College> getCollegesList(Context context) {
+        if (colleges != null) {
+            colleges = new ProvinceDao(context).getColleges();
+        }
+        return colleges;
+    }
 
     public static String formatPrice(Context context, float price) {
         if (formatterPrice == null) {

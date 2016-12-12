@@ -105,7 +105,7 @@ public class ReviewAdapter extends AppBaseAdapter<Review, ReviewAdapter.ReviewVi
         } else {
             like = 0;
         }
-        SetLikeRestaurantReviewTask taskLike = new SetLikeRestaurantReviewTask(mContext, model.getReviewId(), like) {
+        SetLikeRestaurantReviewTask taskLike = new SetLikeRestaurantReviewTask(mContext, model.getId(), like) {
             @Override
             protected void onSuccess() {
                 super.onSuccess();

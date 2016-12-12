@@ -13,11 +13,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import vn.edu.dut.itf.e_market.api.APIConfig;
+import vn.edu.dut.itf.e_market.database.CategoryDao;
 import vn.edu.dut.itf.e_market.database.ProvinceDao;
 import vn.edu.dut.itf.e_market.models.BaseModel;
+import vn.edu.dut.itf.e_market.models.Category;
 import vn.edu.dut.itf.e_market.models.College;
 import vn.edu.dut.itf.e_market.models.District;
 import vn.edu.dut.itf.e_market.utils.AppPref;
+import vn.edu.dut.itf.e_market.utils.CommonUtils;
 import vn.edu.dut.itf.e_market.utils.RequestUtils;
 
 
@@ -46,11 +49,15 @@ public class GetProvinceTask extends BaseApiTask {
 		listType = new TypeToken<List<College>>() {
 		}.getType();
 		List<College> listCollege = BaseModel.getGson().fromJson(jsonObject.getJSONObject("data").getString("colleges"), listType);
-
+		listType = new TypeToken<List<Category>>() {
+		}.getType();
+		List<Category> listCategory = BaseModel.getGson().fromJson(jsonObject.getJSONObject("data").getString("categories"), listType);
 		ProvinceDao dao = new ProvinceDao(mContext);
 		dao.deleteAll();
 		dao.saveDistrict(district);
 		dao.saveCollege(listCollege);
+		CategoryDao categoryDao = new CategoryDao(mContext);
+		categoryDao.save(listCategory);
 		AppPref.getInstance(mContext).putBoolean(AppPref.KEY_PROVINCE, true);
 
 		onSuccess(district);

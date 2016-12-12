@@ -38,15 +38,6 @@ import com.google.firebase.messaging.RemoteMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import vn.com.brycen.restaurant.R;
-import vn.com.brycen.restaurant.activities.FoodDetailActivity;
-import vn.com.brycen.restaurant.activities.FoodDetailPendingActivity;
-import vn.com.brycen.restaurant.activities.FoodReviewDetailActivity;
-import vn.com.brycen.restaurant.activities.MainActivity;
-import vn.com.brycen.restaurant.activities.RestaurantNotificationActivity;
-import vn.com.brycen.restaurant.activities.RestaurantReviewDetailActivity;
-import vn.com.brycen.restaurant.models.NotificationYou;
-import vn.com.brycen.restaurant.utils.AppPref;
 
 public class RestaurantFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -75,37 +66,37 @@ public class RestaurantFirebaseMessagingService extends FirebaseMessagingService
         Log.d(TAG, "From: " + remoteMessage.getFrom());
 
         // Check if message contains a data payload.
-        if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-            if (AppPref.getInstance(this).getBoolean(AppPref.KEY_PUSH_NOTIFICATION, true)) {
-                try {
-                    JSONObject object = new JSONObject(remoteMessage.getData().get("body"));
-
-
-                    if (object.has("foodId") && object.getString("foodId").length() > 0) {
-                        int foodId = -1;
-                        foodId = object.getInt("foodId");
-                        String content = object.getString("contents");
-                        sendNotification(content, foodId);
-                    } else if (object.has("reviewId") && object.getString("reviewId").length() > 0) {
-                        String content = object.getString("contents");
-                        int reviewType = object.getInt("reviewType");
-                        String reviewId = object.getString("reviewId");
-                        sendNotification(content, reviewType, reviewId);
-                    } else {
-                        String content = object.getString("contents");
-                        sendNotification(content);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
+//        if (remoteMessage.getData().size() > 0) {
+//            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+//            if (AppPref.getInstance(this).getBoolean(AppPref.KEY_PUSH_NOTIFICATION, true)) {
+//                try {
+//                    JSONObject object = new JSONObject(remoteMessage.getData().get("body"));
+//
+//
+//                    if (object.has("foodId") && object.getString("foodId").length() > 0) {
+//                        int foodId = -1;
+//                        foodId = object.getInt("foodId");
+//                        String content = object.getString("contents");
+//                        sendNotification(content, foodId);
+//                    } else if (object.has("reviewId") && object.getString("reviewId").length() > 0) {
+//                        String content = object.getString("contents");
+//                        int reviewType = object.getInt("reviewType");
+//                        String reviewId = object.getString("reviewId");
+//                        sendNotification(content, reviewType, reviewId);
+//                    } else {
+//                        String content = object.getString("contents");
+//                        sendNotification(content);
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                } catch (NullPointerException e) {
+//                    e.printStackTrace();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        }
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
@@ -116,114 +107,114 @@ public class RestaurantFirebaseMessagingService extends FirebaseMessagingService
         // message, here is where that should be initiated. See sendNotification method below.
     }
 
-    private void sendNotification(String content, int reviewType, String reviewId) {
-        if (icon == null) {
-            icon = BitmapFactory.decodeResource(getResources(),
-                    R.mipmap.ic_launcher);
-        }
-        Spannable sb = getSpannable(content);
-
-//        sb.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 14, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        inboxStyle.addLine(sb);
-
-        Intent intent;
-        if (reviewType == NotificationYou.TYPE_REVIEW_RESTAURANT) {
-            intent = new Intent(this, RestaurantReviewDetailActivity.class);
-            intent.putExtra(RestaurantReviewDetailActivity.REVIEW_ID, reviewId);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        } else if (reviewType == NotificationYou.TYPE_REVIEW_FOOD) {
-            intent = new Intent(this, FoodReviewDetailActivity.class);
-            intent.putExtra(FoodReviewDetailActivity.REVIEW_ID, reviewId);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        } else {
-            intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        }
-
-
-        showNotification(sb, intent);
-
-    }
-
-    private void showNotification(Spannable sb, Intent intent) {
-        String title;
-        if (AppPref.getInstance(this).getString(AppPref.KEY_RESTAURANT_NAME) != null && !AppPref.getInstance(this).getString(AppPref.KEY_RESTAURANT_NAME).equals("null")) {
-            title = AppPref.getInstance(this).getString(AppPref.KEY_RESTAURANT_NAME);
-        } else {
-            title = getString(R.string.app_name);
-        }
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, id /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
-
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setLargeIcon(icon)
-                .setContentTitle(title)
-                .setContentText(sb)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent)
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setPriority(Notification.PRIORITY_HIGH);
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (id >= Integer.MAX_VALUE) {
-            id = 0;
-        }
-        Notification notification = notificationBuilder.build();
-
-        notificationManager.notify(id++ /* ID of notification */, notification);
-    }
-
-    private void sendNotification(String content, int foodId) {
-        Spannable sb = getSpannable(content);
-
-        Intent intent = new Intent(this, FoodDetailPendingActivity.class);
-        intent.putExtra(FoodDetailActivity.FOOD_ID, foodId);
-        intent.putExtra("current", foodId + "");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(Long.toString(System.currentTimeMillis()));
-        showNotification(sb, intent);
-
-    }
-
-    @NonNull
-    private Spannable getSpannable(String content) {
-        String tempContent = content;
-        tempContent = tempContent.replaceAll("<b>", "");
-        tempContent = tempContent.replaceAll("</b>", "");
-        Spannable sb = new SpannableString(tempContent);
-        try {
-//            while (content.contains("<b>")) {
-            int start = content.indexOf("<b>");
-            content = content.replace("<b>", "");
-            int end = content.indexOf("</b>");
-            content = content.replace("</b>", "");
-            sb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return sb;
-    }
-
-    private void sendNotification(String content) {
-        if (icon == null) {
-            icon = BitmapFactory.decodeResource(getResources(),
-                    R.mipmap.ic_launcher);
-        }
-        Spannable sb = getSpannable(content);
-        Intent intent;
-
-        intent = new Intent(this, RestaurantNotificationActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        showNotification(sb, intent);
-    }
-
-    static int id = 0;
-    // [END receive_message]
-    static Bitmap icon;
+//    private void sendNotification(String content, int reviewType, String reviewId) {
+//        if (icon == null) {
+//            icon = BitmapFactory.decodeResource(getResources(),
+//                    R.mipmap.ic_launcher);
+//        }
+//        Spannable sb = getSpannable(content);
+//
+////        sb.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 14, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+////        inboxStyle.addLine(sb);
+//
+//        Intent intent;
+//        if (reviewType == NotificationYou.TYPE_REVIEW_RESTAURANT) {
+//            intent = new Intent(this, RestaurantReviewDetailActivity.class);
+//            intent.putExtra(RestaurantReviewDetailActivity.REVIEW_ID, reviewId);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        } else if (reviewType == NotificationYou.TYPE_REVIEW_FOOD) {
+//            intent = new Intent(this, FoodReviewDetailActivity.class);
+//            intent.putExtra(FoodReviewDetailActivity.REVIEW_ID, reviewId);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        } else {
+//            intent = new Intent(this, MainActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        }
+//
+//
+//        showNotification(sb, intent);
+//
+//    }
+//
+//    private void showNotification(Spannable sb, Intent intent) {
+//        String title;
+//        if (AppPref.getInstance(this).getString(AppPref.KEY_RESTAURANT_NAME) != null && !AppPref.getInstance(this).getString(AppPref.KEY_RESTAURANT_NAME).equals("null")) {
+//            title = AppPref.getInstance(this).getString(AppPref.KEY_RESTAURANT_NAME);
+//        } else {
+//            title = getString(R.string.app_name);
+//        }
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, id /* Request code */, intent,
+//                PendingIntent.FLAG_ONE_SHOT);
+//
+//        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+//                .setSmallIcon(R.mipmap.ic_launcher)
+//                .setLargeIcon(icon)
+//                .setContentTitle(title)
+//                .setContentText(sb)
+//                .setAutoCancel(true)
+//                .setSound(defaultSoundUri)
+//                .setContentIntent(pendingIntent)
+//                .setDefaults(Notification.DEFAULT_ALL)
+//                .setPriority(Notification.PRIORITY_HIGH);
+//
+//        NotificationManager notificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        if (id >= Integer.MAX_VALUE) {
+//            id = 0;
+//        }
+//        Notification notification = notificationBuilder.build();
+//
+//        notificationManager.notify(id++ /* ID of notification */, notification);
+//    }
+//
+//    private void sendNotification(String content, int foodId) {
+//        Spannable sb = getSpannable(content);
+//
+//        Intent intent = new Intent(this, FoodDetailPendingActivity.class);
+//        intent.putExtra(FoodDetailActivity.FOOD_ID, foodId);
+//        intent.putExtra("current", foodId + "");
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.setAction(Long.toString(System.currentTimeMillis()));
+//        showNotification(sb, intent);
+//
+//    }
+//
+//    @NonNull
+//    private Spannable getSpannable(String content) {
+//        String tempContent = content;
+//        tempContent = tempContent.replaceAll("<b>", "");
+//        tempContent = tempContent.replaceAll("</b>", "");
+//        Spannable sb = new SpannableString(tempContent);
+//        try {
+////            while (content.contains("<b>")) {
+//            int start = content.indexOf("<b>");
+//            content = content.replace("<b>", "");
+//            int end = content.indexOf("</b>");
+//            content = content.replace("</b>", "");
+//            sb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+////            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return sb;
+//    }
+//
+//    private void sendNotification(String content) {
+//        if (icon == null) {
+//            icon = BitmapFactory.decodeResource(getResources(),
+//                    R.mipmap.ic_launcher);
+//        }
+//        Spannable sb = getSpannable(content);
+//        Intent intent;
+//
+//        intent = new Intent(this, RestaurantNotificationActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//        showNotification(sb, intent);
+//    }
+//
+//    static int id = 0;
+//    // [END receive_message]
+//    static Bitmap icon;
 }

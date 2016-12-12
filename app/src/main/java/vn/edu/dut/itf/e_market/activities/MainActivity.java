@@ -1,7 +1,9 @@
 package vn.edu.dut.itf.e_market.activities;
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Typeface;
@@ -13,6 +15,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,15 +27,22 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import vn.edu.dut.itf.e_market.R;
 import vn.edu.dut.itf.e_market.fragments.ListReviewFragment;
 import vn.edu.dut.itf.e_market.tasks.GetLogOutTask;
+import vn.edu.dut.itf.e_market.utils.Authentication;
 import vn.edu.dut.itf.e_market.views.CustomTypefaceSpan;
+import vn.edu.dut.itf.e_market.views.LogOutDialog;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, LogOutDialog.NoticeDialogListener {
     private static final int LOGOUT_MENU_ORDER = 8;
-//    private static final int NOTIFICATION_MENU_ORDER = 4;
+    //    private static final int NOTIFICATION_MENU_ORDER = 4;
     private static final int FAVORITE_MENU_ORDER = 3;
     private static final int REQUEST_CODE_SETTING = 0;
     private static final int REQUEST_CODE_LOGIN = 1;
@@ -45,6 +55,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private NavigationView navigationView;
     private AlertDialog dialogLogout;
     private ViewGroup badgeLayout;
+
+    ImageView avatar;
 
     private GetLogOutTask mLogoutTask;
     private BroadcastReceiver mUpdateNotification = new BroadcastReceiver() {
@@ -113,6 +125,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
+        avatar = (ImageView) headerView.findViewById(R.id.imageView);
 //        headerView.findViewById(R.id.avatar).setOnClickListener(new View.OnClickListener() {
 //
 //            @Override
@@ -142,7 +155,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                startActivity(new Intent(MainActivity.this,PayActivity.class));
+                startActivity(new Intent(MainActivity.this, PayActivity.class));
             }
         });
     }
@@ -156,8 +169,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-
 
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -274,7 +285,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return true;
     }
 
-//    private void showLogoutDialog() {
+
+    private void showLogoutDialog() {
+        // Create an instance of the dialog fragment and show it
+        LogOutDialog dialog = new LogOutDialog();
+        dialog.show(getSupportFragmentManager(), "LogOutDialog");
 //        if (dialogLogout == null) {
 //            dialogLogout = new CustomDialog(this, R.layout.dialog_log_out).setTitle(getString(R.string.sign_out))
 //                    .setMessage(getString(R.string.logout_confirm_message))
@@ -309,7 +324,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 //                    }).show();
 //        }
 //        dialogLogout.show();
-//    }
+    }
 
     @Override
     public void initData() {
@@ -370,42 +385,44 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return super.onKeyDown(keyCode, event);
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent arg2) {
-//        super.onActivityResult(requestCode, resultCode, arg2);
-//        switch (requestCode) {
-//            case REQUEST_CODE_SETTING:
-//                restartActivity();
-//                break;
-//            case REQUEST_CODE_LOGIN:
-//                checkAuthenticate();
-//                break;
-//            case REQUEST_CODE_REGISTER:
-//                if (resultCode == RESULT_OK) {
-//                    checkAuthenticate();
-//                }
-//                break;
-//            case REQUEST_CODE_PROFILE:
-//                checkAuthenticate();
-//                break;
-//            default:
-//                break;
-//        }
-//
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent arg2) {
+        super.onActivityResult(requestCode, resultCode, arg2);
+        switch (requestCode) {
+            case REQUEST_CODE_SETTING:
+                restartActivity();
+                break;
+            case REQUEST_CODE_LOGIN:
+                checkAuthenticate();
+                break;
+            case REQUEST_CODE_REGISTER:
+                if (resultCode == RESULT_OK) {
+                    checkAuthenticate();
+                }
+                break;
+            case REQUEST_CODE_PROFILE:
+                checkAuthenticate();
+                break;
+            default:
+                break;
+        }
 
-//    private void checkAuthenticate() {
-//        View headerView = ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0);
+    }
+
+    private void checkAuthenticate() {
+        View headerView = ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0);
 //        TextView tvDisplayName = (TextView) headerView.findViewById(R.id.display_name);
-//        if (Authentication.isLoggedIn(this)) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Picasso.with(this).load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl()).into(avatar);
 //            headerView.findViewById(R.id.login_register_button).setVisibility(View.GONE);
 //            headerView.findViewById(R.id.nav_order).setVisibility(View.VISIBLE);
 //            tvDisplayName.setText(Authentication.getDisplayName(this));
 //            navigationView.getMenu().getItem(LOGOUT_MENU_ORDER).setVisible(true);
-////            navigationView.getMenu().getItem(NOTIFICATION_MENU_ORDER).setVisible(true);
+//            navigationView.getMenu().getItem(NOTIFICATION_MENU_ORDER).setVisible(true);
 //            navigationView.getMenu().getItem(FAVORITE_MENU_ORDER).setVisible(true);
 //            getNotification();
-//        } else {
+
+        } else {
 //            headerView.findViewById(R.id.login_register_button).setVisibility(View.VISIBLE);
 //            headerView.findViewById(R.id.nav_order).setVisibility(View.GONE);
 //            tvDisplayName.setText(R.string.welcome_guest);
@@ -413,8 +430,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 ////            navigationView.getMenu().getItem(NOTIFICATION_MENU_ORDER).setVisible(false);
 //            navigationView.getMenu().getItem(FAVORITE_MENU_ORDER).setVisible(false);
 //            getNotification();
-//        }
-//    }
+        }
+
+    }
 
 
     public void navigateToMenu() {
@@ -427,5 +445,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onResume() {
         super.onResume();
 //        checkAuthenticate();
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        FirebaseAuth.getInstance().signOut();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+
     }
 }

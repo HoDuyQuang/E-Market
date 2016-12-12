@@ -3,8 +3,10 @@ package vn.edu.dut.itf.e_market.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
@@ -17,7 +19,8 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -36,6 +39,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -61,13 +65,15 @@ import java.util.List;
 
 import vn.edu.dut.itf.e_market.R;
 import vn.edu.dut.itf.e_market.tasks.PostRegisterTask;
+import vn.edu.dut.itf.e_market.utils.CommonUtils;
+import vn.edu.dut.itf.e_market.utils.Validator;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor>, GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor>, GoogleApiClient.OnConnectionFailedListener, OnClickListener {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -86,11 +92,11 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
+//    private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
+//    private AutoCompleteTextView mEmailView;
+//    private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -119,50 +125,59 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     private TextView tvForgotPassword;
     private TextInputLayout layoutPassword;
     private TextInputLayout layoutUsername;
+    private Button btnFacebook;
+    private LoginButton btnFacebookHidden;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (!FacebookSdk.isInitialized()){
+        if (!FacebookSdk.isInitialized()) {
             FacebookSdk.sdkInitialize(getApplicationContext());
         }
+        AppEventsLogger.activateApp(this);
         super.onCreate(savedInstanceState);
 
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
+//        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+//        populateAutoComplete();
+//
+//        mPasswordView = (EditText) findViewById(R.id.password);
+//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+//                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+//                    attemptLogin();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
+//
+//        findViewById(R.id.login_google).setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                signIn();
+//            }
+//        });
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        findViewById(R.id.login_google).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signIn();
-            }
-        });
-
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                attemptLogin();
-                signUp();
-            }
-        });
+//        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+//        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                attemptLogin();
+//                signUp();
+//            }
+//        });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+        initFirebase();
+        initFacebook();
 
+
+    }
+
+    private void initFirebase() {
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -171,7 +186,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */,
                         this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -189,13 +204,13 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             }
         };
         mAuth = FirebaseAuth.getInstance();
+    }
 
-
+    private void initFacebook() {
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.button_facebook_login);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+        btnFacebookHidden.setReadPermissions("email", "public_profile");
+        btnFacebookHidden.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
@@ -233,12 +248,45 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (mAuth.getCurrentUser()!=null) {
+//                                mAuth.getCurrentUser()
+                                login();
+                            }
                         }
 
                         // ...
                     }
                 });
     }
+
+    private void login(){
+        mPostRegister = new PostRegisterTask(this, mAuth) {
+            @Override
+            protected void onSuccess() {
+                super.onSuccess();
+                setResult(RESULT_OK);
+                finish();
+            }
+
+            @Override
+            protected void onError(int code) {
+                super.onError(code);
+                Snackbar.make(edtUserName, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+                        .setAction(R.string.try_again, new OnClickListener() {
+                            @Override
+                            @TargetApi(Build.VERSION_CODES.M)
+                            public void onClick(View v) {
+                                login();
+                            }
+                        });
+            }
+        };
+        mPostRegister.setShowProgressDialog(null, getString(R.string.registering), false);
+        mPostRegister.execute();
+    }
+
+
 
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
@@ -279,8 +327,8 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         }
     }
 
-    private void firebaseAuthWithEmail(String email, String password){
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+    private void firebaseAuthWithEmail(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -332,7 +380,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             return true;
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(edtUserName, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
@@ -366,50 +414,46 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+//        if (mAuthTask != null) {
+//            return;
+//        }
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String email = edtUserName.getText().toString();
+        String password = edtPassword.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }
+//        // Check for a valid password, if the user entered one.
+//        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+//            mPasswordView.setError(getString(R.string.error_invalid_password));
+//            focusView = mPasswordView;
+//            cancel = true;
+//        }
+//
+//        // Check for a valid email address.
+//        if (TextUtils.isEmpty(email)) {
+//            mEmailView.setError(getString(R.string.error_field_required));
+//            focusView = mEmailView;
+//            cancel = true;
+//        } else if (!isEmailValid(email)) {
+//            mEmailView.setError(getString(R.string.error_invalid_email));
+//            focusView = mEmailView;
+//            cancel = true;
+//        }
+//
+//        if (cancel) {
+//            // There was an error; don't attempt login and focus the first
+//            // form field with an error.
+//            focusView.requestFocus();
+//        } else {
+//            // Show a progress spinner, and kick off a background task to
+//            // perform the user login attempt.
+//            showProgress(true);
+//            mAuthTask = new UserLoginTask(email, password);
+//            mAuthTask.execute((Void) null);
+//        }
     }
 
     private boolean isEmailValid(String email) {
@@ -458,28 +502,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         }
     }
 
-    void signUp(){
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "failed",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
-                        // ...
-                    }
-                });
-    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -521,7 +544,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                 new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+//        mEmailView.setAdapter(adapter);
     }
 
     @Override
@@ -536,12 +559,56 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
 
     @Override
     public void findViews() {
+        btnFacebook = (Button) findViewById(R.id.login_facebook);
+        btnFacebookHidden = (LoginButton) findViewById(R.id.button_facebook_login);
+        btnGoogle = (SignInButton) findViewById(R.id.sign_in_button);
 
+        edtUserName = (EditText) findViewById(R.id.loginUserName);
+        edtPassword = (EditText) findViewById(R.id.loginPassword);
+
+        btnSignIn = (Button) findViewById(R.id.btnSignIn);
+
+        btnRegister = (Button) findViewById(R.id.register);
+
+        tvForgotPassword = (TextView) findViewById(R.id.forgot_password);
+
+        layoutPassword = (TextInputLayout) findViewById(R.id.input_layout_password);
+        layoutUsername = (TextInputLayout) findViewById(R.id.input_layout_username);
     }
 
     @Override
     public void initViews() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setElevation(0);
+        }
+        setTitle(getString(R.string.login));
 
+        btnGoogle.setSize(SignInButton.SIZE_STANDARD);
+        btnGoogle.setOnClickListener(this);
+
+        findViewById(R.id.login_facebook).setOnClickListener(this);
+        findViewById(R.id.login_google).setOnClickListener(this);
+        findViewById(R.id.login_twitter).setOnClickListener(this);
+
+        tvForgotPassword.setOnClickListener(this);
+
+        edtPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId,
+                                          KeyEvent event) {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))
+                        || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    onLogin();
+                }
+                return false;
+            }
+        });
+
+        btnFacebook.setOnClickListener(this);
+        btnSignIn.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
     }
 
     @Override
@@ -569,57 +636,155 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+//    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+//
+//        private final String mEmail;
+//        private final String mPassword;
+//
+//        UserLoginTask(String email, String password) {
+//            mEmail = email;
+//            mPassword = password;
+//        }
+//
+//        @Override
+//        protected Boolean doInBackground(Void... params) {
+//            // TODO: attempt authentication against a network service.
+//
+//            try {
+//                // Simulate network access.
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                return false;
+//            }
+//
+//            for (String credential : DUMMY_CREDENTIALS) {
+//                String[] pieces = credential.split(":");
+//                if (pieces[0].equals(mEmail)) {
+//                    // Account exists, return true if the password matches.
+//                    return pieces[1].equals(mPassword);
+//                }
+//            }
+//
+//            // TODO: register the new account here.
+//            return true;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(final Boolean success) {
+//            mAuthTask = null;
+//            showProgress(false);
+//
+//            if (success) {
+//                finish();
+//            } else {
+//                mPasswordView.setError(getString(R.string.error_incorrect_password));
+//                mPasswordView.requestFocus();
+//            }
+//        }
+//
+//        @Override
+//        protected void onCancelled() {
+//            mAuthTask = null;
+//            showProgress(false);
+//        }
+//    }
 
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.register:
+                if (!CommonUtils.isNetworkConnected(LoginActivity.this)) {
+                    showNoConnection(findViewById(R.id.root_view));
+                    return;
                 }
-            }
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_REGISTER);
+                break;
+            case R.id.btnSignIn:
+                onLogin();
+//                attemptLogin();
+                break;
 
-            // TODO: register the new account here.
-            return true;
+            case R.id.sign_in_button:
+//                firebaseAuthWithEmail();
+//                onLogin();
+                break;
+            case R.id.login_facebook:
+                btnFacebookHidden.performClick();
+                break;
+            case R.id.login_google:
+                if (!CommonUtils.isNetworkConnected(LoginActivity.this)) {
+                    showNoConnection(findViewById(R.id.root_view));
+                    return;
+                }
+//                signInGoogle();
+                btnGoogle.performClick();
+                break;
+            case R.id.login_twitter:
+                if (!CommonUtils.isNetworkConnected(LoginActivity.this)) {
+                    showNoConnection(findViewById(R.id.root_view));
+                    return;
+                }
+                btnTwitter.performClick();
+                break;
+            case R.id.forgot_password:
+                startActivity(new Intent(this, ForgotPasswordActivity.class));
+                break;
         }
+    }
 
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
+    private void onLogin() {
+        if (!CommonUtils.isNetworkConnected(LoginActivity.this)) {
+            showNoConnection(findViewById(R.id.root_view));
+            return;
+        }
+        if (validate(edtPassword.getText().toString(),edtUserName.getText().toString())) {
+            firebaseAuthWithEmail(edtUserName.getText().toString().trim(),edtPassword.getText().toString().trim());
+//            mPostLogin = new PostLoginTask(this, edtUserName.getText().toString(), edtPassword.getText().toString()) {
+//                @Override
+//                protected void onSuccess() {
+//                    super.onSuccess();
+//                    finish();
+//                }
+//
+//                @Override
+//                protected void onError(int code) {
+//                    super.onError(code);
+//                    if (code==ERROR_CODE_LOGIN_INVALID){
+//                        TSnackbar.make(findViewById(R.id.root_view), R.string.username_password_not_correct, TSnackbar.LENGTH_LONG).show();
+//                    }
+//                }
+//            };
+//            mPostLogin.setShowProgressDialog(null, getString(R.string.logging_in), false);
+//            mPostLogin.setSnackbarView(findViewById(R.id.root_view));
+//            mPostLogin.execute();
+        }
+    }
 
-            if (success) {
-                finish();
+    private static final int REQUEST_CODE_REGISTER = 2;
+
+    private boolean validate(String password, String username) {
+        username = username.trim();
+        boolean result = true;
+        if (username.length() == 0) {
+            layoutUsername.setError(getString(R.string.username_required));
+            result = false;
+        } else {
+            layoutUsername.setErrorEnabled(false);
+        }
+        if (password.length() == 0) {
+            layoutPassword.setError(getString(R.string.password_required));
+            result = false;
+        } else {
+            if (!Validator.isValidPassword(password)) {
+                layoutPassword.setError(getString(R.string.password_invalid, Validator.MIN_PASSWORD_LENGTH, Validator.MAX_PASSWORD_LENGTH));
+                result = false;
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                layoutPassword.setErrorEnabled(false);
             }
         }
+        return result;
 
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
     }
 }
 

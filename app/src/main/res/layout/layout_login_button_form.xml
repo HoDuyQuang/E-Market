@@ -4,13 +4,14 @@
     tools:showIn="@layout/activity_login">
 
     <vn.edu.dut.itf.e_market.views.CustomFontButton
-        android:id="@+id/btnSigin"
+        android:id="@+id/btnSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
         android:text="@string/signin"
+        style="@style/AppTheme.Button.LightGreen"
         android:textColor="@color/black" />
 
     <vn.edu.dut.itf.e_market.views.CustomFontTextView
@@ -38,6 +39,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/facebook"
             android:visibility="visible" />
+
         <com.facebook.login.widget.LoginButton
             android:id="@+id/button_facebook_login"
             android:layout_width="wrap_content"
@@ -72,11 +74,11 @@
             android:layout_margin="10dp"
             android:background="@drawable/ic_circle_google_plus" />
 
-        <!--<com.google.android.gms.common.SignInButton-->
-            <!--android:id="@+id/sign_in_button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:visibility="visible" />-->
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
         <vn.edu.dut.itf.e_market.views.CustomFontButton
             android:id="@+id/login_twitter"
@@ -86,11 +88,11 @@
             android:layout_margin="10dp"
             android:background="@drawable/twitter" />
 
-        <!--<com.twitter.sdk.android.core.identity.TwitterLoginButton-->
-            <!--android:id="@+id/twitter_login_button"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:visibility="visible" />-->
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/twitter_login_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 

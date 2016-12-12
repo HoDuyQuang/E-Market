@@ -60,9 +60,7 @@ public class LanguageActivity extends BaseActivity {
 		setText();
 		ArrayList<String> list = new ArrayList<>();
 		list.add(getString(R.string.english));
-		list.add(getString(R.string.japan));
 		list.add(getString(R.string.vietnamese));
-		list.add(getString(R.string.myanmar));
 
 		LanguageAdapter adapter = new LanguageAdapter(this, list);
 		rvLanguages.setAdapter(adapter);

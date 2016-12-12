@@ -21,9 +21,6 @@ import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
-import vn.com.brycen.restaurant.tasks.SetDeviceTokenTask;
-
-
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private static final String TAG = "MyFirebaseIIDService";
@@ -60,6 +57,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
 
         // try {
-        new SetDeviceTokenTask(this).execute();
+//        new SetDeviceTokenTask(this).execute();
     }
 }

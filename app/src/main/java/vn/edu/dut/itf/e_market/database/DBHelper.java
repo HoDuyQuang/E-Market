@@ -69,8 +69,6 @@ public class DBHelper {
 						"CREATE TABLE `District` (\n" +
 								"\t`id`\tTEXT NOT NULL,\n" +
 								"\t`name`\tTEXT NOT NULL,\n" +
-								"\t`lat`\tREAL NOT NULL DEFAULT 0,\n" +
-								"\t`long`\tREAL NOT NULL,\n" +
 								"\tPRIMARY KEY(`id`)\n" +
 								");");
 			} catch (Exception exception) {

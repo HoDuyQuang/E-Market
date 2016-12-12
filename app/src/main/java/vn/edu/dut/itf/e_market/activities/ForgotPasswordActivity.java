@@ -8,18 +8,17 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import vn.com.brycen.restaurant.R;
-import vn.com.brycen.restaurant.tasks.SendForgotPasswordTask;
-import vn.com.brycen.restaurant.utils.CommonUtils;
-import vn.com.brycen.restaurant.utils.Validator;
-import vn.com.brycen.restaurant.views.notification.TSnackbar;
+import vn.edu.dut.itf.e_market.R;
+import vn.edu.dut.itf.e_market.utils.CommonUtils;
+import vn.edu.dut.itf.e_market.utils.Validator;
+
 
 public class ForgotPasswordActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_USERNAME = 1;
     private Button btnSend;
     private EditText edtEmail;
-    private SendForgotPasswordTask mSendTask;
+//    private SendForgotPasswordTask mSendTask;
     private TextInputLayout layoutEmail;
 
     @Override
@@ -59,33 +58,33 @@ public class ForgotPasswordActivity extends BaseActivity {
                         layoutEmail.setError(getString(R.string.email_invalid));
                     } else {
                         layoutEmail.setErrorEnabled(false);
-                        mSendTask = new SendForgotPasswordTask(ForgotPasswordActivity.this, email) {
-                            @Override
-                            protected void onSuccess() {
-                                super.onSuccess();
-                                ForgotPasswordActivity.this.onSuccess();
-                            }
-
-                            @Override
-                            protected void onError(int code) {
-
-                                if (code == 3) {
-                                    TSnackbar.make(findViewById(R.id.view_data), R.string.email_not_exist, TSnackbar.LENGTH_LONG).show();
-                                    return;
-                                }
-                                if (code == 8) {
-                                    Intent intent = new Intent(ForgotPasswordActivity.this, ForgotPasswordUsernameActivity.class);
-                                    intent.putExtra(ForgotPasswordUsernameActivity.ARG_EMAIL,email);
-                                    startActivityForResult(intent, REQUEST_CODE_USERNAME);
-
-                                    return;
-                                }
-                                super.onError(code);
-                            }
-                        };
-                        mSendTask.setShowProgressDialog(null, getString(R.string.sending), false);
-                        mSendTask.setSnackbarView(findViewById(R.id.view_data));
-                        mSendTask.execute();
+//                        mSendTask = new SendForgotPasswordTask(ForgotPasswordActivity.this, email) {
+//                            @Override
+//                            protected void onSuccess() {
+//                                super.onSuccess();
+//                                ForgotPasswordActivity.this.onSuccess();
+//                            }
+//
+//                            @Override
+//                            protected void onError(int code) {
+//
+//                                if (code == 3) {
+//                                    TSnackbar.make(findViewById(R.id.view_data), R.string.email_not_exist, TSnackbar.LENGTH_LONG).show();
+//                                    return;
+//                                }
+//                                if (code == 8) {
+//                                    Intent intent = new Intent(ForgotPasswordActivity.this, ForgotPasswordUsernameActivity.class);
+//                                    intent.putExtra(ForgotPasswordUsernameActivity.ARG_EMAIL,email);
+//                                    startActivityForResult(intent, REQUEST_CODE_USERNAME);
+//
+//                                    return;
+//                                }
+//                                super.onError(code);
+//                            }
+//                        };
+//                        mSendTask.setShowProgressDialog(null, getString(R.string.sending), false);
+//                        mSendTask.setSnackbarView(findViewById(R.id.view_data));
+//                        mSendTask.execute();
                     }
                 }
             }
@@ -94,7 +93,7 @@ public class ForgotPasswordActivity extends BaseActivity {
 
     private void onSuccess() {
         edtEmail.setText("");
-        showSuccessSnack(findViewById(R.id.view_data), getString(R.string.reset_link_sent));
+//        showSuccessSnack(findViewById(R.id.view_data), getString(R.string.reset_link_sent));
     }
 
     @Override

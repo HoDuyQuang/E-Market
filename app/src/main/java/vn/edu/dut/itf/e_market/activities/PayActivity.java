@@ -23,6 +23,7 @@ import vn.edu.dut.itf.e_market.database.ProvinceDao;
 import vn.edu.dut.itf.e_market.models.Category;
 import vn.edu.dut.itf.e_market.models.College;
 import vn.edu.dut.itf.e_market.models.District;
+import vn.edu.dut.itf.e_market.utils.CommonUtils;
 import vn.edu.dut.itf.e_market.utils.Validator;
 
 
@@ -31,7 +32,7 @@ public class PayActivity extends BaseActivity {
     public static final String ARG_FOOD_ID = "cart";
     public static final String ARG_ORDER_NOW = "order_now";
 
-    private MaterialSpinner spProvince, spCollege, spCategory;
+    private MaterialSpinner spDistrict, spCollege, spCategory;
     private ProvinceAdapter adapterProvince;
     private CollegeAdapter adapterCollege;
     private CategoryAdapter adapterCategory;
@@ -53,7 +54,7 @@ public class PayActivity extends BaseActivity {
     private boolean getFeeDone;
     private TextInputLayout layoutFirstName;
     private TextInputLayout layoutLastName;
-    private TextInputLayout layoutAddress;
+    private TextInputLayout layoutCategory;
     private TextInputLayout layoutPhone;
     private TextInputLayout layoutEmail;
 
@@ -70,12 +71,12 @@ public class PayActivity extends BaseActivity {
 //                if (info.getDistrict()!=null) {
 //                    int indexProvince = ProfileFragment.indexOfProvince(provinces, ProfileFragment.getProvinceIdByDistricId(provinces, info.getDistrict()));
 //                    if (indexProvince == -1) {
-//                        spProvince.setSelection(0);
+//                        spDistrict.setSelection(0);
 //                    } else {
-//                        spProvince.setSelection(indexProvince + 1);
+//                        spDistrict.setSelection(indexProvince + 1);
 //                    }
 //                } else{
-//                    spProvince.setSelection(0);
+//                    spDistrict.setSelection(0);
 //                }
 //            }
 //
@@ -102,7 +103,7 @@ public class PayActivity extends BaseActivity {
             layoutFirstName.setErrorEnabled(false);
         }
         if (lastName.isEmpty()) {
-            layoutLastName.setError(getString(R.string.lastname_required));
+            layoutLastName.setError(getString(R.string.feedback_content_required));
             if (result) {
                 etLastName.requestFocus();
             }
@@ -111,11 +112,11 @@ public class PayActivity extends BaseActivity {
             layoutLastName.setErrorEnabled(false);
         }
 
-        if (spProvince.getSelectedItemPosition() == 0) {
-            spProvince.setError(R.string.choose_province);
+        if (spDistrict.getSelectedItemPosition() == 0) {
+            spDistrict.setError(R.string.choose_province);
             result = false;
         } else {
-            spProvince.setError(null);
+            spDistrict.setError(null);
         }
 
         if (spCollege.getSelectedItemPosition() == 0) {
@@ -126,13 +127,13 @@ public class PayActivity extends BaseActivity {
         }
 
         if (address.isEmpty()) {
-            layoutAddress.setError(getString(R.string.address_required));
+            layoutCategory.setError(getString(R.string.address_required));
             if (result) {
                 etAddress.requestFocus();
             }
             result = false;
         } else {
-            layoutAddress.setErrorEnabled(false);
+            layoutCategory.setErrorEnabled(false);
         }
         if (phone.isEmpty()) {
             layoutPhone.setError(getString(R.string.phone_required));
@@ -226,19 +227,21 @@ public class PayActivity extends BaseActivity {
 
     @Override
     public void findViews() {
-        spProvince = (MaterialSpinner) findViewById(R.id.spProvice);
+        spDistrict = (MaterialSpinner) findViewById(R.id.spProvice);
         spCollege = (MaterialSpinner) findViewById(R.id.spDistrict);
         spCategory = (MaterialSpinner) findViewById(R.id.spAddressType);
 
-        etFirstName = (EditText) findViewById(R.id.etFirstName);
-        etLastName = (EditText) findViewById(R.id.etLastName);
+        etFirstName = (EditText) findViewById(R.id.etTitle);
+        etLastName = (EditText) findViewById(R.id.etContent);
 
-        layoutFirstName = (TextInputLayout) findViewById(R.id.input_layout_first_name);
-        layoutLastName = (TextInputLayout) findViewById(R.id.input_layout_last_name);
+        layoutFirstName = (TextInputLayout) findViewById(R.id.input_layout_title);
+        layoutLastName = (TextInputLayout) findViewById(R.id.input_layout_content);
 
 
         vRefresh = (SwipeRefreshLayout) findViewById(R.id.refresh);
-
+        layoutCategory = (TextInputLayout) findViewById(R.id.input_layout_address);
+        layoutPhone = (TextInputLayout) findViewById(R.id.input_layout_phone);
+        layoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
     }
 
     @Override
@@ -266,10 +269,10 @@ public class PayActivity extends BaseActivity {
         if (b != null) {
 //            mCarts = b.getParcelableArrayList(ARG_FOOD_ID);
         }
-        districts = new ProvinceDao(this).getProvinces();
+        districts = CommonUtils.getDistrictList(this);
 //        provinces.add(0, new Province(null, getString(R.string.choose_province)));
 
-        colleges = new ArrayList<>();
+        colleges = CommonUtils.getCollegesList(this);
         addressTypes = new CategoryDao(this).getAll();
         deliveryDateTime = Calendar.getInstance();
     }
@@ -279,7 +282,7 @@ public class PayActivity extends BaseActivity {
 
         if (districts != null) {
             adapterProvince = new ProvinceAdapter(getApplicationContext(), districts);
-            spProvince.setAdapter(adapterProvince);
+            spDistrict.setAdapter(adapterProvince);
         }
         adapterCollege = new CollegeAdapter(getApplicationContext(), colleges);
         spCollege.setAdapter(adapterCollege);
@@ -306,13 +309,13 @@ public class PayActivity extends BaseActivity {
         if (addressTypes.size() > 0) {
             spCategory.setSelection(0);
         }
-        spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                districts.clear();
 //                if (position != -1) {
-//                    districts.addAll(((District) spProvince.getSelectedItem()).getListDistricts());
+//                    districts.addAll(((District) spDistrict.getSelectedItem()).getListDistricts());
 //                }
 //                districts.add(0, new District(null, getString(R.string.choose_district)));
 //                adapterCollege.notifyDataSetChanged();

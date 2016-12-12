@@ -2,30 +2,18 @@ package vn.edu.dut.itf.e_market.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import vn.edu.dut.itf.e_market.R;
 import vn.edu.dut.itf.e_market.adapters.ReviewAdapter;
-import vn.edu.dut.itf.e_market.fragments.BaseFragment;
 import vn.edu.dut.itf.e_market.models.Review;
 import vn.edu.dut.itf.e_market.tasks.GetListReviewRestaurantTask;
-import vn.edu.dut.itf.e_market.utils.Authentication;
-import vn.edu.dut.itf.e_market.utils.CommonUtils;
-import vn.edu.dut.itf.e_market.utils.Navigation;
 
 
 public class ListReviewFragment extends BaseFragment {
@@ -95,7 +83,7 @@ public class ListReviewFragment extends BaseFragment {
     public void showData() {
         isLoadMore = false;
         RecycleFill();
-//		request(0,10);
+		request(0,10);
     }
 
 
@@ -159,37 +147,37 @@ public class ListReviewFragment extends BaseFragment {
                     isRunning = false;
                 }
 
-//                protected void onSuccess(ArrayList<Review> info, RestaurantRate rate, int reviewCount) {
-//                    if (isLoadMore) {
-//                        int size = mListReviews.size();
-//                        for (RestaurantReview review : info) {
-//                            boolean isContain = false;
-//                            for (RestaurantReview item : mListReviews) {
-//                                if (review.getReviewId().equals(item.getReviewId())) {
-//                                    isContain = true;
-//                                    break;
-//                                }
-//                            }
-//                            if (!isContain) {
-//                                mListReviews.add(review);
-//                            }
-//                        }
-//                        adapter.notifyItemRangeInserted(size, mListReviews.size() - size);
-//                    } else {
-//                        mListReviews.clear();
-//                        mListReviews.addAll(info);
-//                        adapter.notifyDataSetChanged();
-//                    }
-//
-//                    if (!isLoadMore) {
+                protected void onSuccess(ArrayList<Review> info) {
+                    if (isLoadMore) {
+                        int size = mListReviews.size();
+                        for (Review review : info) {
+                            boolean isContain = false;
+                            for (Review item : mListReviews) {
+                                if (review.getId().equals(item.getId())) {
+                                    isContain = true;
+                                    break;
+                                }
+                            }
+                            if (!isContain) {
+                                mListReviews.add(review);
+                            }
+                        }
+                        adapter.notifyItemRangeInserted(size, mListReviews.size() - size);
+                    } else {
+                        mListReviews.clear();
+                        mListReviews.addAll(info);
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    if (!isLoadMore) {
 //                        numberReview.setText(getString(R.string.number_reviews, reviewCount));
 //                        averageReviewPoint.setText(CommonUtils.formatRate(ListReviewRestaurantActivity.this, rate.getAverage()));
 //                        SetRatePopUp(rate);
 //                        tvRateString.setText(CommonUtils.getRateString(ListReviewRestaurantActivity.this, rate.getAverage()));
-//                    }
-//
-//                    isLoadMore = true;
-//                }
+                    }
+
+                    isLoadMore = true;
+                }
 
                 @Override
                 protected void onError(int code) {
@@ -219,11 +207,11 @@ public class ListReviewFragment extends BaseFragment {
 
     protected void RecycleFill() {
         mListReviews = new ArrayList<>();
-        mListReviews.add(new Review("0", "Manchester", Calendar.getInstance().getTime(), "Transfer winter", "100 dollars", 10, 1));
-        mListReviews.add(new Review("0", "Manchester", Calendar.getInstance().getTime(), "Transfer winter", "100 dollars", 10, 1));
-        mListReviews.add(new Review("0", "Manchester", Calendar.getInstance().getTime(), "Transfer winter", "100 dollars", 10, 1));
-        mListReviews.add(new Review("0", "Manchester", Calendar.getInstance().getTime(), "Transfer winter", "100 dollars", 10, 1));
-        mListReviews.add(new Review("0", "Manchester", Calendar.getInstance().getTime(), "Transfer winter", "100 dollars", 10, 1));
+//        mListReviews.add(new Review("0", "Manchester", Calendar.getInstance().getTime(), "Transfer winter", "100 dollars", 10, 1));
+//        mListReviews.add(new Review("0", "Manchester", Calendar.getInstance().getTime(), "Transfer winter", "100 dollars", 10, 1));
+//        mListReviews.add(new Review("0", "Manchester", Calendar.getInstance().getTime(), "Transfer winter", "100 dollars", 10, 1));
+//        mListReviews.add(new Review("0", "Manchester", Calendar.getInstance().getTime(), "Transfer winter", "100 dollars", 10, 1));
+//        mListReviews.add(new Review("0", "Manchester", Calendar.getInstance().getTime(), "Transfer winter", "100 dollars", 10, 1));
         adapter = new ReviewAdapter(getActivity(), mListReviews);
 
 //		adapter.setSnackBarView(findViewById(R.id.root_view));

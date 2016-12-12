@@ -7,6 +7,9 @@ public class APIConfig {
 	private static final String BASE_URL = DOMAIN + PATH;
 
 	public static final String URL_29_GET_LIST_PROVINCES = BASE_URL + "requests/init";
+	public static final String URL_32_POST_REGISTER = BASE_URL+ "users/register";
+	public static final String URL_11_GET_LIST_REVIEW_RESTAURANT = BASE_URL
+			+ "posts/get_home";
 
 	public static final String URL_1_GET_HOME_PAGE_API = BASE_URL + "requests/getHome";
 	public static final String URL_2_GET_RESTAURANT_INFO = BASE_URL + "Restaurants/getRestaurantInfo";
@@ -18,8 +21,7 @@ public class APIConfig {
 	public static final String URL_8_GET_REVIEW_HISTORY = BASE_URL + "reviews/getReviewHistory";
 	public static final String URL_9_POST_REVIEW_RESTAURANT = BASE_URL + "reviews/postReviewRestaurant";
 	public static final String URL_10_POST_REVIEW_FOOD = BASE_URL + "reviews/postReviewFood";
-	public static final String URL_11_GET_LIST_REVIEW_RESTAURANT = BASE_URL
-			+ "reviews/getListReviewRestaurants";
+
 	public static final String URL_12_GET_LIST_REVIEW_FOOD = BASE_URL
 			+ "reviews/getListReviewFoods";
 	public static final String URL_13_GET_REVIEW_FOOD_DETAIL = BASE_URL + "reviews/getReviewFoodDetail";
@@ -41,7 +43,7 @@ public class APIConfig {
 
 	public static final String URL_30_POST_CHANGE_PASS = BASE_URL + "users/postChangePassword";
 	public static final String URL_31_LOGIN = BASE_URL+"users/postLogin";
-	public static final String URL_32_POST_REGISTER = BASE_URL+ "users/postRegister";
+
 	public static final String URL_33_SENT_FORGOT_PASS = BASE_URL + "users/sendForgotPassword";
 	public static final String URL_34_GET_LOGOUT = BASE_URL + "users/getLogout";
 	public static final String URL_35_GET_LIST_ORDER = BASE_URL + "orders/getListOrders";

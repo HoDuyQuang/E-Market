@@ -22,41 +22,41 @@ import vn.edu.dut.itf.e_market.utils.RequestUtils;
 public class GetListReviewRestaurantTask extends BaseApiTask {
 
 
-	private final int mStart;
-	private final int mCount;
+    private final int mStart;
+    private final int mCount;
 
-	public GetListReviewRestaurantTask(Context context, int start, int end) {
-		super(context);
-		this.mStart=start;
-		this.mCount=end;
-	}
+    public GetListReviewRestaurantTask(Context context, int start, int end) {
+        super(context);
+        this.mStart = start;
+        this.mCount = end;
+    }
 
-	@Override
-	String request() throws IOException, ServerUnavailableException {
-		HashMap<String, String> params = new HashMap<>();
-		params.put("from", mStart+"");
-		params.put("count", mCount+"");
-		return RequestUtils.sendGET(APIConfig.URL_11_GET_LIST_REVIEW_RESTAURANT,params, Authentication.getAuthToken(mContext));
-	}
+    @Override
+    String request() throws IOException, ServerUnavailableException {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("last_articles_id", mStart + "");
+        params.put("limit", mCount + "");
+        return RequestUtils.sendGET(APIConfig.URL_11_GET_LIST_REVIEW_RESTAURANT, params, Authentication.getAuthToken(mContext));
+    }
 
-	@Override
-	protected void onError(int code) {
+    @Override
+    protected void onError(int code) {
 
-	}
+    }
 
-	@Override
-	protected void parseData(JSONObject jsonObject) throws JSONException {
+    @Override
+    protected void parseData(JSONObject jsonObject) throws JSONException {
 //		RestaurantRate rate = BaseModel.fromJson(jsonObject.getJSONObject("restaurant").getString("rate"),
 //				RestaurantRate.class);
-		ArrayList<Review> reviewHistoryRestaurant = BaseModel.listFromJsonArray(jsonObject.getString("listReview"),
-				new TypeToken<ArrayList<Review>>() {
-				});
-		int reviewCount = jsonObject.getInt("reviewCount");
-		onSuccess(reviewHistoryRestaurant, reviewCount);
-	}
+        ArrayList<Review> reviewHistoryRestaurant = BaseModel.listFromJsonArray(jsonObject.getJSONObject("data").getString("posts"),
+                new TypeToken<ArrayList<Review>>() {
+                });
+//		int reviewCount = jsonObject.getInt("reviewCount");
+        onSuccess(reviewHistoryRestaurant);
+    }
 
-	protected void onSuccess(ArrayList<Review> info, int reviewCount) {
+    protected void onSuccess(ArrayList<Review> info) {
 
-	}
+    }
 
 }

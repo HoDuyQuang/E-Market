@@ -110,9 +110,7 @@
 
     <string-array name="pref_language_values">
         <item>en</item>
-        <item>ja</item>
         <item>vi</item>
-        <item>my</item>
     </string-array>
 
     <!-- Currencies -->
@@ -356,5 +354,6 @@
     <string name="title">Title</string>
     <string name="twitter_key">76JBBINYAN9TSDoIjwGbz5CQc</string>
     <string name="twitter_secret">hXZvMtcgpTILFz2zbNZG0dtbnLNpEqtjZ4DrpZy4NCToHfIOyp</string>
+    <string name="try_again">Try again</string>
 
 </resources>

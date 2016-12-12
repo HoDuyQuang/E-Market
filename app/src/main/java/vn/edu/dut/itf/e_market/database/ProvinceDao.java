@@ -20,7 +20,7 @@ public class ProvinceDao {
 		dbHelper = new DBHelper(context);
 	}
 
-	public List<District> getProvinces() {
+	public List<District> getDistricts() {
 		SQLiteDatabase db = dbHelper.open();
 		List<District> districtList = new ArrayList<>();
 		// Make query
@@ -36,6 +36,28 @@ public class ProvinceDao {
 				entity.setId(cursor.getString(cursor.getColumnIndex(District.ProvinceTable.ID)));
 				entity.setName(cursor.getString(cursor.getColumnIndex(District.ProvinceTable.NAME)));
 				entity.setListColleges(getDistricts(entity.getId()));
+				districtList.add(entity);
+			} while (cursor.moveToNext());
+			cursor.close();
+		}
+		return districtList;
+	}
+	public List<College> getColleges() {
+		SQLiteDatabase db = dbHelper.open();
+		List<College> districtList = new ArrayList<>();
+		// Make query
+		String query = " SELECT * " +
+				" FROM " +
+				College.DistrictTable.TABLE_NAME;
+
+		Cursor cursor = db.rawQuery(query, null);
+		if (cursor != null && cursor.moveToFirst()) {
+			College entity;
+			do {
+				entity = new College();
+				entity.setId(cursor.getString(cursor.getColumnIndex(College.DistrictTable.ID)));
+				entity.setName(cursor.getString(cursor.getColumnIndex(College.DistrictTable.NAME)));
+//				entity.setListColleges(getDistricts(entity.getId()));
 				districtList.add(entity);
 			} while (cursor.moveToNext());
 			cursor.close();

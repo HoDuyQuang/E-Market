@@ -46,14 +46,14 @@ public class SplashActivity extends AppCompatActivity {
         // findViewById(R.id.logo).startAnimation(fadeIn);
 //        new SetDeviceTokenTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-//		logFacebookHash();
+		logFacebookHash();
         initData();
     }
 
     private void logFacebookHash() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
-                    "vn.com.brycen.restaurant",
+                    "vn.edu.dut.itf",
                     PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");

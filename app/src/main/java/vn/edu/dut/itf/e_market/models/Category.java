@@ -10,7 +10,7 @@ import java.util.List;
 public class Category extends BaseModel implements Parcelable {
 	@SerializedName("id")
 	private	int id;
-	@SerializedName("category")
+	@SerializedName("name")
 	private	String category;
 
 	public class CategoryTable {
