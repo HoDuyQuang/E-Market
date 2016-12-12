@@ -3,6 +3,7 @@ package vn.edu.dut.itf.e_market.utils;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -10,7 +11,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import vn.edu.dut.itf.e_market.tasks.ServerUnavailableException;
@@ -98,6 +101,29 @@ public class RequestUtils {
         } else {
             return null;
         }
+    }
+
+    public static String sendPost(String url, String accessToken, Map<String, String> params, List<File> list) throws IOException {
+        MultipartUtility multipartUtility = new MultipartUtility(url,
+                "UTF-8");
+        if (accessToken!=null) {
+            multipartUtility.addHeaderField("Authorization", "Bearer " + accessToken);
+        }
+        if (params!=null) {
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                multipartUtility.addFormField(entry.getKey(), entry.getValue());
+            }
+        }
+
+//        if (list!=null){
+//            multipartUtility.addFilePart();
+//        }
+//        if (mPhoto != null) {
+//            multipartUtility.addFilePart(AVATAR_KEY, mPhoto);
+//        }
+        return multipartUtility.connect();
+//        JSONObject jsonObject = new JSONObject(response);
+//        code = jsonObject.getInt(BaseWSControl.CODE_KEY);
     }
 
     public static String sendPOST(String url, Map<String, String> params) throws IOException {

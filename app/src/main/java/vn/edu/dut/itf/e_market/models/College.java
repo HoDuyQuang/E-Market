@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class College extends BaseModel {
 	@SerializedName("id")
-	private String id;
+	private int id;
 	@SerializedName("name")
 	private String name;
 	@SerializedName("lat")
@@ -22,7 +22,7 @@ public class College extends BaseModel {
 		this.districtId = districtId;
 	}
 
-	public College(String id, String name){
+	public College(int id, String name){
 		this.id = id;
 		this.name = name;
 	}
@@ -31,11 +31,11 @@ public class College extends BaseModel {
 
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -10,6 +10,7 @@ public class APIConfig {
 	public static final String URL_32_POST_REGISTER = BASE_URL+ "users/register";
 	public static final String URL_11_GET_LIST_REVIEW_RESTAURANT = BASE_URL
 			+ "posts/get_home";
+	public static final String URL_28_POST_ORDER = BASE_URL + "posts/create";
 
 	public static final String URL_1_GET_HOME_PAGE_API = BASE_URL + "requests/getHome";
 	public static final String URL_2_GET_RESTAURANT_INFO = BASE_URL + "Restaurants/getRestaurantInfo";
@@ -39,7 +40,7 @@ public class APIConfig {
 	public static final String URL_24_POST_FEEDBACK = BASE_URL + "requests/postFeedback";
 	public static final String URL_25_GET_DELIVERY_PROCESS = BASE_URL + "requests/getDeliveryProcess";
 
-	public static final String URL_28_POST_ORDER = BASE_URL + "orders/postOrder";
+
 
 	public static final String URL_30_POST_CHANGE_PASS = BASE_URL + "users/postChangePassword";
 	public static final String URL_31_LOGIN = BASE_URL+"users/postLogin";

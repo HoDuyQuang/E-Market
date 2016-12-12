@@ -33,9 +33,9 @@ public class ProvinceDao {
 			District entity;
 			do {
 				entity = new District();
-				entity.setId(cursor.getString(cursor.getColumnIndex(District.ProvinceTable.ID)));
+				entity.setId(cursor.getInt(cursor.getColumnIndex(District.ProvinceTable.ID)));
 				entity.setName(cursor.getString(cursor.getColumnIndex(District.ProvinceTable.NAME)));
-				entity.setListColleges(getDistricts(entity.getId()));
+//				entity.setListColleges(getDistricts(entity.getId()));
 				districtList.add(entity);
 			} while (cursor.moveToNext());
 			cursor.close();
@@ -55,7 +55,7 @@ public class ProvinceDao {
 			College entity;
 			do {
 				entity = new College();
-				entity.setId(cursor.getString(cursor.getColumnIndex(College.DistrictTable.ID)));
+				entity.setId(cursor.getInt(cursor.getColumnIndex(College.DistrictTable.ID)));
 				entity.setName(cursor.getString(cursor.getColumnIndex(College.DistrictTable.NAME)));
 //				entity.setListColleges(getDistricts(entity.getId()));
 				districtList.add(entity);
@@ -80,7 +80,7 @@ public class ProvinceDao {
 			College entity;
 			do {
 				entity = new College();
-				entity.setId(cursor.getString(cursor.getColumnIndex(College.DistrictTable.ID)));
+				entity.setId(cursor.getInt(cursor.getColumnIndex(College.DistrictTable.ID)));
 				entity.setName(cursor.getString(cursor.getColumnIndex(College.DistrictTable.NAME)));
 				entity.setLat(cursor.getDouble(cursor.getColumnIndex(College.DistrictTable.LAT)));
 				entity.setLng(cursor.getDouble(cursor.getColumnIndex(College.DistrictTable.LONG)));

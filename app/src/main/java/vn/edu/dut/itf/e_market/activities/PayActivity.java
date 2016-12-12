@@ -1,9 +1,12 @@
 package vn.edu.dut.itf.e_market.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +26,8 @@ import vn.edu.dut.itf.e_market.database.ProvinceDao;
 import vn.edu.dut.itf.e_market.models.Category;
 import vn.edu.dut.itf.e_market.models.College;
 import vn.edu.dut.itf.e_market.models.District;
+import vn.edu.dut.itf.e_market.tasks.PostOrderTask;
+import vn.edu.dut.itf.e_market.utils.Authentication;
 import vn.edu.dut.itf.e_market.utils.CommonUtils;
 import vn.edu.dut.itf.e_market.utils.Validator;
 
@@ -40,7 +45,7 @@ public class PayActivity extends BaseActivity {
     private List<College> colleges;
     private List<Category> addressTypes;
 
-    private EditText etFirstName, etLastName, etAddress, etPhone, etEmail, etNote;
+    private EditText etFirstName, etLastName, etAddress, etPhone, etEmail;
 
     private Calendar deliveryDateTime;
 
@@ -51,7 +56,6 @@ public class PayActivity extends BaseActivity {
     private float subTotal;
 
 //    private Profile profile;
-    private boolean getFeeDone;
     private TextInputLayout layoutFirstName;
     private TextInputLayout layoutLastName;
     private TextInputLayout layoutCategory;
@@ -173,49 +177,72 @@ public class PayActivity extends BaseActivity {
         return result;
     }
 
-//    private PostOrderTask mPostTask;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.pay_complete, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        // noinspection SimplifiableIfStatement
+        if (id == R.id.action_close) {
+//            finish();
+//            if (Authentication.isLoggedIn(this)){
+//                startActivity(new Intent(this, OrderListActivity.class));
+//            } else{
+//                Intent intent = new Intent(this, MainActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//            }
+            String firstName = etFirstName.getText().toString().trim();
+            String lastName = etLastName.getText().toString().trim();
+            String address = etAddress.getText().toString().trim();
+            String phone = etPhone.getText().toString().trim();
+            String email = etEmail.getText().toString().trim();
+
+            int addressType = addressTypes.get(spCategory.getSelectedItemPosition()).getId();
+
+            if (checkField(firstName, lastName, address, phone, email)) {
+                if (spCollege.getSelectedItemPosition() == 0) {
+                    Snackbar.make(findViewById(R.id.view_data), R.string.choose_district, Snackbar.LENGTH_LONG).show();
+                    return false;
+                }
+                int districtId = ((College) spCollege.getSelectedItem()).getId();
+                    mPostTask = new PostOrderTask(PayActivity.this, firstName, lastName, districtId, address, phone, email, addressType) {
+                        @Override
+                        protected void onSuccess() {
+//                            super.onSuccess(order);
+//                            if (!isOrderNow) {
+//                                CartDao cartDao = new CartDao(PayActivity.this);
+//                                cartDao.deleteAll();
+//                            }
+//                            Intent i = new Intent(PayActivity.this, PayCompleteActivity.class);
+//                            i.putExtra(PayCompleteActivity.ARG_ORDER, order);
+//                            startActivity(i);
+                            finish();
+                        }
+                    };
+                    mPostTask.setShowProgressDialog(null, getString(R.string.sending_order), false);
+                    mPostTask.execute();
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private PostOrderTask mPostTask;
 //    private View.OnClickListener clickListener = new View.OnClickListener() {
 //        @Override
 //        public void onClick(View v) {
 //            switch (v.getId()) {
 //                case R.id.btPayDone:
-//                    String firstName = etFirstName.getText().toString().trim();
-//                    String lastName = etLastName.getText().toString().trim();
-//                    String address = etAddress.getText().toString().trim();
-//                    String phone = etPhone.getText().toString().trim();
-//                    String email = etEmail.getText().toString().trim();
 //
-//                    String note = etNote.getText().toString();
-//                    int addressType = addressTypes.get(spCategory.getSelectedItemPosition()).getId();
-//
-//                    if (checkField(firstName, lastName, address, phone, email)) {
-//                        if (spCollege.getSelectedItemPosition() == 0) {
-//                            TSnackbar.make(findViewById(R.id.view_data), R.string.choose_district, TSnackbar.LENGTH_LONG).show();
-//                            break;
-//                        }
-//                        String districtId = ((District) spCollege.getSelectedItem()).getId();
-//                        if (getFeeDone) {
-//                            mPostTask = new PostOrderTask(PayActivity.this, fee, mCarts, firstName, lastName, districtId, address, phone, email, note, addressType, deliveryDateTime, rbAsSoonAs.isChecked()) {
-//                                @Override
-//                                protected void onSuccess(Order order) {
-//                                    super.onSuccess(order);
-//                                    if (!isOrderNow) {
-//                                        CartDao cartDao = new CartDao(PayActivity.this);
-//                                        cartDao.deleteAll();
-//                                    }
-//                                    Intent i = new Intent(PayActivity.this, PayCompleteActivity.class);
-//                                    i.putExtra(PayCompleteActivity.ARG_ORDER, order);
-//                                    startActivity(i);
-//                                    finish();
-//                                }
-//                            };
-//                            mPostTask.setShowProgressDialog(null, getString(R.string.sending_order), false);
-//                            mPostTask.execute();
-//                        } else {
-//                            TSnackbar.make(findViewById(R.id.view_data), R.string.unable_get_fee, TSnackbar.LENGTH_LONG).show();
-//                        }
-//                    }
-//                    break;
 //            }
 //        }
 //    };
@@ -233,7 +260,9 @@ public class PayActivity extends BaseActivity {
 
         etFirstName = (EditText) findViewById(R.id.etTitle);
         etLastName = (EditText) findViewById(R.id.etContent);
-
+        etAddress = (EditText) findViewById(R.id.etAddress);
+        etPhone = (EditText) findViewById(R.id.etPhone);
+        etEmail = (EditText) findViewById(R.id.etEmail);
         layoutFirstName = (TextInputLayout) findViewById(R.id.input_layout_title);
         layoutLastName = (TextInputLayout) findViewById(R.id.input_layout_content);
 
@@ -290,14 +319,6 @@ public class PayActivity extends BaseActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if (position != -1) {
-//                    if (Authentication.isLoggedIn(PayActivity.this) && profile != null) {
-//                    getFee();
-//                    }
-//                } else {
-//                    tvDeliveryFee.setText(R.string.free);
-//                    tvTotal.setText(CommonUtils.formatPrice(PayActivity.this, subTotal + fee));
-//                }
             }
 
             @Override
@@ -319,7 +340,7 @@ public class PayActivity extends BaseActivity {
 //                }
 //                districts.add(0, new District(null, getString(R.string.choose_district)));
 //                adapterCollege.notifyDataSetChanged();
-
+//
 //                if (profile != null) {
 //                    if (position == ProfileFragment.indexOfProvince(provinces, ProfileFragment.getProvinceIdByDistricId(provinces, profile.getDistrict()))) {
 //                        spCollege.setSelection(ProfileFragment.indexOfDistrict(districts, profile.getDistrict()) + 1);
@@ -336,34 +357,13 @@ public class PayActivity extends BaseActivity {
             }
 
         });
-//
-//
-//        subTotal = CartFragment.calculateSummaryPayment(mCarts);
-//        // Set subTotal of money
-//        tvSubTotal.setText(CommonUtils.formatPrice(this, subTotal));
-//        tvTotal.setText(CommonUtils.formatPrice(this, subTotal + fee));
-//        setDate(Calendar.getInstance());
-//
+
 //        refreshProfile();
-//    }
+    }
 
 //    private void refreshProfile() {
 //        if (Authentication.isLoggedIn(this)) {
 //            getProfile();
 //        }
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-
+//    }
 }

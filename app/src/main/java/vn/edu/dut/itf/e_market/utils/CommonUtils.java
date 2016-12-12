@@ -50,7 +50,7 @@ public class CommonUtils {
     }
 
     public static List<College> getCollegesList(Context context) {
-        if (colleges != null) {
+        if (colleges == null) {
             colleges = new ProvinceDao(context).getColleges();
         }
         return colleges;

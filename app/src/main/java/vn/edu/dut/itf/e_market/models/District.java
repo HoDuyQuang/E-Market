@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class District extends BaseModel {
     @SerializedName("id")
-    private String id;
+    private int id;
     @SerializedName("name")
     private String name;
     @SerializedName("listDistricts")
@@ -15,16 +15,16 @@ public class District extends BaseModel {
     public District(){
 
     }
-    public District(String id, String name) {
+    public District(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
