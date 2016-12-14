@@ -48,7 +48,8 @@ public class PostOrderTask extends BaseApiTask {
         info.put("phone", phone);
         info.put("email", email);
         info.put("categoryId", String.valueOf(categoryId));
-        return RequestUtils.sendPost(APIConfig.URL_28_POST_ORDER, Authentication.getAuthToken(mContext), info, null);
+//        return RequestUtils.sendPost(APIConfig.URL_28_POST_ORDER, Authentication.getAuthToken(mContext), info, null);
+        return RequestUtils.ok();
     }
 
     @Override
